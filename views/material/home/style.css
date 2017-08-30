@@ -1,0 +1,177 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 62.5%;
+  height: 100%;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  html, body {
+    font-size: 50%;
+  }
+}
+
+svg {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  overflow: visible;
+}
+
+.svg-icon {
+  cursor: pointer;
+}
+.svg-icon path {
+  stroke: rgba(255, 255, 255, 0.9);
+  fill: none;
+  stroke-width: 1;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
+.material-home-class, .home-page {
+  height: 100vh;
+}
+
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.12) !important;
+  z-index: 1000;
+}
+
+.home-top {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px, rgba(0, 0, 0, 0.12) 0px 1px 1px;
+}
+
+.home-top a {
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  margin: 0;
+  width: 12%;
+  justify-content: center;
+}
+
+.home-top a.topActive {
+  border-bottom: 2px solid red;
+}
+
+.home-content {
+  overflow-y: auto;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.img-shot {
+  position: absolute;
+  top: 45px;
+  left: 6px;
+  font-size: 0.6rem;
+}
+
+.personal-msg {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.personal-msg .username {
+  margin-left: 10px;
+}
+
+.personal-msg span:last-child {
+  position: absolute;
+  right: 10px;
+}
+
+.user-msg {
+  float: left;
+  display: inline-flex;
+  max-width: 120px;
+  height: 100%;
+  align-items: center;
+}
+
+.tabClass {
+  text-transform: inherit !important;
+}
+
+.icon-oper {
+  position: relative;
+  margin: 5px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.per-comment, .all-comment, .first-comment, .second-comment {
+  text-indent: 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.bottom-oper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.top-oper {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.test {
+  position: relative;
+  padding: 15px 0;
+}
+
+.test span:first-child {
+  position: absolute;
+  left: 15px;
+}
+
+.test span:last-child {
+  position: absolute;
+  right: 15px;
+}
+
+/*SliderX*/
+ul.slider {
+  list-style: none;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  text-align: justify;
+}
+ul.slider li {
+  height: 100px;
+  display: inline-block;
+  width: 40%;
+}
+
+ul.slider li a img {
+  width: 100%;
+  height: 100%;
+}
+

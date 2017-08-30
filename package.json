@@ -1,0 +1,54 @@
+{
+  "name": "h5-trade-client",
+  "description": "The HTML5 Trade Client of KDS Mobile Stock",
+  "repository": "KDS",
+  "version": "0.1.0",
+  "author": "KDS App Develop Team",
+  "dependencies": {
+    "file-loader": "^0.8.4",
+    "flux": "^2.0.0",
+    "http-server": "^0.8.5",
+    "iscroll": "^5.2.0",
+    "jquery": "^2.1.4",
+    "jsxhint": "^0.15.1",
+    "object-assign": "^1.0.0",
+    "postcss-loader": "^1.0.0",
+    "protobufjs": "^5.0.1",
+    "swiper": "^3.4.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-pull-to-refresh": ""
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "babel-core": "^5.8.29",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "fastclick": "^1.0.6",
+    "jsx-loader": "^0.12.2",
+    "less-loader": "^0.7.7",
+    "markdown": "^0.5.0",
+    "reactify": "^0.15.2",
+    "style-loader": "^0.8.1",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.5.3",
+    "less": "^1.5.1",
+    "chart.js": "^2.0.2"
+  },
+  "jshintConfig": {
+    "boss": true,
+    "strict": true,
+    "eqnull": true,
+    "latedef": true,
+    "unused": true,
+    "trailing": true,
+    "sub": true
+  },
+  "scripts": {
+    "start": "npm run webpack & npm run serve",
+    "start-win": "start npm run webpack && start npm run serve",
+    "webpack": "webpack --progress --colors --watch",
+    "serve": "http-server -p 8000"
+  }
+}

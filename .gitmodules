@@ -1,0 +1,4 @@
+[submodule "kmc"]
+    path = kmc
+    url = git@gitlab.inin88.com:mobile-stock-app/h5-trade-libs.git
+    branch = develop

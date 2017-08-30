@@ -1,0 +1,120 @@
+body {
+    min-height:100%;
+    background-color: #263238;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.space-bot{
+  margin-bottom: 35px;
+}
+
+.space-top{
+  margin-top: 35px;
+}
+
+/* Title */
+
+h1 {
+    color: white;
+    font-family: 'Roboto';
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+}
+
+/* Sign Up */
+
+.container {
+    max-width: 400px;
+    max-height: 100px;
+    margin-top: 10px;
+}
+
+.alert-danger{
+	text-align: center;
+}
+
+.signup-screen {
+	  padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+    background-color: #2c3940;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+    color: white;
+}
+
+.btn{
+  border-radius: 2px;
+}
+
+.cancel{
+  background-color: #df405a;
+}
+
+.done{
+  background-color: #5CAB7D;
+}
+
+.done:hover{
+  background-color: #6dc793;
+}
+
+.done:focus{
+  background-color: #6dc793;
+}
+
+.cancel:hover{
+  background-color: #f0435f;
+}
+
+.cancel:focus{
+  background-color: #f0435f;
+}
+
+.input-group {
+    width:100%;
+}
+
+.input-group .ng-invalid {
+    border: 2px solid #e74c3c;
+    border-radius: 3px;
+}
+
+/* Error Box */
+
+.alert{
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  border-color: #e85a71;
+  background-color:  #e85a71;
+  color: white;
+
+}
+
+.help-block {
+    font-size: 12px;
+    color: white
+}
+
+.active {
+  top: -1.2rem;
+}
+
+
+.done {
+  background-color: #DFDFDF !important;
+  box-shadow: none;
+  color: #9F9F9F !important;
+  cursor: default;
+  margin-right: 3px;
+}
+
+.success-done {
+  background-color: #5CAB7D !important;
+}
