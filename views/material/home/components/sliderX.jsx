@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SliderX = ({imgSrcs}) => {
-    console.log(132);
     return (
         <ul className="slider">
           {

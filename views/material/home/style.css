@@ -175,3 +175,43 @@ ul.slider li a img {
   height: 100%;
 }
 
+.recommend {
+  padding: 10px;
+  background: #eee;
+  opacity: .9;
+}
+
+.recommend p {
+  position: relative;
+}
+
+.recommend p > label {
+  margin-left: 8px;
+}
+
+.recommend p label:last-child {
+  position: absolute;
+  right: 8px;
+  color: blue;
+  opacity: .8;
+}
+
+.add-msg {
+  position: absolute;
+  display: block;
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+  background: #eee;
+}
+
+/*homeSend*/
+.homeSend {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  margin: 0 10px;
+}
+
+.homeSend span, input {
+  font-size: 2rem;
+}
