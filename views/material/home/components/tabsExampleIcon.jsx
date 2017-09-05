@@ -17,6 +17,12 @@ import {CardMedia} from 'material-ui/Card';
 import IconComment from 'material-ui/svg-icons/communication/comment';
 import IconNearMe from 'material-ui/svg-icons/maps/near-me';
 import IconSend from 'material-ui/svg-icons/content/send';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import CircularProgress from 'material-ui/CircularProgress';
+
+import $ from 'jquery';
 
 import SliderX from './sliderX';
 
@@ -30,13 +36,18 @@ class TabsExampleIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialSelectedIndex: 2,
+      initialSelectedIndex: 1,
     };
     this.select = this.select.bind(this);
+    this.getLastHref = this.getLastHref.bind(this);
   }
 
   componentDidMount() {
-
+    //添加消息
+    var self = this;
+    $(document).on("click", ".add-msg", function() {
+      location.href = self.getLastHref()+"material/home/homeSend.html";
+    });
   }
 
   select(index) {
@@ -44,6 +55,11 @@ class TabsExampleIcon extends Component {
       this.props.handleTopIndex(index);
     }
     this.setState({initialSelectedIndex: index});
+  }
+
+  getLastHref() {
+      let index = location.href.indexOf("views");
+      return location.href.substr(0, index+6);
   }
 
   render() {
@@ -99,7 +115,11 @@ class TabsExampleIcon extends Component {
                                       </div>
                                       <div className="account-operate">
                                         <div className="icon-oper">
-                                          <IconFavoriteBorder style={iconStyles} />
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
                                           <IconComment style={iconStyles} />
                                           <IconNearMe style={iconStyles} />
                                           <IconTurnedInNot style={{position: "absolute", right: 0}} />
@@ -145,7 +165,65 @@ class TabsExampleIcon extends Component {
                                       </div>
                                       <div className="account-operate">
                                         <div className="icon-oper">
-                                          <IconFavoriteBorder style={iconStyles} />
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
+                                          <IconComment style={iconStyles} />
+                                          <IconNearMe style={iconStyles} />
+                                          <IconTurnedInNot style={{position: "absolute", right: 0}} />
+                                        </div>
+                                        <div className="comment-oper">
+                                          <ListItem
+                                                style={{paddingTop: 3, paddingLeft: 27, paddingBottom: 3, fontSize: 13}}
+                                                disabled={true}
+                                                leftAvatar={
+                                                  <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
+                                                }
+                                          >
+                                            1000000赞
+                                          </ListItem>
+                                          <div className="per-comment">
+                                            哈哈
+                                          </div>
+                                          <div className="all-comment">
+                                            全部1005条评论
+                                          </div>
+                                          <div className="first-comment">
+                                            第一条评论
+                                          </div>
+                                          <div className="second-comment">
+                                            第二条评论
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <div className="recommend">
+                                      <p><label>推荐用户</label><label>显示全部</label></p>
+                                      <SliderX imgSrcs={this.props.imgSrcs} />
+                                    </div>
+                                    <li>
+                                      <div className="personal-msg">
+                                        <Avatar src="../../../img/solo.jpg"
+                                                size={30}
+                                                style={style}
+                                        />
+                                        <span className="username">sergioramos</span>
+                                        <span><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                                      </div>
+                                      <div className="share-img">
+                                          <CardMedia>
+                                            <img src="../../../img/dream.jpg" alt="" />
+                                          </CardMedia>
+                                      </div>
+                                      <div className="account-operate">
+                                        <div className="icon-oper">
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
                                           <IconComment style={iconStyles} />
                                           <IconNearMe style={iconStyles} />
                                           <IconTurnedInNot style={{position: "absolute", right: 0}} />
@@ -191,7 +269,11 @@ class TabsExampleIcon extends Component {
                                       </div>
                                       <div className="account-operate">
                                         <div className="icon-oper">
-                                          <IconFavoriteBorder style={iconStyles} />
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
                                           <IconComment style={iconStyles} />
                                           <IconNearMe style={iconStyles} />
                                           <IconTurnedInNot style={{position: "absolute", right: 0}} />
@@ -237,7 +319,11 @@ class TabsExampleIcon extends Component {
                                       </div>
                                       <div className="account-operate">
                                         <div className="icon-oper">
-                                          <IconFavoriteBorder style={iconStyles} />
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
                                           <IconComment style={iconStyles} />
                                           <IconNearMe style={iconStyles} />
                                           <IconTurnedInNot style={{position: "absolute", right: 0}} />
@@ -283,7 +369,61 @@ class TabsExampleIcon extends Component {
                                       </div>
                                       <div className="account-operate">
                                         <div className="icon-oper">
-                                          <IconFavoriteBorder style={iconStyles} />
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
+                                          <IconComment style={iconStyles} />
+                                          <IconNearMe style={iconStyles} />
+                                          <IconTurnedInNot style={{position: "absolute", right: 0}} />
+                                        </div>
+                                        <div className="comment-oper">
+                                          <ListItem
+                                                style={{paddingTop: 3, paddingLeft: 27, paddingBottom: 3, fontSize: 13}}
+                                                disabled={true}
+                                                leftAvatar={
+                                                  <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
+                                                }
+                                          >
+                                            1000000赞
+                                          </ListItem>
+                                          <div className="per-comment">
+                                            哈哈
+                                          </div>
+                                          <div className="all-comment">
+                                            全部1005条评论
+                                          </div>
+                                          <div className="first-comment">
+                                            第一条评论
+                                          </div>
+                                          <div className="second-comment">
+                                            第二条评论
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div className="personal-msg">
+                                        <Avatar src="../../../img/solo.jpg"
+                                                size={30}
+                                                style={style}
+                                        />
+                                        <span className="username">sergioramos</span>
+                                        <span><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                                      </div>
+                                      <div className="share-img">
+                                          <CardMedia>
+                                            <img src="../../../img/dream.jpg" alt="" />
+                                          </CardMedia>
+                                      </div>
+                                      <div className="account-operate">
+                                        <div className="icon-oper">
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
                                           <IconComment style={iconStyles} />
                                           <IconNearMe style={iconStyles} />
                                           <IconTurnedInNot style={{position: "absolute", right: 0}} />
@@ -317,8 +457,14 @@ class TabsExampleIcon extends Component {
                                 </div>
                               </Tab> :
                               <Tab key={i} onClick={() => this.select(2)} icon={<IconSend />}>
-                                <p className="test"><span>推荐用户</span><span>显示全部</span></p>
-                                <SliderX imgSrcs={this.props.imgSrcs} />
+                                <CircularProgress thickness={5} style={{  width: "100%",
+                                                            position: "relative",
+                                                            textAlign: "initial",
+                                                            height: document.body.clientHeight-(48+56+40),
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                            justifyContent: "center"}} />
+                                <div className="add-msg">+ 新消息</div>
                               </Tab>;
             return aCon;
           })
