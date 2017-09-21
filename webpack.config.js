@@ -8,9 +8,9 @@ module.exports = {
     plugins: [commonsPlugin],
     entry: {
         "material-home" : './views/material/home/home.jsx',
-        "material-homeSend" : './views/material/home/homeSend.jsx',
         "material-login" : './views/material/login/login.jsx',
-        "material-register" : './views/material/register/register.jsx'
+        "material-register" : './views/material/register/register.jsx',
+        "material-nav" : './views/material/nav/index.jsx'
     },
     output: {
         path: './dist/scripts',

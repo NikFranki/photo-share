@@ -1,89 +1,53 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import BottomNavigationExampleSimple from './components/bottomNavigationExampleSimple';
-import TabsExampleIcon from './components/tabsExampleIcon';
+import HomePage from './components/homePage';
+import Search from './components/search';
+import Add from './components/add';
+import Favorites from './components/favorites';
+import Peason from './components/peason';
+import Page from './components/page';
+import Res from './components/res';
+import TabFirst from './components/tabFirst';
+import TabSecond from './components/tabSecond';
+import TabThird from './components/tabThird';
+import PhotoContent from './components/photoContent';
+import HomeContent from './components/homeContent';
+import SendContent from './components/sendContent';
+import NewNews from './components/newNews';
+import HomeSend from './homeSend';
 
 import './style.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        selcetBottomIndex: 0,
-        selectTopIndex: 0,
-    };
-    this.showHomeContent = this.showHomeContent.bind(this);
-    this.handleSelectIndex = this.handleSelectIndex.bind(this);
-    this.renderHomePage = this.renderHomePage.bind(this);
-  }
-
-  componentDidMount() {
-    //固定底部菜单栏
-    this.refs.homeMenu.childNodes[0].childNodes[1].className = "fixed-bottom";
-  }
-
-  handleSelectIndex(selcetIndex) {
-    this.setState({selcetBottomIndex: selcetIndex});
-  }
-
-  handleTopIndex(topIndex) {
-    this.setState({selectTopIndex: topIndex});
-  }
-
-  renderHomePage() {
-    const style = {margin: 5, left: 10};
-    const homeConHeight = {"height": document.body.clientHeight-40-56};
-    return <div className="home-page">
-            <div >
-              <TabsExampleIcon pageTab={this.props.pageTab} handleTopIndex={this.handleTopIndex} />
-            </div>
-          </div>;
-  }
-
-  showHomeContent() {
-    let content, classNames;
-    let index = this.state.selcetBottomIndex;
-    switch(index) {
-      case 0:
-        content = this.renderHomePage();
-        break;
-      case 1:
-        content = <div>Search</div>;
-        break;
-      case 2:
-        content = <div>Add</div>;
-        break;
-      case 0:
-        content = <div>Favorites</div>;
-        break;
-      default:
-        content = <div>Peason</div>;
-    }
-    return content;
   }
 
   render() {
-    let content = this.showHomeContent();
-    return (
-      <MuiThemeProvider>
-        <div className="material-home-class">
-            <div className="home_menu" ref="homeMenu">
-              <div className="home-container">
-                {content}
-                <BottomNavigationExampleSimple handleIndex={this.handleSelectIndex} />
-              </div>
-            </div>
-        </div>
-      </MuiThemeProvider>
-    );
+    return  <Router history={hashHistory}>
+              <Route path='/' component={BottomNavigationExampleSimple}>
+                <IndexRoute component={HomePage} />
+                <Route path='home' component={HomePage}>
+                  <Route path='tab1' component={PhotoContent} />
+                  <Route path='tab2' component={HomeContent} />
+                  <Route path='tab3' component={SendContent} />
+                </Route>
+                <Route path='search' component={Search}>
+                  <Route path='page' component={Page} />
+                  <Route path='res' component={Res} />
+                </Route>
+                <Route path='add' component={Add} />
+                <Route path='favorites' component={Favorites} />
+                <Route path='peason' component={Peason} />
+                <NewNews path='newNews' component={HomeSend} />
+              </Route>
+            </Router>
   }
-}
-
-App.defaultProps = {
-  pageTab: [1,2,3],
 }
 
 ReactDOM.render(

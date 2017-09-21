@@ -32,12 +32,29 @@ class HomeSend extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            listitem: this.props.listitem || [],
         };
+        this.handleOninput = this.handleOninput.bind(this);
+        this.handleListItem = this.handleListItem.bind(this);
     }
 
     componentDidMount() {
-        console.log(this.refs.Lam.props.primaryText);
+    }
+
+    handleOninput(e) {
+      let value = e.target.value;
+      //判断输入的在列表里面的人名
+      let filtered = this.props.listitem.filter((item, index) => {
+        if (item.primaryText.indexOf(value) > -1) {
+            return item;
+        }
+      });
+      console.log(filtered);
+      this.setState({listitem: filtered});
+    }
+
+    handleListItem(obj) {
+      console.log(obj.target);
     }
 
     render() {
@@ -47,25 +64,13 @@ class HomeSend extends Component {
                     <div>
                         <div className="homeSend">
                             <span>收件人：</span>
-                            <input type="text" placeholder="搜索" />
+                            <input type="text" placeholder="搜索" onInput={this.handleOninput} />
                         </div>
                         <div style={{height: document.body.clientHeight-52, overflow: "auto",}} className="listyle">
                             <List>
-                              <ListItem ref="Lam" primaryText="Brendan Lam" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lbm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lcm" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Ldm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lem" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lfm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lgm" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lhm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lim" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Ljm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lkm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Llm" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lmm" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lnm" leftAvatar={<Avatar src="../../../img/dream.jpg" />} rightIcon={<CheckBox />}/>
-                              <ListItem primaryText="Brendan Lom" leftAvatar={<Avatar src="../../../img/solo.jpg" />} rightIcon={<CheckBox />}/>
+                              {
+                                this.state.listitem.map((item, index) => <ListItem onClick={this.handleListItem} key={item.key} ref={"row"+index} primaryText={item.primaryText} leftAvatar={<Avatar src={item.imgSrc} />} rightIcon={<CheckBox />}/> )
+                              }
                             </List>
                         </div>
                     </div>
@@ -75,4 +80,21 @@ class HomeSend extends Component {
     }
 }
 
-ReactDOM.render(<HomeSend />, document.getElementById("material-homeSend"));
+HomeSend.defaultProps = {
+  listitem: [
+              {key: 0, primaryText: 'abc',imgSrc: '../../../img/solo.jpg'},
+              {key: 1, primaryText: 'abc',imgSrc: '../../../img/solo.jpg'},
+              {key: 2, primaryText: 'cde',imgSrc: '../../../img/dream.jpg'},
+              {key: 3, primaryText: 'cde',imgSrc: '../../../img/dream.jpg'},
+              {key: 4, primaryText: 'efg',imgSrc: '../../../img/solo.jpg'},
+              {key: 5, primaryText: 'efg',imgSrc: '../../../img/solo.jpg'},
+              {key: 6, primaryText: 'opq',imgSrc: '../../../img/dream.jpg'},
+              {key: 7, primaryText: 'opq',imgSrc: '../../../img/dream.jpg'},
+              {key: 8, primaryText: 'qwr',imgSrc: '../../../img/solo.jpg'},
+              {key: 9, primaryText: 'qwr',imgSrc: '../../../img/solo.jpg'}
+            ],
+};
+
+export default HomeSend;
+
+// ReactDOM.render(<HomeSend />, document.getElementById("material-homeSend"));
