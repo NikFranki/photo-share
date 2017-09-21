@@ -1,23 +1,25 @@
 {
-  "name": "h5-trade-client",
-  "description": "The HTML5 Trade Client of KDS Mobile Stock",
+  "name": "phone-share",
+  "description": "h5 client of mobile",
   "repository": "KDS",
   "version": "0.1.0",
   "author": "KDS App Develop Team",
   "dependencies": {
     "file-loader": "^0.8.4",
     "flux": "^2.0.0",
-    "http-server": "^0.8.5",
+    "http-server": "^0.10.0",
     "iscroll": "^5.2.0",
     "jquery": "^2.1.4",
     "jsxhint": "^0.15.1",
     "object-assign": "^1.0.0",
     "postcss-loader": "^1.0.0",
+    "prop-types": "^15.5.10",
     "protobufjs": "^5.0.1",
-    "swiper": "^3.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-pull-to-refresh": ""
+    "react-pull-to-refresh": "",
+    "react-router": "^2.0.0",
+    "swiper": "^3.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",

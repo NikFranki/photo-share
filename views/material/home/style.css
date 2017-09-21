@@ -40,6 +40,17 @@ input, button {
   height: 100vh;
 }
 
+.home-page ul li:nth-child(2) a {
+  text-decoration: none;
+}
+
+.home-page ul li:nth-child(2) a div div button div div {
+  height: 40px !important;
+  margin-top: 8px;
+  text-transform: initial;
+  font-size: 3rem;
+}
+
 .fixed-bottom {
   position: fixed;
   left: 0;
@@ -127,7 +138,7 @@ input, button {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 9px;
+  bottom: 57px;
   padding: 10px;
   display: flex;
   justify-content: space-around;
