@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TabsExampleIcon from './tabsExampleIcon';
+import TabsExampleIcon from '../material/home/components/tabsExampleIcon';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabFirst from './tabFirst';
 import TabSecond from './tabSecond';
@@ -20,9 +20,6 @@ export default class HomePage extends Component {
 
     render() {
         return  <div className="home-page">
-                    {/*<MuiThemeProvider>
-                      <TabsExampleIcon pageTab={this.props.pageTab} handleTopIndex={this.handleTopIndex} />
-                    </MuiThemeProvider*/}
                     <ul>
                         <li style={styles.li}><Link to='/home/tab1'><TabFirst /></Link></li>
                         <li style={styles.li}><Link to='/home/tab2'><TabSecond /></Link></li>
