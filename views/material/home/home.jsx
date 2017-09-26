@@ -3,23 +3,24 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
-
-import BottomNavigationExampleSimple from './components/bottomNavigationExampleSimple';
-import HomePage from './components/homePage';
-import Search from './components/search';
-import Add from './components/add';
-import Favorites from './components/favorites';
-import Peason from './components/peason';
-import Page from './components/page';
-import Res from './components/res';
-import TabFirst from './components/tabFirst';
-import TabSecond from './components/tabSecond';
-import TabThird from './components/tabThird';
-import PhotoContent from './components/photoContent';
-import HomeContent from './components/homeContent';
-import SendContent from './components/sendContent';
-import NewNews from './components/newNews';
-import HomeSend from './homeSend';
+import BottomNavigationExampleSimple from '../../Router/bottomNavigationExampleSimple';
+import HomePage from '../../Router/homePage';
+import Search from '../../Router/search';
+import Add from '../../Router/add';
+import Favorites from '../../Router/favorites';
+import Peason from '../../Router/peason';
+import Page from '../../Router/page';
+import Res from '../../Router/res';
+import TabFirst from '../../Router/tabFirst';
+import TabSecond from '../../Router/tabSecond';
+import TabThird from '../../Router/tabThird';
+import PhotoContent from '../../Router/photoContent';
+import HomeContent from '../../Router/homeContent';
+import SendContent from '../../Router/sendContent';
+import NewNews from '../../Router/newNews';
+import Swipe from '../../Router/swipe';
+import PeasonDetail from '../../Router/peasonDetail';
+import HomeSend from '../../Router/homeSend';
 
 import './style.css';
 
@@ -39,12 +40,13 @@ class App extends Component {
                 </Route>
                 <Route path='search' component={Search}>
                   <Route path='page' component={Page} />
-                  <Route path='res' component={Res} />
+                  <Route path='res' component={Swipe} />
                 </Route>
                 <Route path='add' component={Add} />
                 <Route path='favorites' component={Favorites} />
                 <Route path='peason' component={Peason} />
-                <NewNews path='newNews' component={HomeSend} />
+                <Route path='newNews' component={HomeSend} />
+                <Route path='peaDetail' component={PeasonDetail} />
               </Route>
             </Router>
   }

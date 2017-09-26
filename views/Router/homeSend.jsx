@@ -9,7 +9,7 @@ import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-import './style.css';
+import '../material/home/style.css';
 
 const styles = {
   block: {
@@ -66,7 +66,7 @@ class HomeSend extends Component {
                             <span>收件人：</span>
                             <input type="text" placeholder="搜索" onInput={this.handleOninput} />
                         </div>
-                        <div style={{height: document.body.clientHeight-52, overflow: "auto",}} className="listyle">
+                        <div style={{height: document.body.clientHeight-52-56, overflow: "auto",}} className="listyle">
                             <List>
                               {
                                 this.state.listitem.map((item, index) => <ListItem onClick={this.handleListItem} key={item.key} ref={"row"+index} primaryText={item.primaryText} leftAvatar={<Avatar src={item.imgSrc} />} rightIcon={<CheckBox />}/> )
