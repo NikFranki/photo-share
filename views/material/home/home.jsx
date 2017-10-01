@@ -21,38 +21,44 @@ import NewNews from '../../Router/newNews';
 import Swipe from '../../Router/swipe';
 import PeasonDetail from '../../Router/peasonDetail';
 import HomeSend from '../../Router/homeSend';
+/*导入redux*/
+import { Provider } from 'react-redux';
+import store from '../../Redux/Store/Store'
 
 import './style.css';
 
-class App extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return  <Router history={hashHistory}>
-              <Route path='/' component={BottomNavigationExampleSimple}>
-                <IndexRoute component={HomePage} />
-                <Route path='home' component={HomePage}>
-                  <Route path='tab1' component={PhotoContent} />
-                  <Route path='tab2' component={HomeContent} />
-                  <Route path='tab3' component={SendContent} />
+    return  <Provider store={store}>
+              <Router history={hashHistory}>
+                <Route path='/' component={BottomNavigationExampleSimple}>
+                  <IndexRoute component={HomePage} />
+                  <Route path='home' component={HomePage}>
+                    <IndexRoute component={PhotoContent} />
+                    <Route path='tab1' component={PhotoContent} />
+                    <Route path='tab2' component={HomeContent} />
+                    <Route path='tab3' component={SendContent} />
+                  </Route>
+                  <Route path='search' component={Search}>
+                    <Route path='page' component={Page} />
+                    <Route path='res' component={Swipe} />
+                  </Route>
+                  <Route path='add' component={Add} />
+                  <Route path='favorites' component={Favorites} />
+                  <Route path='peason' component={Peason} />
+                  <Route path='newNews' component={HomeSend} />
+                  <Route path='peaDetail' component={PeasonDetail} />
                 </Route>
-                <Route path='search' component={Search}>
-                  <Route path='page' component={Page} />
-                  <Route path='res' component={Swipe} />
-                </Route>
-                <Route path='add' component={Add} />
-                <Route path='favorites' component={Favorites} />
-                <Route path='peason' component={Peason} />
-                <Route path='newNews' component={HomeSend} />
-                <Route path='peaDetail' component={PeasonDetail} />
-              </Route>
-            </Router>
+              </Router>
+            </Provider>
   }
 }
 
 ReactDOM.render(
-  <App />,
+  <Home />,
   document.getElementById('material-home')
 );

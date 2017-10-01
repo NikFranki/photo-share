@@ -9,9 +9,6 @@ import './style.css';
 class Register extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
         this.handleDone = this.handleDone.bind(this);
         this.getLastHref = this.getLastHref.bind(this);
     }
