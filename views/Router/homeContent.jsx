@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ListItem from 'material-ui/List/ListItem';
 import { Avatar, FontIcon } from 'material-ui';
@@ -14,6 +15,10 @@ import IconFavorite from 'material-ui/svg-icons/action/favorite';
 import SliderX from '../material/home/components/sliderX';
 import Dialog from '../material/home/components/dialog';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+
+/*导入action*/
+import { openDialog, closeDialog } from '../Redux/Action/Index';
 
 const style = {
   margin: 5
@@ -39,14 +44,10 @@ const imgSrcArr =  [
 class HomeContent extends Component {
   constructor(props) {
     super(props);
-    this.handleOpenDialog = this.handleOpenDialog.bind(this);
-  }
-
-  handleOpenDialog() {
-    this.refs.tipse.setState({open: true})
   }
 
   render() {
+    const { doWithDialog } = this.props;
     return  <MuiThemeProvider>
                 <div className="home-content" style={{"height": document.body.clientHeight-40-56}}>
                     <div className="your-snapshot">
@@ -71,7 +72,7 @@ class HomeContent extends Component {
                                         style={style}
                                 />
                                 <span className="username"><Link style={styles.link} to='/peaDetail'>sergioramos</Link></span>
-                                <span onClick={this.handleOpenDialog}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                                <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
                             </div>
                             <div className="share-img">
                                 <CardMedia>
@@ -121,7 +122,7 @@ class HomeContent extends Component {
                                     style={style}
                             />
                             <span className="username"><Link style={styles.link} to='/peaDetail'>sergioramos</Link></span>
-                            <span onClick={this.handleOpenDialog}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                            <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
                           </div>
                           <div className="share-img">
                               <CardMedia>
@@ -169,10 +170,20 @@ class HomeContent extends Component {
                           <SliderX imgSrcs={imgSrcArr} />
                         </div>
                     </ul>
-                <Dialog ref="tipse" />
+                <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />
                 </div>
             </MuiThemeProvider>;
   }
 }
 
-export default HomeContent;
+HomeContent.propTypes = {
+
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    doWithDialog: state.doWithDialog //返回弹框state
+  }
+}
+
+export default connect(mapStateToProps)(HomeContent);

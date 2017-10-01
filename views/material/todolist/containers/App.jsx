@@ -248,7 +248,7 @@ function mapStateToProps (state, ownProps) {
   }
   const filter = ownProps.params.filter || 'SHOW_ALL'
   return {
-    visibleTodos: selectTodos(state.todos,  filter),
+    visibleTodos: selectTodos(state.todos, filter),
     visibilityFilter, // visibilityFilter: state.visibilityFilter
     postDatas: state.postsData.receivePosts,
     selectedSubreddit,
