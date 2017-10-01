@@ -30,6 +30,9 @@ module.exports = {
           browsers: ['last 5 versions', '> 1%']
         })
     ],
+    devServer: {
+        historyApiFallback: true,
+    },
     resolve: {
         extensions: ['', '.js', '.jsx', '.less', '.css']
     }
