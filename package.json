@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "KDS App Develop Team",
   "dependencies": {
+    "axios": "^0.16.2",
     "file-loader": "^0.8.4",
     "flux": "^2.0.0",
     "http-server": "^0.10.0",
@@ -23,6 +24,8 @@
     "react-router": "^2.0.0",
     "react-swipeable-views": "^0.12.8",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "swiper": "^3.4.0"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import FilterLink from '../containers/FilterLink'
 
 export default class Footer extends Component {
   renderFilter(filter, name) {
@@ -17,16 +18,26 @@ export default class Footer extends Component {
     )
   }
 
+  RenderTodos(filter) {
+    this.props.onFilterChange(filter);
+  }
+
   render() {
     return (
       <p>
         Show:
         {' '}
-        {this.renderFilter('SHOW_ALL', 'All')}
+        <FilterLink filter="SHOW_ALL" onFilter={this.RenderTodos.bind(this)}>
+          All
+        </FilterLink>
         {', '}
-        {this.renderFilter('SHOW_COMPLETED', 'Completed')}
+        <FilterLink filter="SHOW_COMPLETED" onFilter={this.RenderTodos.bind(this)}>
+          Completed
+        </FilterLink>
         {', '}
-        {this.renderFilter('SHOW_ACTIVE', 'Active')}
+        <FilterLink filter="SHOW_ACTIVE" onFilter={this.RenderTodos.bind(this)}>
+          Active
+        </FilterLink>
         .
       </p>
     )
