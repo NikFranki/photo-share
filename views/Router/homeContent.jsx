@@ -44,6 +44,11 @@ const imgSrcArr =  [
 class HomeContent extends Component {
   constructor(props) {
     super(props);
+    this.handleComment = this.handleComment.bind(this);
+  }
+
+  handleComment() {
+    console.log(123);
   }
 
   render() {
@@ -86,7 +91,7 @@ class HomeContent extends Component {
                                 checkedIcon={<ActionFavorite />}
                                 uncheckedIcon={<ActionFavoriteBorder />}
                               />
-                              <IconComment style={iconStyles} />
+                              <a href="#/comment" ><IconComment style={iconStyles} /></a>
                               <IconNearMe style={iconStyles} />
                               <IconTurnedInNot style={{position: "absolute", right: 0}} />
                             </div>
@@ -136,7 +141,7 @@ class HomeContent extends Component {
                                 checkedIcon={<ActionFavorite />}
                                 uncheckedIcon={<ActionFavoriteBorder />}
                               />
-                              <IconComment style={iconStyles} />
+                              <span href="#/comment"><IconComment style={iconStyles} /></span>
                               <IconNearMe style={iconStyles} />
                               <IconTurnedInNot style={{position: "absolute", right: 0}} />
                             </div>

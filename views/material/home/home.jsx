@@ -20,6 +20,7 @@ import SendContent from '../../Router/sendContent';
 import NewNews from '../../Router/newNews';
 import Swipe from '../../Router/swipe';
 import PeasonDetail from '../../Router/peasonDetail';
+import Comment from '../../Router/comment';
 import HomeSend from '../../Router/homeSend';
 /*导入redux*/
 import { Provider } from 'react-redux';
@@ -52,6 +53,7 @@ class Home extends Component {
                   <Route path='peason' component={Peason} />
                   <Route path='newNews' component={HomeSend} />
                   <Route path='peaDetail' component={PeasonDetail} />
+                  <Route path='comment' component={Comment} />
                 </Route>
               </Router>
             </Provider>
