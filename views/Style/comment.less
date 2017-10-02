@@ -1,0 +1,133 @@
+.whole-comment {
+    overflow: auto;
+    overflow-x: hidden;
+
+    .self-comment {
+        position: relative;
+        font-size: 14px;
+        height: 60px;
+        line-height: 60px;
+
+        .left-area {
+            display: inline-flex;
+            width: 55px;
+            position: absolute;
+            height: 50px;
+            img {
+                margin: 10px;
+            }
+        }
+
+        .right-area {
+            display: flex;
+            margin-left: 55px;
+            .comment-content {
+                width: 100%;
+                height: 60px;
+                border-bottom: 1px solid #ececec;
+                .top {
+                    width: 100%;
+                    height: 30px;
+                    line-height: 35px;
+                    .author {
+                        position: absolute;
+                        display: inline-flex;
+                        width: 100px;
+                    }
+                    .comment {
+                        display: flex;
+                        margin-left: 100px;
+                    }
+                }
+                .bottom {
+                    height: 20px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+
+    .add-comment {
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            cursor: pointer;
+        }
+    }
+
+    .list-comment {
+        li {
+            .self-comment {
+                .right-area {
+                    .comment-content {
+                        .top {
+                            position: relative;
+                            .comment {
+                                margin-right: 30px;
+                            }
+                            .extra-area {
+                                position: absolute;
+                                display: inline-flex;
+                                width: 30px;
+                                right: 0;
+                                top: 15px;
+                            }
+                        }
+                        .bottom {
+                            color: #999;
+                            font-size: 1rem;
+                            label:last-child {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .write-content {
+        position: fixed;
+        height: 40px;
+        line-height: 40px;
+        bottom: 56px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        .send {
+            position: absolute;
+            top: 0;
+            display: inline-flex;
+            width: 50px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .write {
+            display: flex;
+            margin: 0 50px;
+            height: 100%;
+            align-items: center;
+            input {
+                width: 100%;
+                font-size: 1rem;
+            }
+        }
+        .enter {
+            display: inline-flex;
+            width: 50px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1rem;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background: blue;
+            opacity: .5;
+        }
+    }
+}
+
