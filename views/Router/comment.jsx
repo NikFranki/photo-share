@@ -3,10 +3,9 @@ import Avatar from 'material-ui/Avatar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
 import Checkbox from 'material-ui/Checkbox';
-import { fetchPosts } from '../Redux/Action/Index';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-import {fetchItems} from '../Redux/Action/Index';
+import {fetchPosts, fetchItems, addComment} from '../Redux/Action/Index';
 import '../Style/comment.less';
 
 const commentContent = [
@@ -75,6 +74,12 @@ class Comment extends Component {
         // this.axiosRequest();
     }
 
+    componentDidUpdate() {
+        if (this.props.addComment.wholeComment.length > 0) {
+            document.querySelector(".whole-comment").scrollTop = document.querySelector(".whole-comment").scrollHeight
+        }
+    }
+
     axiosRequest() {
       const self = this;
       Axios.get(`http://www.subreddit.com/r/reactjs.json`)
@@ -102,6 +107,9 @@ class Comment extends Component {
         let commentContents = this.isEmpty(this.props.commentContents) ? [] : this.props.commentContents.reactjs.items;
         if (commentContents.length > 0) {
             commentContents = commentContent;
+        }
+        if (this.props.addComment.wholeComment.length > 0) {
+            commentContents = this.props.addComment.wholeComment;
         }
         const styles = {
             wholeComment: {
@@ -144,7 +152,7 @@ class Comment extends Component {
                         <ul className="list-comment">
                             {
                                 commentContents.map((item, key) => {
-                                    return  <li key={item.id}>
+                                    return  <li key={item.id} ref={`li-${item.id}`}>
                                                 <div className="self-comment">
                                                     <div className="left-area">
                                                         <Avatar
@@ -168,7 +176,7 @@ class Comment extends Component {
                                                             </div>
                                                             <div className="bottom">
                                                                 <label>{item.time}</label>
-                                                                <label>回复</label>
+                                                                <label>回复{item.id}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -182,10 +190,26 @@ class Comment extends Component {
                                 <img src="../../../img/send.svg" alt="send" />
                             </div>
                             <div className="write">
-                                <input type="text" placeholder="添加评论..." />
+                                <input ref='input' type="text" placeholder="添加评论..." />
                             </div>
-                            <div className="enter">
-                                <img src="../../../img/tick.svg" alt="enter" />
+                            <div ref="enter" className="enter">
+                                <img onClick={() => {
+                                        this.refs.enter.style.opacity=".8";
+                                        setTimeout(() => {
+                                            this.refs.enter.style.background="blue";
+                                            this.refs.enter.style.opacity=".5";
+                                        }, 100)
+                                        if(!this.refs.input.value.trim()) return;
+                                        this.props.dispatch(addComment(commentContent, {
+                                        id: commentContents.length+1,
+                                        commentatorAvatar: '../../../img/solo.jpg',
+                                        commentatorName: 'franki',
+                                        comment: this.refs.input.value.trim() || 'hi ramos',
+                                        time: '2天'
+                                        }))
+                                        this.refs.input.value = ""
+                                    }
+                                } src="../../../img/tick.svg" alt="enter" />
                             </div>
                         </div>
                     </div>
@@ -197,7 +221,8 @@ class Comment extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         commentContents: state.postsBySubreddit,
-        items: state.items.receivePosts
+        items: state.items.receivePosts,
+        addComment: state.addComment
     }
 }
 

@@ -6,6 +6,9 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const FETCHITEMS = 'FETCHITEMS'
 export const OPEN_DIALOG = 'OPEN_DIALOG'
 export const CLOSE_DIALOG = 'CLOSE_DIALOG'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const OPEN_DRAWER = 'OPEN_DRAWER'
+export const CLOSE_DRAWER = 'CLOSE_DRAWER'
 
 
 export const addTodo = text => {
@@ -65,6 +68,31 @@ export const openDialog = dialogContents => {
 export const closeDialog = () => {
     return {
         type: CLOSE_DIALOG,
+        show: false
+    }
+}
+
+/*添加评论*/
+export const addComment = (originalComment, newComment) => {
+    originalComment.push(newComment)
+    return {
+        type: ADD_COMMENT,
+        wholeComment: originalComment
+    }
+}
+
+/*上移操作*/
+export const openDrawer = () => {
+    return {
+        type: OPEN_DRAWER,
+        show: true
+    }
+}
+
+/*下移操作*/
+export const closeDrawer = () => {
+    return {
+        type: CLOSE_DRAWER,
         show: false
     }
 }
