@@ -14,11 +14,18 @@ import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import IconFavorite from 'material-ui/svg-icons/action/favorite';
 import SliderX from '../material/home/components/sliderX';
 import Dialog from '../material/home/components/dialog';
+import DrawerSlide from '../material/home/components/drawer-slide';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 /*导入action*/
-import { openDialog, closeDialog } from '../Redux/Action/Index';
+import {
+  openDialog, closeDialog,
+  openDrawer, closeDrawer
+} from '../Redux/Action/Index';
+
+// import Drawer from 'material-ui/Drawer';
+// import MenuItem from 'material-ui/MenuItem';
 
 const style = {
   margin: 5
@@ -44,15 +51,10 @@ const imgSrcArr =  [
 class HomeContent extends Component {
   constructor(props) {
     super(props);
-    this.handleComment = this.handleComment.bind(this);
-  }
-
-  handleComment() {
-    console.log(123);
   }
 
   render() {
-    const { doWithDialog } = this.props;
+    const { doWithDialog, doWithDrawer } = this.props;
     return  <MuiThemeProvider>
                 <div className="home-content" style={{"height": document.body.clientHeight-40-56}}>
                     <div className="your-snapshot">
@@ -92,7 +94,7 @@ class HomeContent extends Component {
                                 uncheckedIcon={<ActionFavoriteBorder />}
                               />
                               <a href="#/comment" ><IconComment style={iconStyles} /></a>
-                              <IconNearMe style={iconStyles} />
+                              <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
                               <IconTurnedInNot style={{position: "absolute", right: 0}} />
                             </div>
                             <div className="comment-oper">
@@ -142,7 +144,7 @@ class HomeContent extends Component {
                                 uncheckedIcon={<ActionFavoriteBorder />}
                               />
                               <span href="#/comment"><IconComment style={iconStyles} /></span>
-                              <IconNearMe style={iconStyles} />
+                              <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
                               <IconTurnedInNot style={{position: "absolute", right: 0}} />
                             </div>
                             <div className="comment-oper">
@@ -175,6 +177,7 @@ class HomeContent extends Component {
                           <SliderX imgSrcs={imgSrcArr} />
                         </div>
                     </ul>
+                <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
                 <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />
                 </div>
             </MuiThemeProvider>;
@@ -187,7 +190,8 @@ HomeContent.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    doWithDialog: state.doWithDialog //返回弹框state
+    doWithDialog: state.doWithDialog, //返回弹框state
+    doWithDrawer: state.doWithDrawer,  //返回上拉的div状态
   }
 }
 

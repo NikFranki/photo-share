@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 import {
     ADD_TODO, REQUEST_POSTS,
     RECEIVE_POSTS, FETCHITEMS,
-    OPEN_DIALOG, CLOSE_DIALOG
+    OPEN_DIALOG, CLOSE_DIALOG,
+    ADD_COMMENT, OPEN_DRAWER,
+    CLOSE_DRAWER
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -68,11 +70,35 @@ const doWithDialog = (state = {show: false, dialogContents: []}, action) => {
     }
 }
 
+const addComment = (state = {wholeComment: []}, action) => {
+    switch(action.type) {
+        case ADD_COMMENT:
+            return {...state, wholeComment: action.wholeComment}
+        default:
+            return state
+    }
+}
+
+const doWithDrawer = (state = {show: false}, action) => {
+    switch(action.type) {
+        case OPEN_DRAWER:
+        case CLOSE_DRAWER:
+            return {
+                ...state,
+                show: action.show,
+            }
+        default:
+            return state
+    }
+}
+
 const todoApp = combineReducers({
     todos,
     items,
     postsBySubreddit,
-    doWithDialog
+    doWithDialog,
+    addComment,
+    doWithDrawer
 })
 
 export default todoApp
