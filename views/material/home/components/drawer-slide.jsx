@@ -22,12 +22,96 @@ const DrawerSlide = ({open, handleClose, onRequestChange}) => <div>
                           </MenuItem>
                           <MenuItem className="linkman">
                             <div className="linkman-msg">
-                              <Avatar
-                                src="../../../img/solo.jpg"
-                                size={40}
-                              />
-                              <p>boom</p>
-                              <p>叶问</p>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
+                              <div className="single">
+                                <div className="avatar">
+                                  <Avatar
+                                    src="../../../img/solo.jpg"
+                                    size={40}
+                                  />
+                                </div>
+                                <p>boom</p>
+                                <p>叶问</p>
+                              </div>
                             </div>
                           </MenuItem>
                           <MenuItem className="cancel" onClick={() => handleClose()}>取消</MenuItem>

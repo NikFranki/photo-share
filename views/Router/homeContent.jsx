@@ -8,6 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import IconComment from 'material-ui/svg-icons/communication/comment';
 import IconNearMe from 'material-ui/svg-icons/maps/near-me';
 import IconTurnedInNot from 'material-ui/svg-icons/action/turned-in-not';
+import Bookmark from 'material-ui/svg-icons/action/bookmark';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
@@ -24,8 +25,7 @@ import {
   openDrawer, closeDrawer
 } from '../Redux/Action/Index';
 
-// import Drawer from 'material-ui/Drawer';
-// import MenuItem from 'material-ui/MenuItem';
+import '../Style/home-content.less';
 
 const style = {
   margin: 5
@@ -34,7 +34,7 @@ const styles = {
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',
-  }
+  },
 }
 const iconStyles = {
   marginRight: 15,
@@ -93,9 +93,15 @@ class HomeContent extends Component {
                                 checkedIcon={<ActionFavorite />}
                                 uncheckedIcon={<ActionFavoriteBorder />}
                               />
-                              <a href="#/comment" ><IconComment style={iconStyles} /></a>
+                              <a href="#/comment"><IconComment style={iconStyles} /></a>
                               <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
-                              <IconTurnedInNot style={{position: "absolute", right: 0}} />
+                              <span className="collect">
+                                <Checkbox
+                                  style={{position: "absolute", right: 0}}
+                                  checkedIcon={<Bookmark />}
+                                  uncheckedIcon={<IconTurnedInNot />}
+                                />
+                              </span>
                             </div>
                             <div className="comment-oper">
                                 <ListItem
@@ -111,7 +117,7 @@ class HomeContent extends Component {
                                 哈哈
                               </div>
                               <div className="all-comment">
-                                全部1005条评论
+                                <a href="#/comment">全部1005条评论</a>
                               </div>
                               <div className="first-comment">
                                 第一条评论
@@ -145,7 +151,13 @@ class HomeContent extends Component {
                               />
                               <span href="#/comment"><IconComment style={iconStyles} /></span>
                               <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
-                              <IconTurnedInNot style={{position: "absolute", right: 0}} />
+                              <span className="collect">
+                                <Checkbox
+                                  style={{position: "absolute", right: 0}}
+                                  checkedIcon={<Bookmark />}
+                                  uncheckedIcon={<IconTurnedInNot />}
+                                />
+                              </span>
                             </div>
                             <div className="comment-oper">
                               <ListItem
@@ -161,7 +173,7 @@ class HomeContent extends Component {
                                 哈哈
                               </div>
                               <div className="all-comment">
-                                全部1005条评论
+                                <a href="#/comment">全部1005条评论</a>
                               </div>
                               <div className="first-comment">
                                 第一条评论
