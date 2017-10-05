@@ -32,18 +32,37 @@
         .linkman {
             display: flex !important;
             min-height: 96px !important;
-            .linkman-msg {
-                height: 100%;
-                img {
-                    display: flex !important;
-                }
-                p {
-                    height: 20px;
-                    line-height: 20px;
-                    width: 40px;
-                    text-align: center;
+            > div {
+                width: 100%;
+                > div {
+                    padding: 0 !important;
+                    height: 100%;
+                    .linkman-msg {
+                        height: 96px;
+                        width: 100%;
+                        overflow: hidden;
+                        overflow-x: auto;
+                        white-space: nowrap;
+                        text-align: justify;
+                        .single {
+                            height: 100%;
+                            width: 18%;
+                            display: inline-block;
+                            .avatar {
+                                text-align: center;
+                                height: 50px;
+                                padding-top: 5px;
+                            }
+                            p {
+                                height: 20px;
+                                line-height: 20px;
+                                text-align: center;
+                            }
+                        }
+                    }
                 }
             }
+
         }
         .linkman:hover {
             background: inherit !important;

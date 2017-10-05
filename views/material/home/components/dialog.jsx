@@ -23,7 +23,7 @@ const DialogAlert = ({ show, content, onHandleOpenDialog, onHandleCloseDialog })
   content = content ? content : [1,2,3];
   return (
     <div>
-      <RaisedButton label="Alert" onClick={() => onHandleOpenDialog()} />
+      {/*<RaisedButton label="Alert" onClick={() => onHandleOpenDialog()} />*/}
       <Dialog
         actions={actions}
         modal={false}
