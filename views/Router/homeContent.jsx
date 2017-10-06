@@ -43,8 +43,8 @@ const iconStyles = {
 const imgSrcArr =  [
               '../../../img/dream.jpg',
               '../../../img/solo.jpg',
-              '../../../img/dream.jpg',
-              '../../../img/solo.jpg',
+              '../../../img/madrid.jpg',
+              '../../../img/ramos.jpg',
               '../../../img/dream.jpg'
 ];
 
@@ -55,6 +55,59 @@ class HomeContent extends Component {
 
   render() {
     const { doWithDialog, doWithDrawer } = this.props;
+    // 主页滚动区域卡片信息
+    const scrollListMsg = [
+      {
+        id: 1,
+        avatar: '../../../img/ramos_avatar.jpg',
+        postman: 'sergioramos',
+        postpicture: '../../../img/ramos.jpg',
+        favournums: '1000000',
+        postmanstatemen: '哈哈',
+        comments: '1005',
+        followerscomments: ['第一条评论', '第二条评论']
+      },{
+        id: 2,
+        avatar: '../../../img/ramos_avatar.jpg',
+        postman: 'sergioramos',
+        postpicture: '../../../img/ramos1.jpg',
+        favournums: '1000000',
+        postmanstatemen: '哈哈',
+        comments: '1005',
+        followerscomments: ['第一条评论', '第二条评论']
+      },{
+        id: 3,
+        recommend: '推荐用户',
+        showall: '显示全部'
+      },{
+        id: 4,
+        avatar: '../../../img/ramos_avatar.jpg',
+        postman: 'sergioramos',
+        postpicture: '../../../img/ramos2.jpg',
+        favournums: '1000000',
+        postmanstatemen: '哈哈',
+        comments: '1005',
+        followerscomments: ['第一条评论', '第二条评论']
+      },{
+        id: 5,
+        avatar: '../../../img/ramos_avatar.jpg',
+        postman: 'sergioramos',
+        postpicture: '../../../img/ramos3.jpg',
+        favournums: '1000000',
+        postmanstatemen: '哈哈',
+        comments: '1005',
+        followerscomments: ['第一条评论', '第二条评论']
+      },{
+        id: 6,
+        avatar: '../../../img/ramos_avatar.jpg',
+        postman: 'sergioramos',
+        postpicture: '../../../img/ramos4.jpg',
+        favournums: '1000000',
+        postmanstatemen: '哈哈',
+        comments: '1005',
+        followerscomments: ['第一条评论', '第二条评论']
+      }
+    ]
     return  <MuiThemeProvider>
                 <div className="home-content" style={{"height": document.body.clientHeight-40-56}}>
                     <div className="your-snapshot">
@@ -68,126 +121,79 @@ class HomeContent extends Component {
                             />
                             }
                         >
-                        <span className="img-shot">你的快拍</span>
+                          <span className="img-shot">你的快拍</span>
                         </ListItem>
                     </div>
                     <ul className="scroll-list">
-                        <li>
-                            <div className="personal-msg">
-                                <Avatar src="../../../img/solo.jpg"
-                                        size={30}
-                                        style={style}
-                                />
-                                <span className="username"><Link style={styles.link} to='/peaDetail'>sergioramos</Link></span>
-                                <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
-                            </div>
-                            <div className="share-img">
-                                <CardMedia>
-                                    <img src="../../../img/dream.jpg" alt="" />
-                                </CardMedia>
-                            </div>
-                            <div className="account-operate">
-                            <div className="icon-oper">
-                              <Checkbox
-                                style={{display: "inline-block", width: "inherit"}}
-                                checkedIcon={<ActionFavorite />}
-                                uncheckedIcon={<ActionFavoriteBorder />}
-                              />
-                              <a href="#/comment"><IconComment style={iconStyles} /></a>
-                              <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
-                              <span className="collect">
-                                <Checkbox
-                                  style={{position: "absolute", right: 0}}
-                                  checkedIcon={<Bookmark />}
-                                  uncheckedIcon={<IconTurnedInNot />}
-                                />
-                              </span>
-                            </div>
-                            <div className="comment-oper">
-                                <ListItem
-                                    style={{paddingTop: 3, paddingLeft: 27, paddingBottom: 3, fontSize: 13}}
-                                    disabled={true}
-                                    leftAvatar={
-                                      <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
-                                    }
-                                >
-                                1000000赞
-                              </ListItem>
-                              <div className="per-comment">
-                                哈哈
-                              </div>
-                              <div className="all-comment">
-                                <a href="#/comment">全部1005条评论</a>
-                              </div>
-                              <div className="first-comment">
-                                第一条评论
-                              </div>
-                              <div className="second-comment">
-                                第二条评论
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="personal-msg">
-                            <Avatar src="../../../img/solo.jpg"
-                                    size={30}
-                                    style={style}
-                            />
-                            <span className="username"><Link style={styles.link} to='/peaDetail'>sergioramos</Link></span>
-                            <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
-                          </div>
-                          <div className="share-img">
-                              <CardMedia>
-                                <img src="../../../img/dream.jpg" alt="" />
-                              </CardMedia>
-                          </div>
-                          <div className="account-operate">
-                            <div className="icon-oper">
-                              <Checkbox
-                                style={{display: "inline-block", width: "inherit"}}
-                                checkedIcon={<ActionFavorite />}
-                                uncheckedIcon={<ActionFavoriteBorder />}
-                              />
-                              <span href="#/comment"><IconComment style={iconStyles} /></span>
-                              <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
-                              <span className="collect">
-                                <Checkbox
-                                  style={{position: "absolute", right: 0}}
-                                  checkedIcon={<Bookmark />}
-                                  uncheckedIcon={<IconTurnedInNot />}
-                                />
-                              </span>
-                            </div>
-                            <div className="comment-oper">
-                              <ListItem
-                                    style={{paddingTop: 3, paddingLeft: 27, paddingBottom: 3, fontSize: 13}}
-                                    disabled={true}
-                                    leftAvatar={
-                                      <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
-                                    }
-                              >
-                                1000000赞
-                              </ListItem>
-                              <div className="per-comment">
-                                哈哈
-                              </div>
-                              <div className="all-comment">
-                                <a href="#/comment">全部1005条评论</a>
-                              </div>
-                              <div className="first-comment">
-                                第一条评论
-                              </div>
-                              <div className="second-comment">
-                                第二条评论
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <div className="recommend">
-                          <p><label>推荐用户</label><label>显示全部</label></p>
-                          <SliderX imgSrcs={imgSrcArr} />
-                        </div>
+                        {
+                          scrollListMsg.map((item, key) => {
+                            if (key === 2) {
+                              return  <div key={item.id} className="recommend">
+                                        <p><label>{item.recommend}</label><label>{item.showall}</label></p>
+                                        <SliderX imgSrcs={imgSrcArr} />
+                                      </div>
+                            } else {
+                              return  <li key={item.id}>
+                                        <div className="personal-msg">
+                                            <Link to="/peaDetail">
+                                              <Avatar src={item.avatar}
+                                                      size={30}
+                                                      style={style}
+                                              />
+                                            </Link>
+                                            <span className="username"><Link style={styles.link} to='/peaDetail'>{item.postman}</Link></span>
+                                            <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                                        </div>
+                                        <div className="share-img">
+                                            <CardMedia>
+                                                <img src={item.postpicture} alt="" />
+                                            </CardMedia>
+                                        </div>
+                                        <div className="account-operate">
+                                        <div className="icon-oper">
+                                          <Checkbox
+                                            style={{display: "inline-block", width: "inherit"}}
+                                            checkedIcon={<ActionFavorite />}
+                                            uncheckedIcon={<ActionFavoriteBorder />}
+                                          />
+                                          <a href="#/comment"><IconComment style={iconStyles} /></a>
+                                          <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
+                                          <span className="collect">
+                                            <Checkbox
+                                              style={{position: "absolute", right: 0}}
+                                              checkedIcon={<Bookmark />}
+                                              uncheckedIcon={<IconTurnedInNot />}
+                                            />
+                                          </span>
+                                        </div>
+                                        <div className="comment-oper">
+                                            <ListItem
+                                                style={{paddingTop: 3, paddingLeft: 27, paddingBottom: 3, fontSize: 13}}
+                                                disabled={true}
+                                                leftAvatar={
+                                                  <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
+                                                }
+                                            >
+                                            {item.favournums}赞
+                                            </ListItem>
+                                            <div className="per-comment">
+                                              {item.postmanstatemen}
+                                            </div>
+                                            <div className="all-comment">
+                                              <a href="#/comment">全部{item.comments}条评论</a>
+                                            </div>
+                                            <div className="first-comment">
+                                              {item.followerscomments[0]}
+                                            </div>
+                                            <div className="second-comment">
+                                              {item.followerscomments[1]}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </li>
+                            }
+                          })
+                        }
                     </ul>
                 <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
                 <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />

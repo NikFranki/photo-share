@@ -1,0 +1,31 @@
+.all {
+    .photo-wall {
+        position: relative;
+        background: #fff;
+        margin-bottom: 2px;
+        a {
+            img {
+                width: 100%;
+            }
+        }
+        a:first-child, a:last-child {
+            position: absolute;
+            display: inline-flex;
+            width: 120px;
+            height: 100px;
+        }
+        a:nth-child(2) {
+            display: flex;
+            margin: 0 120px;
+            height: 100px;
+        }
+        a:first-child {
+            padding-right: 2px;
+        }
+        a:last-child {
+            right: 0;
+            top: 0;
+            padding-left: 2px;
+        }
+    }
+}

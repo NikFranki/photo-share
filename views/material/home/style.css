@@ -7,7 +7,7 @@
 html, body {
   font-size: 62.5%;
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 @media (max-width: 768px) {
   html, body {
@@ -90,7 +90,7 @@ input, button {
 .img-shot {
   position: absolute;
   top: 45px;
-  left: 6px;
+  left: 13px;
   font-size: 0.6rem;
 }
 
