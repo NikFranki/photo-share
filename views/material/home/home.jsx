@@ -22,6 +22,9 @@ import Swipe from '../../Router/swipe';
 import PeasonDetail from '../../Router/peasonDetail';
 import Comment from '../../Router/comment';
 import HomeSend from '../../Router/homeSend';
+import All from '../../Router/all';
+import Single from '../../Router/single';
+import Related from '../../Router/related';
 /*导入redux*/
 import { Provider } from 'react-redux';
 import store from '../../Redux/Store/Store'
@@ -52,7 +55,12 @@ class Home extends Component {
                   <Route path='favorites' component={Favorites} />
                   <Route path='peason' component={Peason} />
                   <Route path='newNews' component={HomeSend} />
-                  <Route path='peaDetail' component={PeasonDetail} />
+                  <Route path='peaDetail' component={PeasonDetail}>
+                    <IndexRoute component={All} />
+                    <Route path='all' component={All} />
+                    <Route path='single' component={Single} />
+                  </Route>
+                  <Route path='related' component={Related} />
                   <Route path='comment' component={Comment} />
                 </Route>
               </Router>
