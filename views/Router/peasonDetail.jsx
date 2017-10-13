@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Avatar } from 'material-ui';
+import SliderX from '../material/home/components/sliderX';
 
 import '../Style/peason-detail.less';
 
@@ -10,6 +11,13 @@ export default class PeasonDetail extends Component {
     }
 
     render() {
+        const imgSrcArr =  [
+                      '../../../img/dream.jpg',
+                      '../../../img/solo.jpg',
+                      '../../../img/madrid.jpg',
+                      '../../../img/ramos.jpg',
+                      '../../../img/dream.jpg'
+        ];
         return  <MuiThemeProvider>
                     <div className="personal-introduce">
                         <div className="header-msg">

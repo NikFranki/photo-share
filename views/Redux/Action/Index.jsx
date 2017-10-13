@@ -9,6 +9,7 @@ export const CLOSE_DIALOG = 'CLOSE_DIALOG'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const OPEN_DRAWER = 'OPEN_DRAWER'
 export const CLOSE_DRAWER = 'CLOSE_DRAWER'
+export const LIKE_NUMS = 'LIKE_NUMS'
 
 
 export const addTodo = text => {
@@ -94,5 +95,14 @@ export const closeDrawer = () => {
     return {
         type: CLOSE_DRAWER,
         show: false
+    }
+}
+
+/*赞数操作*/
+export const likeNums = (islike, nums) => {
+    return {
+        type: LIKE_NUMS,
+        islike,
+        nums
     }
 }

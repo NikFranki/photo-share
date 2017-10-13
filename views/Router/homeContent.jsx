@@ -22,7 +22,8 @@ import { connect } from 'react-redux';
 /*导入action*/
 import {
   openDialog, closeDialog,
-  openDrawer, closeDrawer
+  openDrawer, closeDrawer,
+  likeNums
 } from '../Redux/Action/Index';
 
 import '../Style/home-content.less';
@@ -51,6 +52,13 @@ const imgSrcArr =  [
 class HomeContent extends Component {
   constructor(props) {
     super(props);
+    this.handleCheck = this.handleCheck.bind(this);
+  }
+
+  handleCheck(event, isInputChecked) {
+      let islike, nums = this.props.countLikeNums.likeNums !== 0 ? this.props.countLikeNums.likeNums : 1000000;
+      islike = isInputChecked ? true : false;
+      this.props.dispatch(likeNums(islike, nums));
   }
 
   render() {
@@ -151,7 +159,7 @@ class HomeContent extends Component {
                                         </div>
                                         <div className="account-operate">
                                         <div className="icon-oper">
-                                          <Checkbox
+                                          <Checkbox onCheck={this.handleCheck}
                                             style={{display: "inline-block", width: "inherit"}}
                                             checkedIcon={<ActionFavorite />}
                                             uncheckedIcon={<ActionFavoriteBorder />}
@@ -174,7 +182,7 @@ class HomeContent extends Component {
                                                   <IconFavorite style={{top: 5, left: 15, width: 12, height: 12}} />
                                                 }
                                             >
-                                            {item.favournums}赞
+                                            {this.props.countLikeNums.likeNums !== 0 ? this.props.countLikeNums.likeNums : 1000000}赞
                                             </ListItem>
                                             <div className="per-comment">
                                               {item.postmanstatemen}
@@ -210,6 +218,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     doWithDialog: state.doWithDialog, //返回弹框state
     doWithDrawer: state.doWithDrawer,  //返回上拉的div状态
+    countLikeNums: state.countLikeNums, //赞数统计
   }
 }
 

@@ -15,6 +15,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Dialog from '../material/home/components/dialog';
 import DrawerSlide from '../material/home/components/drawer-slide';
 import { connect } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /*导入action*/
 import {
   openDialog, closeDialog,
@@ -31,13 +32,17 @@ const styles = {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',
   },
+  onePhotoDetail: {
+    overflow: 'auto',
+    marginBottom: '56px',
+  }
 }
 
 const iconStyles = {
   marginRight: 15,
 };
 
-export default class Single extends Component {
+export default class OnePhotoDetail extends Component {
     constructor(props) {
         super(props);
         this.handleCheck = this.handleCheck.bind(this);
@@ -61,45 +66,10 @@ export default class Single extends Component {
             postmanstatemen: '哈哈',
             comments: '1005',
             followerscomments: ['第一条评论', '第二条评论']
-          },{
-            id: 2,
-            avatar: '../../../img/ramos_avatar.jpg',
-            postman: 'sergioramos',
-            postpicture: '../../../img/ramos1.jpg',
-            favournums: '1000000',
-            postmanstatemen: '哈哈',
-            comments: '1005',
-            followerscomments: ['第一条评论', '第二条评论']
-          },{
-            id: 3,
-            avatar: '../../../img/ramos_avatar.jpg',
-            postman: 'sergioramos',
-            postpicture: '../../../img/ramos2.jpg',
-            favournums: '1000000',
-            postmanstatemen: '哈哈',
-            comments: '1005',
-            followerscomments: ['第一条评论', '第二条评论']
-          },{
-            id: 4,
-            avatar: '../../../img/ramos_avatar.jpg',
-            postman: 'sergioramos',
-            postpicture: '../../../img/ramos3.jpg',
-            favournums: '1000000',
-            postmanstatemen: '哈哈',
-            comments: '1005',
-            followerscomments: ['第一条评论', '第二条评论']
-          },{
-            id: 5,
-            avatar: '../../../img/ramos_avatar.jpg',
-            postman: 'sergioramos',
-            postpicture: '../../../img/ramos4.jpg',
-            favournums: '1000000',
-            postmanstatemen: '哈哈',
-            comments: '1005',
-            followerscomments: ['第一条评论', '第二条评论']
           }
         ];
-        return  <div className="single">
+        return  <MuiThemeProvider>
+                <div className="OnePhotoDetail" style={styles.onePhotoDetail}>
                     <ul className="scroll-list">
                         {
                           scrollListMsg.map((item, key) => {
@@ -167,6 +137,7 @@ export default class Single extends Component {
                     <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
                     <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />
                 </div>
+                </MuiThemeProvider>
     }
 }
 
@@ -178,4 +149,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(Single);
+export default connect(mapStateToProps)(OnePhotoDetail);

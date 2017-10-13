@@ -13,9 +13,9 @@ export default class All extends Component {
                     {
                         this.props.photos.map((item, key) => {
                             return  <div key={key} className="photo-wall">
-                                        <a><CardMedia><img src="../../../img/ramos2.jpg" alt="photo" /></CardMedia></a>
-                                        <a><CardMedia><img src="../../../img/ramos.jpg" alt="photo" /></CardMedia></a>
-                                        <a><CardMedia><img src="../../../img/ramos3.jpg" alt="photo" /></CardMedia></a>
+                                        <a href="#/one_photo_detail"><CardMedia><img src="../../../img/ramos2.jpg" alt="photo" /></CardMedia></a>
+                                        <a href="#/one_photo_detail"><CardMedia><img src="../../../img/ramos.jpg" alt="photo" /></CardMedia></a>
+                                        <a href="#/one_photo_detail"><CardMedia><img src="../../../img/ramos3.jpg" alt="photo" /></CardMedia></a>
                                     </div>
                         })
                     }
