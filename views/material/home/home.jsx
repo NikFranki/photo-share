@@ -25,6 +25,7 @@ import HomeSend from '../../Router/homeSend';
 import All from '../../Router/all';
 import Single from '../../Router/single';
 import Related from '../../Router/related';
+import OnePhotoDetail from '../../Router/one-photo-detail';
 /*导入redux*/
 import { Provider } from 'react-redux';
 import store from '../../Redux/Store/Store'
@@ -60,6 +61,7 @@ class Home extends Component {
                     <Route path='all' component={All} />
                     <Route path='single' component={Single} />
                   </Route>
+                  <Route path='one_photo_detail' component={OnePhotoDetail} />
                   <Route path='related' component={Related} />
                   <Route path='comment' component={Comment} />
                 </Route>

@@ -4,7 +4,7 @@ import {
     RECEIVE_POSTS, FETCHITEMS,
     OPEN_DIALOG, CLOSE_DIALOG,
     ADD_COMMENT, OPEN_DRAWER,
-    CLOSE_DRAWER
+    CLOSE_DRAWER, LIKE_NUMS
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -92,13 +92,31 @@ const doWithDrawer = (state = {show: false}, action) => {
     }
 }
 
+const countLikeNums = (state = {likeNums: 0}, action) => {
+    switch(action.type) {
+        case LIKE_NUMS:
+            if (action.islike) {
+                return {
+                    ...state, likeNums: action.nums+1
+                }
+            } else {
+                return {
+                    ...state, likeNums: action.nums-1
+                }
+            }
+        default:
+            return state
+    }
+}
+
 const todoApp = combineReducers({
     todos,
     items,
     postsBySubreddit,
     doWithDialog,
     addComment,
-    doWithDrawer
+    doWithDrawer,
+    countLikeNums
 })
 
 export default todoApp
