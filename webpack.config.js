@@ -11,7 +11,9 @@ module.exports = {
         "material-login" : './views/material/login/login.jsx',
         "material-register" : './views/material/register/register.jsx',
         "material-nav" : './views/material/nav/index.jsx',
-        "todolist-index" : './views/material/todolist/index.jsx'
+        "todolist-index" : './views/material/todolist/index.jsx',
+        "material-app": "./views/material/pull-refresh/app",
+        "material-pull-loader": "./views/material/pull-loader/app"
     },
     output: {
         path: './dist/scripts',
@@ -19,10 +21,24 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.jsx$/,    exclude: /node_modules/, loader: 'babel-loader'},
-            {test: /\.(less)$/, exclude: /node_modules/,  loader: "style!css?sourceMap!postcss!less?sourceMap"},
-            {test: /\.(css)$/, loader: "style!css?sourceMap!postcss"},
-            {test: /.(svg|png|jpg|otf)$/, exclude: /node_modules/, loader: 'url-loader'}
+            // Load ES6/JSX
+            { test: /\.jsx$/,
+              exclude: /(node_modules|bower_components)/,
+              loader: 'babel-loader',
+            },
+            // Load styles
+            {  test: /\.(less)$/,
+               exclude: /node_modules/,
+               loader: "style!css?sourceMap!postcss!less?sourceMap"
+            },
+            {  test: /\.(css)$/,
+               loader: "style!css?sourceMap!postcss"
+            },
+            // Load images
+            {  test: /.(gif|svg|png|jpg|otf)$/,
+               exclude: /node_modules/,
+               loader: 'url-loader'
+            },
         ]
     },
     postcss: [
