@@ -37,7 +37,7 @@ const iconStyles = {
   marginRight: 15,
 };
 
-export default class Single extends Component {
+export class Single extends Component {
     constructor(props) {
         super(props);
         this.handleCheck = this.handleCheck.bind(this);

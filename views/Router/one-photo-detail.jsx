@@ -42,7 +42,7 @@ const iconStyles = {
   marginRight: 15,
 };
 
-export default class OnePhotoDetail extends Component {
+export class OnePhotoDetail extends Component {
     constructor(props) {
         super(props);
         this.handleCheck = this.handleCheck.bind(this);

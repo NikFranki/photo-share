@@ -22,11 +22,9 @@ const styles = {
   },
 };
 
-const CheckBox = () => <Checkbox
+export const CheckBox = () => <Checkbox
           style={styles.checkbox}
         />;
-
-export default CheckBox;
 
 class HomeSend extends Component {
     constructor(props) {
