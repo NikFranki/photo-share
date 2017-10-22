@@ -3,32 +3,72 @@ import SwipeableViews from 'react-swipeable-views';
 
 const MyComponent = () => (
   <SwipeableViews>
-    <div style={Object.assign({}, styles.slide, styles.slide1)}>
-      slide n°1
+    <div className="slide" style={styles.slide}>
+      <div style={styles.slide1}>
+      </div>
     </div>
-    <div style={Object.assign({}, styles.slide, styles.slide2)}>
-      slide n°2
+    <div className="slide" style={styles.slide}>
+      <div style={styles.slide2}>
+      </div>
     </div>
-    <div style={Object.assign({}, styles.slide, styles.slide3)}>
-      slide n°3
+    <div className="slide" style={styles.slide}>
+      <div style={styles.slide3}>
+      </div>
     </div>
   </SwipeableViews>
 );
 
+const urlSrc = [
+    '../../../img/America.jpg',
+    '../../../img/Mountains.jpg',
+    '../../../img/Shore.jpg',
+]
+
 const styles = {
   slide: {
-    padding: 15,
-    minHeight: 100,
-    color: '#fff',
+    width: '100%',
+    height: '40vw',
+    position: 'relative',
+    overflow: 'hidden'
   },
   slide1: {
-    background: '#FEA900',
+    backgroundImage: 'url('+urlSrc[0]+')',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100vw',
+    maxHeight: '600px',
+    maxHeight: '200px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: '1'
   },
   slide2: {
-    background: '#B3DC4A',
+    backgroundImage: 'url('+urlSrc[1]+')',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100vw',
+    maxHeight: '600px',
+    maxHeight: '200px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: '1'
   },
   slide3: {
-    background: '#6AC0FF',
+    backgroundImage: 'url('+urlSrc[2]+')',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100vw',
+    maxHeight: '600px',
+    maxHeight: '200px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: '1'
   },
 };
 

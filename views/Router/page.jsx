@@ -1,5 +1,8 @@
 import React from 'react';
+import Slider from '../material/home/components/slider';
 
-const Page = () => <div>page</div>;
+const Page = () => <div>
+                        <Slider />
+                    </div>;
 
 export default Page;
