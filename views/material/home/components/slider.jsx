@@ -2,6 +2,67 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../../../Style/slider.less';
 
+var ViewSwiper = function(el, minRange, previousSlide, nextSlide) {
+    this.$el = el;
+    this.minRange = minRange;
+    this.isDragging = true;
+    this.touchX;
+    this.bindTouchEvn();
+    this.previousSlide = previousSlide;
+    this.nextSlide = nextSlide;
+};
+
+ViewSwiper.prototype.bindTouchEvn = function(e) {
+    this.$el.addEventListener('touchstart', this.onTouchStart.bind(this), false);
+    this.$el.addEventListener('touchmove', this.onTouchMove.bind(this), false);
+    this.$el.addEventListener('touchend', this.onTouchEnd.bind(this), false);
+}
+
+ViewSwiper.prototype.onTouchStart = function(e) {
+    if (this.isDragging) {
+        this.touchX = e.touches[0].pageX;
+        this.isDragging = false;
+    }
+}
+
+ViewSwiper.prototype.onTouchMove = function(e) {
+    // e.preventDefault();
+    let touchX = this.touchX;
+    let minRange = this.minRange;
+
+    if (!this.isDragging) {
+        let release = e.changedTouches[0];
+        let releasedAt = release.pageX;
+        if (releasedAt + minRange < touchX) {
+            this.nextSlide();
+            console.log('下一页');
+            this.isDragging = true;
+        } else if (releasedAt - minRange > touchX) {
+            this.previousSlide();
+            console.log('上一页');
+            this.isDragging = true;
+        }
+    }
+}
+
+ViewSwiper.prototype.onTouchEnd = function(e) {
+    let touchX = this.touchX;
+    let minRange = this.minRange;
+
+    if (!this.isDragging) {
+        let release = e.changedTouches[0];
+        let releasedAt = release.pageX;
+        if (releasedAt + minRange < touchX) {
+            this.isDragging = true;
+            this.nextSlide();
+            console.log('next page');
+        } else if (releasedAt - minRange > touchX) {
+            this.previousSlide();
+            console.log('previous page');
+            this.isDragging = true;
+        }
+    }
+}
 
 export class Slide extends Component {
 
@@ -56,6 +117,11 @@ export default class Slider extends Component {
         if (this.props.autoplay) {
             // this.startInterval();
         }
+        let view = new ViewSwiper(document.querySelector('.slider'), 5, this.previousSlide, this.nextSlide);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
     }
 
     startInterval = () => {
