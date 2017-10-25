@@ -7,11 +7,12 @@ import IconBrightness from 'material-ui/svg-icons/image/brightness-5';
 import IconPanorama from 'material-ui/svg-icons/image/panorama-fish-eye';
 import IconAutoRenew from 'material-ui/svg-icons/action/autorenew';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import '../Style/tabs.less';
 
 const homeConHeight = {"height": document.body.clientHeight-40-56};
 
 const TabFirst = () =>  <MuiThemeProvider>
-                            <Tabs>
+                            <Tabs className="tabs">
                                 <Tab icon={<IconCamera />}>
                                     {/*<div className="photo-content" style={homeConHeight}>
                                       <div className="top-oper">
