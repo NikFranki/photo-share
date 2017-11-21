@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s;
+}
+
+.container .wrap {
+    width: 75px;
+    height: 100px;
+}
+
+.container .wrap ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    background: #ddd;
+}
+
+:root .container .wrap {
+    position: absolute;
+    bottom: 0;
+}
+
+.container .wrap ul li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.container .wrap ul li:active {
+    background: #eee;
+}
