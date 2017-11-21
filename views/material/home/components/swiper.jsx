@@ -60,7 +60,6 @@ export default class SwiperComponent extends Component {
                                     </div>
                                 </div>;
         const children = this.props.children ? this.props.children : swrapper_view;
-        console.log(this.props);
 
         return (
             <div className="swiper-container">

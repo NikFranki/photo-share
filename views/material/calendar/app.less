@@ -1,0 +1,47 @@
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+}
+
+.DayPicker-Day {
+    padding: 1rem !important;
+}
+
+.active {
+    position: relative !important;
+}
+
+.active::after {
+    content: '今日购买';
+    position: absolute;
+    top: 2.1rem;
+    color: #ff4737;
+    left: 0;
+    font-size: .3rem;
+}
+
+.zjky {
+    position: relative;
+    background: orange;
+}
+
+.zjky::after {
+    content: '资金可用';
+    position: absolute;
+    top: 2.1rem;
+    color: #ff4737;
+    left: 0;
+    font-size: .3rem;
+}
+
+.zjkq {
+    position: relative;
+    background: yellow;
+}
+
+.zjkq::after {
+    content: '资金可取';
+    position: absolute;
+    top: 2.1rem;
+    color: #ff4737;
+    left: 0;
+    font-size: .3rem;
+}

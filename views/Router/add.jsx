@@ -3,6 +3,8 @@ import { fetchPosts } from '../Redux/Action/Index'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 import {fetchItems} from '../Redux/Action/Index'
+import CustomDialog from '../material/home/components/custom-dialog';
+
 
 class Add extends Component {
     constructor(props) {
@@ -32,6 +34,7 @@ class Add extends Component {
         const { dispatch } = this.props;
         return <div>add
             <button onClick={() => this.axiosRequest()}>dispatch</button>
+            <CustomDialog />
         </div>;
     }
 }

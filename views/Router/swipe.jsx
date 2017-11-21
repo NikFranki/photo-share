@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from '../material/home/components/nav';
 import Swiper from '../material/home/components/swiper';
+import Add from './add';
+import Peason from './peason';
+import CustomSearch from '../material/home/components/custom-search';
 
 const urlSrc = [
     '../../../img/America.jpg',
@@ -85,7 +88,9 @@ export default class MycComponent extends Component {
                 <Swiper ref='swipers' onSlideChangeEnd={this.handleClick}>
                     <div className="swiper-wrapper">
                         <div className="swiper-slide">
-                            <img style={styles.img} src={urlSrc[0]} alt="slide1" />
+                            {/*<img style={styles.img} src={urlSrc[0]} alt="slide1" />*/}
+                            <Peason />
+                            <CustomSearch />
                         </div>
                         <div className="swiper-slide">
                             <img style={styles.img} src={urlSrc[1]} alt="slide2" />

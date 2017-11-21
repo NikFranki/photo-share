@@ -11,10 +11,10 @@ import '../Style/home-page.less';
 let context;
 
 window.addEventListener('hashchange', function(ev) {
-    let index = ev.newURL.indexOf("tab");
-    let tabIndex = ev.newURL.slice(index, index+4);
-    console.log(parseInt(/\d+/g.exec(tabIndex)[0]));
-    context.handleClick(parseInt(/\d+/g.exec(tabIndex)[0])-1);
+    // let index = ev.newURL.indexOf("tab");
+    // let tabIndex = ev.newURL.slice(index, index+4);
+    // console.log(parseInt(/\d+/g.exec(tabIndex)[0]));
+    // context.handleClick(parseInt(/\d+/g.exec(tabIndex)[0])-1);
 }, false)
 
 export default class HomePage extends Component {

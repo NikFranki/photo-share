@@ -13,7 +13,8 @@ module.exports = {
         "material-nav" : './views/material/nav/index.jsx',
         "todolist-index" : './views/material/todolist/index.jsx',
         "material-app": "./views/material/pull-refresh/app",
-        "material-pull-loader": "./views/material/pull-loader/app"
+        "material-pull-loader": "./views/material/pull-loader/app",
+        "material-calendar": "./views/material/calendar/app",
     },
     output: {
         path: './dist/scripts',
