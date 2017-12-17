@@ -2,68 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../../../Style/slider.less';
 
-var ViewSwiper = function(el, minRange, previousSlide, nextSlide) {
-    this.$el = el;
-    this.minRange = minRange;
-    this.isDragging = true;
-    this.touchX;
-    this.bindTouchEvn();
-    this.previousSlide = previousSlide;
-    this.nextSlide = nextSlide;
-};
-
-ViewSwiper.prototype.bindTouchEvn = function(e) {
-    this.$el.addEventListener('touchstart', this.onTouchStart.bind(this), false);
-    this.$el.addEventListener('touchmove', this.onTouchMove.bind(this), false);
-    this.$el.addEventListener('touchend', this.onTouchEnd.bind(this), false);
-}
-
-ViewSwiper.prototype.onTouchStart = function(e) {
-    if (this.isDragging) {
-        this.touchX = e.touches[0].pageX;
-        this.isDragging = false;
-    }
-}
-
-ViewSwiper.prototype.onTouchMove = function(e) {
-    // e.preventDefault();
-    let touchX = this.touchX;
-    let minRange = this.minRange;
-
-    if (!this.isDragging) {
-        let release = e.changedTouches[0];
-        let releasedAt = release.pageX;
-        if (releasedAt + minRange < touchX) {
-            this.nextSlide();
-            console.log('下一页');
-            this.isDragging = true;
-        } else if (releasedAt - minRange > touchX) {
-            this.previousSlide();
-            console.log('上一页');
-            this.isDragging = true;
-        }
-    }
-}
-
-ViewSwiper.prototype.onTouchEnd = function(e) {
-    let touchX = this.touchX;
-    let minRange = this.minRange;
-
-    if (!this.isDragging) {
-        let release = e.changedTouches[0];
-        let releasedAt = release.pageX;
-        if (releasedAt + minRange < touchX) {
-            this.isDragging = true;
-            this.nextSlide();
-            console.log('next page');
-        } else if (releasedAt - minRange > touchX) {
-            this.previousSlide();
-            console.log('previous page');
-            this.isDragging = true;
-        }
-    }
-}
-
 export class Slide extends Component {
 
     render() {
@@ -117,11 +55,81 @@ export default class Slider extends Component {
         if (this.props.autoplay) {
             // this.startInterval();
         }
-        let view = new ViewSwiper(document.querySelector('.slider'), 5, this.previousSlide, this.nextSlide);
+        this.handleSlide();
     }
 
     componentWillReceiveProps(nextProps) {
         console.log(nextProps);
+    }
+
+    //返回角度
+    GetSlideAngle = (dx, dy) => {
+        return Math.atan2(dy, dx) * 180 / Math.PI;
+    }
+
+    //根据起点和终点返回方向 1：向上，2：向下，3：向左，4：向右,0：未滑动
+    GetSlideDirection = (startX, startY, endX, endY) => {
+        let dy = startY - endY;
+        let dx = endX - startX;
+        let result = 0;
+
+        //如果滑动距离太短
+        if(Math.abs(dx) < 2 && Math.abs(dy) < 2) {
+            return result;
+        }
+
+        let angle = this.GetSlideAngle(dx, dy);
+        if(angle >= -45 && angle < 45) {
+            result = 4;
+        }else if (angle >= 45 && angle < 135) {
+            result = 1;
+        }else if (angle >= -135 && angle < -45) {
+            result = 2;
+        }else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+            result = 3;
+        }
+
+        return result;
+    }
+
+    //滑动处理
+    handleSlide = () => {
+        let startX, startY;
+        document.addEventListener('touchstart', ev => {
+            startX = ev.touches[0].pageX;
+            startY = ev.touches[0].pageY;
+        }, false);
+        document.addEventListener('touchend', ev => {
+            let endX, endY;
+            endX = ev.changedTouches[0].pageX;
+            endY = ev.changedTouches[0].pageY;
+            let direction = this.GetSlideDirection(startX, startY, endX, endY);
+            switch(direction) {
+                case 0:
+                    console.log("没滑动");
+                    this.slideDirction = "";
+                    break;
+                case 1:
+                    console.log("向上");
+                    this.slideDirction = "top";
+                    break;
+                case 2:
+                    console.log("向下");
+                    this.slideDirction = "bottom";
+                    break;
+                case 3:
+                    console.log("向左");
+                    this.slideDirction = "left";
+                    this.nextSlide();
+                    break;
+                case 4:
+                    console.log("向右");
+                    this.slideDirction = "right";
+                    this.previousSlide();
+                    break;
+                default:
+            }
+        }, false);
     }
 
     startInterval = () => {

@@ -37,7 +37,7 @@ export default class PeasonDetail extends Component {
         }
     }
 
-    handRefreshing = () =>{
+    handRefreshing = () => {
         if(STATS.refreshing === this.state.action){
             return false
         }
@@ -50,7 +50,7 @@ export default class PeasonDetail extends Component {
                 action: STATS.refreshed,
                 index: loadMoreLimitNum
             });
-        }, 5000)
+        }, 1000)
 
         this.setState({
             action: STATS.refreshing
@@ -79,7 +79,7 @@ export default class PeasonDetail extends Component {
                     index: this.state.index - 1
                 });
             }
-        }, 5000)
+        }, 1000)
 
         this.setState({
             action: STATS.loading

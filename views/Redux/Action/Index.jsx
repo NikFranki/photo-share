@@ -10,6 +10,10 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const OPEN_DRAWER = 'OPEN_DRAWER'
 export const CLOSE_DRAWER = 'CLOSE_DRAWER'
 export const LIKE_NUMS = 'LIKE_NUMS'
+export const TABSELECT = 'TABSELECT'
+export const RECOMMENDLIST = 'RECOMMENDLIST'
+export const SEARCHPLACEHOLD = 'SEARCHPLACEHOLD'
+export const SEARCHSHOW = 'SEARCHSHOW'
 
 
 export const addTodo = text => {
@@ -104,5 +108,37 @@ export const likeNums = (islike, nums) => {
         type: LIKE_NUMS,
         islike,
         nums
+    }
+}
+
+/*nav tab点击*/
+export const tabSelect = (index) => {
+    return {
+        type: TABSELECT,
+        index
+    }
+}
+
+/*推荐list 数组*/
+export const recommendSelect = (arr) => {
+    return {
+        type: RECOMMENDLIST,
+        arr
+    }
+}
+
+/*search bar提示文字*/
+export const searchPlacehold = (searchStr) => {
+    return {
+        type: SEARCHPLACEHOLD,
+        searchStr
+    }
+}
+
+/*搜索列表展示内容切换*/
+export const searchShow = (flag) => {
+    return {
+        type: SEARCHSHOW,
+        flag
     }
 }

@@ -34,7 +34,7 @@ const styles = {
   },
   onePhotoDetail: {
     overflow: 'auto',
-    marginBottom: '56px',
+    marginBottom: '1.4rem',
   }
 }
 

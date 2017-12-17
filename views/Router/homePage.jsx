@@ -24,6 +24,7 @@ export default class HomePage extends Component {
 
     componentDidMount() {
         context = this;
+        this.handleClick(1);
     }
 
     handleClick = (i) => {
