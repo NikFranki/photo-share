@@ -14,9 +14,9 @@ export default class Related extends Component {
                                 {
                                     this.props.photos.map((item, key) => {
                                         return  <div key={key} className="photo-wall">
-                                                    <a><CardMedia><img style={{marginBottom: '2px'}} src="../../../img/ramos2.jpg" alt="photo" /></CardMedia></a>
-                                                    <a><CardMedia><img style={{marginBottom: '2px'}} src="../../../img/ramos.jpg" alt="photo" /></CardMedia></a>
-                                                    <a><CardMedia><img style={{marginBottom: '2px'}} src="../../../img/ramos3.jpg" alt="photo" /></CardMedia></a>
+                                                    <a><CardMedia><img style={{marginBottom: '0.05rem'}} src="../../../img/ramos2.jpg" alt="photo" /></CardMedia></a>
+                                                    <a><CardMedia><img style={{marginBottom: '0.05rem'}} src="../../../img/ramos.jpg" alt="photo" /></CardMedia></a>
+                                                    <a><CardMedia><img style={{marginBottom: '0.05rem'}} src="../../../img/ramos3.jpg" alt="photo" /></CardMedia></a>
                                                 </div>
                                     })
                                 }

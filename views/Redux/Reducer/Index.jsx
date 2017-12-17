@@ -4,7 +4,9 @@ import {
     RECEIVE_POSTS, FETCHITEMS,
     OPEN_DIALOG, CLOSE_DIALOG,
     ADD_COMMENT, OPEN_DRAWER,
-    CLOSE_DRAWER, LIKE_NUMS
+    CLOSE_DRAWER, LIKE_NUMS,
+    TABSELECT, RECOMMENDLIST,
+    SEARCHPLACEHOLD, SEARCHSHOW
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -109,6 +111,44 @@ const countLikeNums = (state = {likeNums: 0}, action) => {
     }
 }
 
+const doWithTabSelect = (state = {index: 0}, action) => {
+    switch(action.type) {
+        case TABSELECT:
+            return {...state, index: action.index}
+        default:
+            return state
+    }
+}
+
+const recommendArr = (state = [{name0: false}, {name1: false}], action) => {
+    switch(action.type) {
+        case RECOMMENDLIST:
+            return [...action.arr]
+        default:
+            return state
+    }
+}
+
+const searchBarStr = (state = "搜索", action) => {
+    switch(action.type) {
+        case SEARCHPLACEHOLD:
+            return action.searchStr
+        default:
+            return state
+    }
+}
+
+const isShowSearch = (state = false, action) => {
+    switch(action.type) {
+        case SEARCHSHOW:
+            return action.flag
+        default:
+            return state
+    }
+}
+
+
+
 const todoApp = combineReducers({
     todos,
     items,
@@ -116,7 +156,11 @@ const todoApp = combineReducers({
     doWithDialog,
     addComment,
     doWithDrawer,
-    countLikeNums
+    countLikeNums,
+    doWithTabSelect,
+    recommendArr,
+    searchBarStr,
+    isShowSearch
 })
 
 export default todoApp

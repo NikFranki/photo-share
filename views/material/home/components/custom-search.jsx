@@ -7,10 +7,10 @@ const styles = {
         height: '4rem',
         display: 'flex',
         alignItems: 'center',
-        boxShadow: '0 1px 1px 1px #eee',
+        boxShadow: '0 0.025rem 0.025rem 0.025rem #eee',
     },
     img: {
-        margin: '0 10px',
+        margin: '0 0.25rem',
     },
     input: {
         width: '100%',

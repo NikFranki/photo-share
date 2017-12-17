@@ -53,7 +53,7 @@ class BottomNavigationExampleSimple extends Component {
     return (
         <div style={styles.content}>
           {this.props.children}
-          <div style={styles.bottom}>
+          <div style={styles.bottom} className="footer">
             <MuiThemeProvider>
               <Paper zDepth={1}>
                 <BottomNavigation selectedIndex={this.state.selectedIndex}>
@@ -61,35 +61,35 @@ class BottomNavigationExampleSimple extends Component {
                     <BottomNavigationItem
                       label="Home"
                       icon={homeIcon}
-                      onClick={() => this.select(0)}
+                      onClick={() => {this.select(0); window.searchCount = 1;}}
                     />
                   </Link>
                   <Link to="/search">
                     <BottomNavigationItem
                       label="Search"
                       icon={searchIcon}
-                      onClick={() => this.select(1)}
+                      onClick={() => {this.select(1); window.searchCount = 1;}}
                     />
                   </Link>
                   <Link to="/add">
                     <BottomNavigationItem
                       label="Add"
                       icon={addIcon}
-                      onClick={() => this.select(2)}
+                      onClick={() => {this.select(2); window.searchCount = 1;}}
                     />
                   </Link>
                   <Link to="/favorites">
                     <BottomNavigationItem
                       label="Favorites"
                       icon={FavoritesIcon}
-                      onClick={() => this.select(3)}
+                      onClick={() => {this.select(3); window.searchCount = 1;}}
                     />
                   </Link>
                   <Link to="/peason">
                     <BottomNavigationItem
                       label="Person"
                       icon={PersonIcon}
-                      onClick={this.select.bind(this, 4)}
+                      onClick={() => {this.select(4); window.searchCount = 1;}}
                     />
                   </Link>
                 </BottomNavigation>

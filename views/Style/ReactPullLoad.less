@@ -55,9 +55,9 @@
     display: inline-block;
     vertical-align: middle;
     font-size: 1.5rem;
-    width: 1em;
-    height: 1em;
-    border: 2px solid darken(@bg-dark, 30%);
+    width: 0.25rem;
+    height: 0.25rem;
+    border: 0.05rem solid darken(@bg-dark, 30%);
     border-top-color: #fff;
     border-radius: 100%;
     animation: circle .8s infinite linear;
@@ -92,10 +92,10 @@
         i {
             display: inline-block;
             font-size: 2em;
-            margin-right: .6em;
+            margin-right: 0.125rem;
             vertical-align: middle;
-            height: 1em;
-            border-left: 1px solid;
+            height: 0.25rem;
+            border-left: 0.025rem solid;
             position: relative;
             transition: transform .3s ease;
 
@@ -103,13 +103,13 @@
                 content: '';
                 position: absolute;
                 font-size: .5em;
-                width: 1em;
+                width: 0.25rem;
                 bottom: 0;
-                border-top: 1px solid;
+                border-top: 0.025rem solid;
             }
 
             &:before {
-                right: 1px;
+                right: 0.025rem;
                 transform: rotate(50deg);
                 transform-origin: right;
             }
@@ -130,7 +130,7 @@
 
     .state-refreshing & {
         i {
-            margin-right: 10px;
+            margin-right: 0.25rem;
             .ui-loading();
         }
     }
@@ -143,23 +143,23 @@
             display: inline-block;
             box-sizing: content-box;
             vertical-align: middle;
-            margin-right: 10px;
+            margin-right: 0.25rem;
             font-size: 20px;
-            height: 1em;
-            width: 1em;
-            border: 1px solid;
+            height: 0.25rem;
+            width: 0.25rem;
+            border: 0.025rem solid;
             border-radius: 100%;
             position: relative;
 
             &:before {
                 content: '';
                 position: absolute;
-                top: 3px;
-                left: 7px;
-                height: 11px;
-                width: 5px;
+                top: 0.075rem;
+                left: 0.175rem;
+                height: 0.275rem;
+                width: 0.125rem;
                 border: solid;
-                border-width: 0 1px 1px 0;
+                border-width: 0 0.025rem 0.025rem 0;
                 transform: rotate(40deg);
             }
         }
@@ -181,7 +181,7 @@
     }
     .state-loading & {
         i {
-            margin-right: 10px;
+            margin-right: 0.25rem;
             .ui-loading();
         }
     }

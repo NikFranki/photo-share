@@ -8,37 +8,40 @@
         top: inherit !important;
         bottom: 0 !important;
         .receiver-msg {
-            border-bottom: 1px solid #ececec !important;
+            border-bottom: 0.025rem solid #ececec !important;
+            line-height: inherit !important;
+            min-height: inherit !important;
             .receivers-msg {
                 overflow: hidden;
                 label {
                     display: inline-flex;
                     height: 100%;
-                    width: 5rem;
+                    padding-top: 0.375rem;
+                    // width: 5rem;
                 }
                 label:first-child {
-                    font-size: 2rem;
+                    font-size: 18px;
                 }
                 label:last-child {
                     float: right;
-                    height: 48px;
+                    height: 1.2rem;
                     justify-content: flex-end;
                     align-items: start;
-                    padding-top: 15px;
+                    padding-top: 0.375rem;
                     cursor: pointer;
                 }
             }
         }
         .linkman {
             display: flex !important;
-            min-height: 96px !important;
+            min-height: 2.4rem !important;
             > div {
                 width: 100%;
                 > div {
                     padding: 0 !important;
                     height: 100%;
                     .linkman-msg {
-                        height: 96px;
+                        height: 2.4rem;
                         width: 100%;
                         overflow: hidden;
                         overflow-x: auto;
@@ -50,12 +53,12 @@
                             display: inline-block;
                             .avatar {
                                 text-align: center;
-                                height: 50px;
-                                padding-top: 5px;
+                                height: 1.25rem;
+                                padding-top: 0.125rem;
                             }
                             p {
-                                height: 20px;
-                                line-height: 20px;
+                                height: 0.5rem;
+                                line-height: 0.5rem;
                                 text-align: center;
                             }
                         }
@@ -71,7 +74,7 @@
             position: absolute !important;
             bottom: 0 !important;
             width: 100% !important;
-            border-top: 1px solid #ececec !important;
+            border-top: 0.025rem solid #ececec !important;
             text-align: center !important;
             font-weight: 500 !important;
         }

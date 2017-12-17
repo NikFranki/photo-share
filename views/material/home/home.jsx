@@ -44,7 +44,7 @@ class Home extends Component {
                 <Route path='/' component={BottomNavigationExampleSimple}>
                   <IndexRoute component={HomePage} />
                   <Route path='home' component={HomePage}>
-                    <IndexRoute component={PhotoContent} />
+                    <IndexRoute component={HomeContent} />
                     <Route path='tab1' component={PhotoContent} />
                     <Route path='tab2' component={HomeContent} />
                     <Route path='tab3' component={SendContent} />
