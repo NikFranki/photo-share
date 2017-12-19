@@ -59,6 +59,7 @@ class BottomNavigationExampleSimple extends Component {
                 <BottomNavigation selectedIndex={this.state.selectedIndex}>
                   <Link to="/home">
                     <BottomNavigationItem
+                      style={{minWidth: '2rem', maxWidth: '4.2rem'}}
                       label="Home"
                       icon={homeIcon}
                       onClick={() => {this.select(0); window.searchCount = 1;}}
@@ -66,6 +67,7 @@ class BottomNavigationExampleSimple extends Component {
                   </Link>
                   <Link to="/search">
                     <BottomNavigationItem
+                      style={{minWidth: '2rem', maxWidth: '4.2rem'}}
                       label="Search"
                       icon={searchIcon}
                       onClick={() => {this.select(1); window.searchCount = 1;}}
@@ -73,6 +75,7 @@ class BottomNavigationExampleSimple extends Component {
                   </Link>
                   <Link to="/add">
                     <BottomNavigationItem
+                      style={{minWidth: '2rem', maxWidth: '4.2rem'}}
                       label="Add"
                       icon={addIcon}
                       onClick={() => {this.select(2); window.searchCount = 1;}}
@@ -80,6 +83,7 @@ class BottomNavigationExampleSimple extends Component {
                   </Link>
                   <Link to="/favorites">
                     <BottomNavigationItem
+                      style={{minWidth: '2rem', maxWidth: '4.2rem'}}
                       label="Favorites"
                       icon={FavoritesIcon}
                       onClick={() => {this.select(3); window.searchCount = 1;}}
@@ -87,6 +91,7 @@ class BottomNavigationExampleSimple extends Component {
                   </Link>
                   <Link to="/peason">
                     <BottomNavigationItem
+                      style={{minWidth: '2rem', maxWidth: '4.2rem'}}
                       label="Person"
                       icon={PersonIcon}
                       onClick={() => {this.select(4); window.searchCount = 1;}}

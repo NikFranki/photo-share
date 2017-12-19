@@ -1,4 +1,5 @@
 var webpack = require ('webpack');
+var px2rem = require('postcss-px2rem');
 
 // 将共用React组件合并打包到指定文件common.js中;
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin ({name: 'common', minChunks: 2});
@@ -45,6 +46,9 @@ module.exports = {
     postcss: [
         autoprefixer({
           browsers: ['last 5 versions', '> 1%']
+        }),
+        px2rem({
+            remUnit: 40
         })
     ],
     devServer: {

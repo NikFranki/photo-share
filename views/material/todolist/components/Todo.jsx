@@ -11,8 +11,8 @@ export default class Todo extends Component {
           listStyle: 'none'
         }}>
         <span onClick={this.props.onClick}>{`(${this.props.id})`}</span>
-        <span onClick={this.props.onClick} style={{marginLeft: '0.5rem'}}>{this.props.text}</span>
-        <button style={{marginLeft: '0.5rem'}} onClick={this.props.handleDelete}>delete</button>
+        <span onClick={this.props.onClick} style={{marginLeft: '20px'}}>{this.props.text}</span>
+        <button style={{marginLeft: '20px'}} onClick={this.props.handleDelete}>delete</button>
       </li>
     )
   }

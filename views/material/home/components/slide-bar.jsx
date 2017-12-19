@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar';
 const styles = {
     slideBar: {
         width: '100%',
-        height: '2.5rem',
+        height: '100px',
         background: '#eee',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
@@ -15,13 +15,13 @@ const styles = {
         display: 'inline-flex',
         width: '25%',
         height: '100%',
-        padding: '0.25rem 0',
+        padding: '10px 0',
         flexFlow: 'column',
         alignItems: 'center',
     },
     slideBarItemAvatar: {
-        width: '1.5rem',
-        height: '1.5rem',
+        width: '60px',
+        height: '60px',
     }
 }
 

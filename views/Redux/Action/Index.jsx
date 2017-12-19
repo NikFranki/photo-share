@@ -14,6 +14,7 @@ export const TABSELECT = 'TABSELECT'
 export const RECOMMENDLIST = 'RECOMMENDLIST'
 export const SEARCHPLACEHOLD = 'SEARCHPLACEHOLD'
 export const SEARCHSHOW = 'SEARCHSHOW'
+export const PICTURECUT = 'PICTURECUT'
 
 
 export const addTodo = text => {
@@ -140,5 +141,13 @@ export const searchShow = (flag) => {
     return {
         type: SEARCHSHOW,
         flag
+    }
+}
+
+/*发布模块图片切换*/
+export const pictureCut = (index) => {
+    return {
+        type: PICTURECUT,
+        index
     }
 }

@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import SearchBar from '../material/home/components/search-bar';
 import Nav from '../material/home/components/nav';
 import Recommend from '../material/home/components/recommend';
 import SlideBar from '../material/home/components/slide-bar';
 import SlideImgs from '../material/home/components/slide-imgs';
-import {tabSelect,
-        recommendSelect,
-        searchPlacehold,
-        searchShow
-} from '../Redux/Action/Index';
-
-window.searchCount = 0; // 次数控制，防止组件state更新无限触发componentDidUpdate
+import * as TodoActionCreators from '../Redux/Action/Index';
 
 class Search extends Component {
     constructor(props) {
@@ -21,8 +16,9 @@ class Search extends Component {
         this.tabStyle = {};
         this.navStyle = {};
         this.curIndex = 0; // 默认选中的index
-        // this.searchCount = 0; // 次数控制，防止组件state更新无限触发componentDidUpdate
+        this.searchCount = 0; // 次数控制，防止组件state更新无限触发componentDidUpdate
         this.recommendList = [{name0: false}, {name1: false}, {name2: false}, {name3: false}, {name4: false}];
+        this.boundActionCreators = bindActionCreators(TodoActionCreators, this.props.dispatch); // 绑定actioncreator, 并dispatch action
     }
 
     componentWillMount() {
@@ -31,7 +27,7 @@ class Search extends Component {
             backgroundColor: '#fff',
             whiteSpace: 'nowrap',
             display: 'flex',
-            boxShadow: '0 0.025rem 0 #ddd',
+            boxShadow: '0 1px 0 #ddd',
         };
         this.tabStyle = {
             boxSizing: 'border-box',
@@ -47,7 +43,7 @@ class Search extends Component {
             width: '33.3%',
             textTransform: 'uppercase',
             background: 'none',
-            height: '1.2rem',
+            height: '48px',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
@@ -56,13 +52,13 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(recommendSelect(this.recommendList.slice(0, 2)));
+        this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
     }
 
     componentDidUpdate() {
-        if (this.props.isShowSearch && window.searchCount === 1) {
+        if (this.props.isShowSearch && this.searchCount === 1) {
             this.handleSlide();
-            window.searchCount++;
+            this.searchCount++;
         }
     }
 
@@ -128,19 +124,11 @@ class Search extends Component {
                 case 3:
                     console.log("向左");
                     this.handleClick(curIndex+1 < 4 ? curIndex+1 : 3);
-                    // if (curIndex+1 < 4) {
-                    //     this.recommendsArr.push(this.recommendsArr.length+1);
-                    //     this.props.dispatch(recommendSelect(this.recommendsArr));
-                    // }
                     this.handleRecommend(curIndex+1 < 4 ? curIndex+1 : 3);
                     break;
                 case 4:
                     console.log("向右");
                     this.handleClick(curIndex-1 < 0 ? 0 : curIndex-1);
-                    // if (curIndex-1 >= 0) {
-                    //     this.recommendsArr.pop();
-                    //     this.props.dispatch(recommendSelect(this.recommendsArr));
-                    // }
                     this.handleRecommend(curIndex-1 < 0 ? 0 : curIndex-1);
                     break;
                 default:
@@ -152,7 +140,7 @@ class Search extends Component {
         this.curIndex = i;
         this.handleRecommend(i);
         // 利用dispatch发送action
-        this.props.dispatch(tabSelect(i));
+        this.boundActionCreators.tabSelect(i);
         let buttomLine = document.querySelector('.bottom-line');
         let left;
         switch(i) {
@@ -169,30 +157,30 @@ class Search extends Component {
     handleRecommend = (i) => {
         let index = i;
         if (index === 0) {
-            this.props.dispatch(searchPlacehold("搜索"));
-            this.props.dispatch(recommendSelect(this.recommendList.slice(0, 2)));
+            this.boundActionCreators.searchPlacehold("搜索");
+            this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
         } else if (index === 1) {
-            this.props.dispatch(searchPlacehold("搜索用户"));
-            this.props.dispatch(recommendSelect(this.recommendList.slice(0, 3)));
+            this.boundActionCreators.searchPlacehold("搜索用户");
+            this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 3));
         } else if (index === 2) {
-            this.props.dispatch(searchPlacehold("搜索话题标签"));
-            this.props.dispatch(recommendSelect(this.recommendList.slice(0, 4)));
+            this.boundActionCreators.searchPlacehold("搜索话题标签");
+            this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 4));
         } else {
-            this.props.dispatch(searchPlacehold("搜索地点"));
-            this.props.dispatch(recommendSelect(this.recommendList.slice(0, 5)));
+            this.boundActionCreators.searchPlacehold("搜索地点");
+            this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 5));
         }
     }
 
     handleInputClick = (flag) => {
-        window.searchCount = window.searchCount === 0 ? 1 : 2;
-        this.props.dispatch(searchShow(flag));
+        this.searchCount = this.searchCount === 0 ? 1 : 2;
+        this.boundActionCreators.searchShow(flag);
     }
 
     handleImgClick = (flag) => {
         this.curIndex = 0;
-        window.searchCount = 0;
-        this.props.dispatch(recommendSelect(this.recommendList.slice(0, 2)));
-        this.props.dispatch(searchShow(flag));
+        this.searchCount = 0;
+        this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 5));
+        this.boundActionCreators.searchShow(flag);
     }
 
     render() {

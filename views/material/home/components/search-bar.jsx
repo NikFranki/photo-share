@@ -20,7 +20,7 @@ export default class SearchBar extends Component {
         this.refs.searchInput.value = "";
         this.refs.delImgSrc.style.display = "none";
         this.refs.searchImgSrc.setAttribute('src', this.props.searchImgs[1]);
-        this.refs.searchBar.style.boxShadow = "0 0.025rem 0 #ddd";
+        this.refs.searchBar.style.boxShadow = "0 1px 0 #ddd";
     }
 
     /*

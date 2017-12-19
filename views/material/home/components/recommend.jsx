@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Avatar from 'material-ui/Avatar';
+import $ from 'jquery';
 
 const styles = {
     recommend: {
         height: document.documentElement.clientHeight - 40 - 48 - 56,
-        padding: '0.5rem 0.375rem 0',
+        padding: '20px 15px 0',
         overflow: 'scroll',
     },
     intro: {
@@ -14,8 +15,8 @@ const styles = {
         opacity: '.5',
     },
     list: {
-        padding: '0.125rem 0',
-        height: '1.9rem',
+        padding: '5px 0',
+        height: '76px',
     },
     item: {
         position: 'relative',
@@ -23,40 +24,40 @@ const styles = {
     },
     itemImg: {
         position: 'absolute',
-        width: '1.625rem',
-        height: '1.625rem',
-        border: '0.025rem solid transparent',
+        width: '65px',
+        height: '65px',
+        border: '1px solid transparent',
     },
     itemButton: {
-        width: '2.5rem',
+        width: '100px',
         display: 'inline-flex',
         justifyContent: 'center',
         position: 'absolute',
-        right: '0.25rem',
-        top: '0.375rem',
-        padding: '0.2rem 0.75rem',
-        borderRadius: '0.1rem',
+        right: '10px',
+        top: '15px',
+        padding: '8px 30px',
+        borderRadius: '4px',
         color: '#fff',
         background: '#6495ED',
     },
     itemName: {
-        marginLeft: '2rem',
+        marginLeft: '80px',
         height: '100%',
-        marginRight: '2.425rem',
+        marginRight: '97px',
         display: 'flex',
         flexFlow: 'column',
         justifyContent: 'center',
     },
     itemNameFirstChild: {
-        height: '0.5rem',
+        height: '20px',
         fontWeight: 'bold',
     },
     itemNameSecChild: {
-        height: '0.5rem',
+        height: '20px',
         opacity: '.5',
     },
     blueTick: {
-        marginLeft: '0.05rem',
+        marginLeft: '2px',
     },
 }
 
@@ -78,6 +79,10 @@ export default class Recommend extends Component {
                 document.querySelector('.footer').style.display = "block";
             }
         };
+    }
+
+    componentWillUnmount() {
+        $('.search-input input').blur();
     }
 
     handleFollow = (i) => {

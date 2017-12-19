@@ -15,9 +15,9 @@
 
 * Windows
 
-64 位: https://nodejs.org/dist/v4.1.1/node-v4.1.1-x64.msi
+64 位: https://nodejs.org/dist/v8.9.3/node-v8.9.3-x86.msi
 
-32 位: https://nodejs.org/dist/v4.1.1/node-v4.1.1-x86.msi
+32 位: https://nodejs.org/dist/v8.9.3/node-v8.9.3-x64.msi
 
 * Linux
 
