@@ -94,7 +94,7 @@ input, button {
   width: 2.8rem;
   height: 5.2rem;
   background: #fff;
-  box-shadow: inset -0.2rem -2rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset -8px -2rem 2rem rgba(0, 0, 0, 0.2);
 }
 .login__form {
   position: absolute;
@@ -102,17 +102,17 @@ input, button {
   left: 0;
   width: 100%;
   height: 50%;
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 100px;
   text-align: center;
 }
 .login__row {
   height: 5rem;
   padding-top: 1rem;
-  border-bottom: 0.025rem solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .login__icon {
   margin-bottom: -0.4rem;
-  margin-right: 0.5rem;
+  margin-right: 20px;
 }
 .login__icon.name path {
   stroke-dasharray: 73.50196075439453;
@@ -158,7 +158,7 @@ input, button {
   margin-top: -1.5rem;
   width: 3rem;
   height: 3rem;
-  border: 0.05rem dotted #fff;
+  border: 2px dotted #fff;
   border-radius: 50%;
   border-left: none;
   border-bottom: none;
@@ -257,7 +257,7 @@ input, button {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 0.025rem;
+  height: 1px;
   background: rgba(255, 255, 255, 0.6);
 }
 .app__menu-btn span {
@@ -334,7 +334,7 @@ input, button {
   display: inline-block;
   width: 1.2rem;
   height: 1.2rem;
-  border: 0.025rem solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-left: none;
   border-bottom: none;
   cursor: pointer;
@@ -378,7 +378,7 @@ input, button {
 .app__meeting {
   position: relative;
   height: 6rem;
-  border-top: 0.025rem solid #EEEEEF;
+  border-top: 1px solid #EEEEEF;
   padding: 1rem 2rem 1rem 7.5rem;
   -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -465,7 +465,7 @@ input, button {
   transition: opacity 0.1s;
 }
 .app__logout-icon path {
-  stroke-width: 0.1rem;
+  stroke-width: 4px;
   stroke-dasharray: 64.36235046386719;
   stroke-dashoffset: 64.36235046386719;
   -webkit-animation: animatePath 0.5s 0.5s forwards;

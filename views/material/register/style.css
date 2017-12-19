@@ -8,11 +8,11 @@ body {
 }
 
 .space-bot{
-  margin-bottom: 0.875rem;
+  margin-bottom: 35px;
 }
 
 .space-top{
-  margin-top: 0.875rem;
+  margin-top: 35px;
 }
 
 /* Title */
@@ -22,16 +22,16 @@ h1 {
     font-family: 'Roboto';
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 0.625rem;
+    font-size: 25px;
     text-align: center;
 }
 
 /* Sign Up */
 
 .container {
-    max-width: 10.0rem;
-    max-height: 2.5rem;
-    margin-top: 0.25rem;
+    max-width: 400px;
+    max-height: 100px;
+    margin-top: 10px;
 }
 
 .alert-danger{
@@ -39,16 +39,16 @@ h1 {
 }
 
 .signup-screen {
-	  padding: 0.5rem;
-    padding-bottom: 1.0rem;
-    border-radius: 0.125rem;
+	  padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 5px;
     background-color: #2c3940;
-    box-shadow: 0 0.025rem 0.15rem rgba(0,0,0,.3);
+    box-shadow: 0 1px 6px rgba(0,0,0,.3);
     color: white;
 }
 
 .btn{
-  border-radius: 0.05rem;
+  border-radius: 2px;
 }
 
 .cancel{
@@ -80,17 +80,17 @@ h1 {
 }
 
 .input-group .ng-invalid {
-    border: 0.05rem solid #e74c3c;
-    border-radius: 0.075rem;
+    border: 2px solid #e74c3c;
+    border-radius: 3px;
 }
 
 /* Error Box */
 
 .alert{
-  padding: 0.375rem;
-  margin-bottom: 0.5rem;
-  border: 0.025rem solid transparent;
-  border-radius: 0.05rem;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
   border-color: #e85a71;
   background-color:  #e85a71;
   color: white;
@@ -98,7 +98,7 @@ h1 {
 }
 
 .help-block {
-    font-size: 0.3rem;
+    font-size: 12px;
     color: white
 }
 
@@ -112,7 +112,7 @@ h1 {
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
-  margin-right: 0.075rem;
+  margin-right: 3px;
 }
 
 .success-done {

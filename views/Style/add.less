@@ -1,0 +1,76 @@
+.publish {
+    header {
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        font-weight: 500;
+        background: url(../../img/del.svg) no-repeat 15px center;
+        .name {
+            position: absolute;
+            padding-left: 50px;
+        }
+        .box {
+            position: absolute;
+            margin-left: 40px;
+            width: 135px;
+            -webkit-appearance: none;
+            p {
+                display: flex;
+                height: 40px;
+                img {
+                    transition: transform .5s ease;
+                }
+            }
+            .container {
+                .wrap {
+                    width: 100% !important;
+                    line-height: initial !important;
+                    height: 240px;
+                    ul {
+                        justify-content: inherit;
+                        background: #ddd;
+                        li {
+                            height: 40px;
+                            align-items: center;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .go-on {
+            position: absolute;
+            right: 10px;
+            color: blue;
+            opacity: .8;
+        }
+    }
+    main {
+        .images-list {
+            overflow: scroll;
+            .images-item {
+                a {
+                    display: inline-flex;
+                    padding-bottom: 1px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                a:nth-child(2) {
+                    padding-left: 1px;
+                }
+                a:nth-child(3) {
+                    padding-left: 1px;
+                    padding-right: 1px;
+                }
+            }
+        }
+    }
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;/*no*/
+    }
+}

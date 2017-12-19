@@ -6,7 +6,8 @@ import {
     ADD_COMMENT, OPEN_DRAWER,
     CLOSE_DRAWER, LIKE_NUMS,
     TABSELECT, RECOMMENDLIST,
-    SEARCHPLACEHOLD, SEARCHSHOW
+    SEARCHPLACEHOLD, SEARCHSHOW,
+    PICTURECUT
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -147,7 +148,14 @@ const isShowSearch = (state = false, action) => {
     }
 }
 
-
+const resPictureCurIndex = (state = 0, action) => {
+    switch(action.type) {
+        case PICTURECUT:
+            return action.index
+        default:
+            return state
+    }
+}
 
 const todoApp = combineReducers({
     todos,
@@ -160,7 +168,8 @@ const todoApp = combineReducers({
     doWithTabSelect,
     recommendArr,
     searchBarStr,
-    isShowSearch
+    isShowSearch,
+    resPictureCurIndex
 })
 
 export default todoApp

@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const styles = {
     ul: {
         position: 'absolute',
-        top: '1.25rem',
+        top: '50px',
     }
 }
 

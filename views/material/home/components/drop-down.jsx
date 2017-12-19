@@ -20,19 +20,30 @@ export default class DropDown extends Component {
         this.otherBodyEle();
     }
 
+    componentWillUnmount() {
+        document.body.removeEventListener('click', this.removeDropDown, false);
+    }
+
     otherBodyEle = () => {
-        document.body.addEventListener('click', (e) => {
-            if (e.target.id !== "button" ) {
-                this.getSlideHeight(document.querySelector('#more'), false);
-                this.setState({display: false});
-            }
-        });
+        document.body.addEventListener('click', this.removeDropDown, false);
+    }
+
+    removeDropDown = (e) => {
+        if (e.target.id !== "button") {
+            this.getSlideHeight(document.querySelector('#more'), false);
+            this.setState({display: false});
+            document.querySelector('#button').style.transform = 'rotate(0deg)';
+        }
     }
 
     handleClickRow = (rowData, index) => {
+        if (this.props.onResIndex) {
+            this.props.onResIndex(index);
+        }
         console.log(this.refs[`row-${index}`]);
         this.refs[`row-${index}`].addEventListener('touchstart', () => {}, false);
         this.setState({display: false});
+        document.querySelector('#button').style.transform = 'rotate(0deg)';
         let element = document.getElementById('button');
         let rel = element.getAttribute("data-rel");
         let eleMore = document.querySelector("#"+rel);
@@ -62,35 +73,28 @@ export default class DropDown extends Component {
         element.addEventListener('click', () => {
             display = !this.state.display;
             this.setState({display: !this.state.display});
+            document.querySelector('#button').style.transform = display ? 'rotate(180deg)' : 'rotate(0deg)';
 
             let rel = element.getAttribute("data-rel");
             let eleMore = document.querySelector("#"+rel);
 
             this.getSlideHeight(eleMore, display);
-            // eleMore && (eleMore.style.height = display ? (() => {
-            //     let height = 0;
-
-            //     Array.prototype.slice.call(eleMore.childNodes).forEach((child) => {
-            //         if (child.nodeType === 1) {
-            //             let oStyle = window.getComputedStyle(child);
-            //             height = child.clientHeight + (parseInt(oStyle.borderTopWidth) || 0) + (parseInt(oStyle.borderBottomWidth) || 0);
-            //         }
-            //     });
-
-            //     return height;
-            // })() + "px" : "0px")
         }, false);
     }
 
     render() {
         const {
-            list
+            list,
+            selectItem
         } = this.props;
 
         return (
             <div>
                 <div className="box">
-                    <p><a href="javascript:" id="button" data-rel="more">点击我</a></p>
+                    <p>
+                        <span>{selectItem}</span>
+                        <img id="button" data-rel="more" src="../../../img/drop-down.svg" alt="click me" />
+                    </p>
                     <div id="more" className="container">
                         <div className="wrap">
                             <ul>
@@ -100,9 +104,6 @@ export default class DropDown extends Component {
                                         {value}
                                     </li>)
                                 }
-                                {/*<li>item 1</li>
-                                <li>item 2</li>
-                                <li>item 3</li>*/}
                             </ul>
                         </div>
                     </div>

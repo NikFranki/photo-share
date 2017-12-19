@@ -6,10 +6,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 const actions = [];
 const styles = {
   p: {
-    height: '1.0rem',
-    lineHeight: '1.0rem',
-    borderBottom: '0.025rem solid #ececec',
-    paddingLeft: '0.3rem',
+    height: '40px',
+    lineHeight: '40px',
+    borderBottom: '1px solid #ececec',
+    paddingLeft: '12px',
     fontSize: '14px',
     color: '#000',
     opacity: '.8',
