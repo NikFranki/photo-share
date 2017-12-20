@@ -7,6 +7,7 @@ import BottomNavigationExampleSimple from '../../Router/bottomNavigationExampleS
 import HomePage from '../../Router/homePage';
 import Search from '../../Router/search';
 import Add from '../../Router/add';
+import Share from '../../Router/share';
 import Favorites from '../../Router/favorites';
 import Peason from '../../Router/peason';
 import Page from '../../Router/page';
@@ -54,6 +55,7 @@ class Home extends Component {
                     <Route path='res' component={Swipe} />
                   </Route>
                   <Route path='add' component={Add} />
+                  <Route path='share' component={Share} />
                   <Route path='favorites' component={Favorites} />
                   <Route path='peason' component={Peason} />
                   <Route path='newNews' component={HomeSend} />

@@ -7,7 +7,8 @@ import {
     CLOSE_DRAWER, LIKE_NUMS,
     TABSELECT, RECOMMENDLIST,
     SEARCHPLACEHOLD, SEARCHSHOW,
-    PICTURECUT
+    PICTURECUT, HOMESCROLLLISTMSG,
+    ADDSELECTIMGINDEX
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -157,6 +158,24 @@ const resPictureCurIndex = (state = 0, action) => {
     }
 }
 
+const resHomeScrollListMsg = (state = [], action) => {
+    switch(action.type) {
+        case HOMESCROLLLISTMSG:
+            return [...action.arr]
+        default:
+            return state
+    }
+}
+
+const resAddSelectImgIndex = (state = 0, action) => {
+    switch(action.type) {
+        case ADDSELECTIMGINDEX:
+            return action.index
+        default:
+            return state
+    }
+}
+
 const todoApp = combineReducers({
     todos,
     items,
@@ -169,7 +188,9 @@ const todoApp = combineReducers({
     recommendArr,
     searchBarStr,
     isShowSearch,
-    resPictureCurIndex
+    resPictureCurIndex,
+    resHomeScrollListMsg,
+    resAddSelectImgIndex
 })
 
 export default todoApp
