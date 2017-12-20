@@ -31,12 +31,14 @@ import '../Style/home-content.less';
 const style = {
   margin: 5
 };
+
 const styles = {
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',
   },
-}
+};
+
 const iconStyles = {
   marginRight: 15,
 };
@@ -47,6 +49,60 @@ const imgSrcArr =  [
               '../../../img/madrid.jpg',
               '../../../img/ramos.jpg',
               '../../../img/dream.jpg'
+];
+
+// 主页滚动区域卡片信息
+window.scrollListMsg = [
+  {
+    id: 1,
+    avatar: '../../../img/ramos_avatar.jpg',
+    postman: 'sergioramos',
+    postpicture: '../../../img/ramos.jpg',
+    favournums: '1000000',
+    postmanstatemen: '哈哈',
+    comments: '1005',
+    followerscomments: ['第一条评论', '第二条评论']
+  },{
+    id: 2,
+    avatar: '../../../img/ramos_avatar.jpg',
+    postman: 'sergioramos',
+    postpicture: '../../../img/ramos1.jpg',
+    favournums: '1000000',
+    postmanstatemen: '哈哈',
+    comments: '1005',
+    followerscomments: ['第一条评论', '第二条评论']
+  },{
+    id: 3,
+    recommend: '推荐用户',
+    showall: '显示全部'
+  },{
+    id: 4,
+    avatar: '../../../img/ramos_avatar.jpg',
+    postman: 'sergioramos',
+    postpicture: '../../../img/ramos2.jpg',
+    favournums: '1000000',
+    postmanstatemen: '哈哈',
+    comments: '1005',
+    followerscomments: ['第一条评论', '第二条评论']
+  },{
+    id: 5,
+    avatar: '../../../img/ramos_avatar.jpg',
+    postman: 'sergioramos',
+    postpicture: '../../../img/ramos3.jpg',
+    favournums: '1000000',
+    postmanstatemen: '哈哈',
+    comments: '1005',
+    followerscomments: ['第一条评论', '第二条评论']
+  },{
+    id: 6,
+    avatar: '../../../img/ramos_avatar.jpg',
+    postman: 'sergioramos',
+    postpicture: '../../../img/ramos4.jpg',
+    favournums: '1000000',
+    postmanstatemen: '哈哈',
+    comments: '1005',
+    followerscomments: ['第一条评论', '第二条评论']
+  }
 ];
 
 class HomeContent extends Component {
@@ -62,62 +118,23 @@ class HomeContent extends Component {
   }
 
   render() {
-    const { doWithDialog, doWithDrawer } = this.props;
-    // 主页滚动区域卡片信息
-    const scrollListMsg = [
-      {
-        id: 1,
-        avatar: '../../../img/ramos_avatar.jpg',
-        postman: 'sergioramos',
-        postpicture: '../../../img/ramos.jpg',
-        favournums: '1000000',
-        postmanstatemen: '哈哈',
-        comments: '1005',
-        followerscomments: ['第一条评论', '第二条评论']
-      },{
-        id: 2,
-        avatar: '../../../img/ramos_avatar.jpg',
-        postman: 'sergioramos',
-        postpicture: '../../../img/ramos1.jpg',
-        favournums: '1000000',
-        postmanstatemen: '哈哈',
-        comments: '1005',
-        followerscomments: ['第一条评论', '第二条评论']
-      },{
-        id: 3,
-        recommend: '推荐用户',
-        showall: '显示全部'
-      },{
-        id: 4,
-        avatar: '../../../img/ramos_avatar.jpg',
-        postman: 'sergioramos',
-        postpicture: '../../../img/ramos2.jpg',
-        favournums: '1000000',
-        postmanstatemen: '哈哈',
-        comments: '1005',
-        followerscomments: ['第一条评论', '第二条评论']
-      },{
-        id: 5,
-        avatar: '../../../img/ramos_avatar.jpg',
-        postman: 'sergioramos',
-        postpicture: '../../../img/ramos3.jpg',
-        favournums: '1000000',
-        postmanstatemen: '哈哈',
-        comments: '1005',
-        followerscomments: ['第一条评论', '第二条评论']
-      },{
-        id: 6,
-        avatar: '../../../img/ramos_avatar.jpg',
-        postman: 'sergioramos',
-        postpicture: '../../../img/ramos4.jpg',
-        favournums: '1000000',
-        postmanstatemen: '哈哈',
-        comments: '1005',
-        followerscomments: ['第一条评论', '第二条评论']
-      }
-    ]
+    const { doWithDialog, doWithDrawer, resHomeScrollListMsg } = this.props;
+    console.log(this.props.resHomeScrollListMsg);
+
+    let flag = false;
+    window.scrollListMsg.map((value, key) => {
+      if (value === resHomeScrollListMsg[0])  flag = true;
+    });
+
+    if (flag) { // 不需要更新组件
+      console.log('主页列表数组不重新赋值');
+    } else { // 需要更新组件
+      window.scrollListMsg =  window.scrollListMsg.concat(resHomeScrollListMsg)
+    }
+
+
     return  <MuiThemeProvider>
-                <div className="home-content" style={{"height": document.body.clientHeight-40-56}}>
+                <div className="home-content" style={{"height": document.documentElement.clientHeight-40-56}}>
                     <div className="your-snapshot">
                         <ListItem
                             style={{height: 70, background: "rgba(221, 221, 221, 0.08)"}}
@@ -134,7 +151,7 @@ class HomeContent extends Component {
                     </div>
                     <ul className="scroll-list">
                         {
-                          scrollListMsg.map((item, key) => {
+                          window.scrollListMsg.map((item, key) => {
                             if (key === 2) {
                               return  <div key={item.id} className="recommend">
                                         <p><label>{item.recommend}</label><label>{item.showall}</label></p>
@@ -216,6 +233,7 @@ HomeContent.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    resHomeScrollListMsg: state.resHomeScrollListMsg,
     doWithDialog: state.doWithDialog, //返回弹框state
     doWithDrawer: state.doWithDrawer,  //返回上拉的div状态
     countLikeNums: state.countLikeNums, //赞数统计

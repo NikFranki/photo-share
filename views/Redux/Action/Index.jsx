@@ -15,6 +15,8 @@ export const RECOMMENDLIST = 'RECOMMENDLIST'
 export const SEARCHPLACEHOLD = 'SEARCHPLACEHOLD'
 export const SEARCHSHOW = 'SEARCHSHOW'
 export const PICTURECUT = 'PICTURECUT'
+export const HOMESCROLLLISTMSG = 'HOMESCROLLLISTMSG'
+export const ADDSELECTIMGINDEX = 'ADDSELECTIMGINDEX'
 
 
 export const addTodo = text => {
@@ -148,6 +150,22 @@ export const searchShow = (flag) => {
 export const pictureCut = (index) => {
     return {
         type: PICTURECUT,
+        index
+    }
+}
+
+/*添加主页滚动区域信息*/
+export const HomeScrollListMsg = (arr) => {
+    return {
+        type: HOMESCROLLLISTMSG,
+        arr
+    }
+}
+
+/*发布功能选择具体类别下的图片index*/
+export const AddSelectImgIndex = (index) => {
+    return {
+        type: ADDSELECTIMGINDEX,
         index
     }
 }
