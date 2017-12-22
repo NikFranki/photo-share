@@ -129,7 +129,7 @@ class HomeContent extends Component {
     if (flag) { // 不需要更新组件
       console.log('主页列表数组不重新赋值');
     } else { // 需要更新组件
-      window.scrollListMsg =  window.scrollListMsg.concat(resHomeScrollListMsg)
+      window.scrollListMsg =  resHomeScrollListMsg.concat(window.scrollListMsg);
     }
 
 
@@ -152,7 +152,7 @@ class HomeContent extends Component {
                     <ul className="scroll-list">
                         {
                           window.scrollListMsg.map((item, key) => {
-                            if (key === 2) {
+                            if (item.id === 3) {
                               return  <div key={item.id} className="recommend">
                                         <p><label>{item.recommend}</label><label>{item.showall}</label></p>
                                         <SliderX imgSrcs={imgSrcArr} />

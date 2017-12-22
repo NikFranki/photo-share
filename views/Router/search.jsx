@@ -40,7 +40,7 @@ class Search extends Component {
             position: 'relative',
             color: '#000',
             opacity: '.5',
-            width: '33.3%',
+            width: `${100 / this.tabs.length}%`,
             textTransform: 'uppercase',
             background: 'none',
             height: '48px',
@@ -48,6 +48,17 @@ class Search extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             transition: 'all .5s',
+        };
+        this.bottomLine = {
+            left: '0%',
+            width: `${100/this.tabs.length}%`,
+            bottom: '0',
+            display: 'block',
+            backgroundColor: '#000',
+            height: '1px',
+            marginTop: '-1px',
+            position: 'relative',
+            transition: 'left .5s cubic-bezier(0.23, 1, 0.32, 1) 0ms',
         };
     }
 
@@ -65,6 +76,7 @@ class Search extends Component {
     componentWillUnmount() {
         this.navStyle = {};
         this.tabStyle = {};
+        this.boundActionCreators.tabSelect(0);
     }
 
     //返回角度
@@ -104,12 +116,32 @@ class Search extends Component {
             startX = ev.touches[0].pageX;
             startY = ev.touches[0].pageY;
         }, false);
+        // document.querySelector('.recommend-page').addEventListener('touchmove', ev => {
+        //     let slideXWidth = ev.changedTouches[0].pageX - startX; // 手势滑动的宽度
+        //     let tabWidth = window.innerWidth * parseFloat('0.' + (100 / this.tabs.length * (this.curIndex + 1))); // 每个tab的宽度
+        //     let buttomLine = document.querySelector('.bottom-line');
+
+        //     // 如果滑动的宽度超过tab的宽度就停留在tab的宽度
+        //     if (slideXWidth < 0) { // 向左滑
+        //         if (tabWidth / 2 + -slideXWidth >= tabWidth) {
+        //             buttomLine.style.left = tabWidth + 'px';
+        //         } else {
+        //             buttomLine.style.left = this.curIndex === 0 ? -slideXWidth + 'px' : tabWidth / 2 + -slideXWidth + 'px';
+        //         }
+        //     } else { // 向右滑
+
+        //     }
+
+        //     // buttomLine.style.marginLeft = marginLeftWidth + 'px';
+        // }, false);
         document.querySelector('.recommend-page').addEventListener('touchend', ev => {
             let endX, endY;
             endX = ev.changedTouches[0].pageX;
             endY = ev.changedTouches[0].pageY;
             let direction = this.GetSlideDirection(startX, startY, endX, endY);
             let curIndex = this.curIndex;
+            // let buttomLine = document.querySelector('.bottom-line');
+            // buttomLine.style.marginLeft = '';
 
             switch(direction) {
                 case 0:
@@ -196,7 +228,7 @@ class Search extends Component {
                 <SearchBar placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
                 {
                     isShowSearch ? <div>
-                        <Nav navStyle={this.navStyle} tabs={this.tabs} tabStyle={this.tabStyle} selectIndex={index} onHandleClick={this.handleClick} />
+                        <Nav navStyle={this.navStyle} tabs={this.tabs} tabStyle={this.tabStyle} buttomLineStyle={this.bottomLine} selectIndex={index} onHandleClick={this.handleClick} />
                         <Recommend recommends={recommends} />
                     </div>
                     :
