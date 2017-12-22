@@ -9,25 +9,26 @@ import {HomeScrollListMsg} from '../Redux/Action/Index';
 import LocalStorge from '../../js/localStorage';
 
 class Share extends Component {
+    constructor(props) {
+        super(props);
+        this.src = LocalStorge.getLocalData("publish-image-src") || src;
+        this.homeListItemMsg = {
+            id: window.scrollListMsg.length+1,
+            avatar: this.src,
+            postman: 'sergioramos',
+            postpicture: this.src,
+            favournums: '1000000',
+            postmanstatemen: '哈哈',
+            comments: '1005',
+            followerscomments: ['第一条评论', '第二条评论']
+        };
+    }
 
     componentDidMount() {
 
     }
 
     render() {
-        console.log(this.props);
-        let src = LocalStorge.getLocalData("publish-image-src") || src;
-
-        const homeListItemMsg = {
-          id: window.scrollListMsg.length+1,
-          avatar: src,
-          postman: 'sergioramos',
-          postpicture: src,
-          favournums: '1000000',
-          postmanstatemen: '哈哈',
-          comments: '1005',
-          followerscomments: ['第一条评论', '第二条评论']
-        };
 
         return (
             <MuiThemeProvider>
@@ -36,13 +37,13 @@ class Share extends Component {
                     <img src="../../../img/left_arrow.svg" alt="left" />
                     <span className="top-bar-share-to">分享对象</span>
                     <span onClick={() => {
-                        this.props.dispatch(HomeScrollListMsg([homeListItemMsg]));
+                        this.props.dispatch(HomeScrollListMsg([this.homeListItemMsg]));
                         hashHistory.push('/home');
                     }} className="top-bar-share">分享</span>
                 </div>
                 <div className="images-share">
-                    <a><img src={src} alt="taylor" /></a>
-                    <input type="text" placeholder="说说这张图片..." />
+                    <a><img src={this.src} alt="taylor" /></a>
+                    <input type="text" placeholder="说说这张图片..." onInput={e => this.homeListItemMsg.postmanstatemen = e.target.value} />
                 </div>
                 <div className="location">location</div>
                 <div className="user-sign">user-sign</div>

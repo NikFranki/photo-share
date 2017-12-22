@@ -49,7 +49,7 @@ class Nav extends Component {
                 fontWeight: '500',
                 position: 'relative',
                 color: 'rgb(255, 255, 255)',
-                width: '33.3%',
+                width: `${100 / tabs.length}%`,
                 textTransform: 'uppercase',
                 background: 'none',
                 height: '48px',
