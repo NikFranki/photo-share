@@ -1,0 +1,81 @@
+.peason-module {
+    header {
+        padding: 15px;
+        .peasonal-details {
+            position: relative;
+            img.avator {
+                position: absolute;
+            }
+            img.plus {
+                position: absolute;
+                left: 50px;
+                top: 40px;
+            }
+            .statistics {
+                margin-left: 75px;
+                p {
+                    display: flex;
+                    justify-content: space-around;
+                    padding-bottom: 3px;
+                }
+                p:nth-child(2) {
+                    color: #bfbfbf;
+                    padding-bottom: 5px;
+                }
+                button {
+                    display: inline-flex;
+                    width: 100%;
+                    height: 25px;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 700;
+                    border-radius: 4px;
+                    background: #fff;
+                    border: 1px solid #ececec;
+                }
+            }
+        }
+        .signature {
+            padding-top: 15px;
+        }
+    }
+
+    .peason-wrapper {
+        margin-bottom: 60px;
+        nav {
+            ul {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .single {
+                    img {
+                        width: 20px !important;
+                        height: 20px !important;
+                    }
+                }
+                .collects {
+                    .collection {
+                        width: 20px !important;
+                        height: 20px !important;
+                        color: #bfbfbf !important;
+                    }
+                }
+            }
+        }
+
+        .photo-wall {
+            .photo-item {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding-bottom: 2px;
+                img:first-child {
+                    padding-right: 2px;
+                }
+                img:last-child {
+                    padding-left: 2px;
+                }
+            }
+        }
+    }
+}
