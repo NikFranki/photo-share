@@ -43,6 +43,10 @@ Linux 下的安装方法有待补充。
 
 注意 webpack -w 命令的输出结果，如果是一片绿色，则说明所有文件都已经被正确生成了。
 
+# 效果
+
+![image](http://github.com/NikFranki/photo-share/raw/master/img/solo.jpg)
+
 # 开发
 
 (待完善)

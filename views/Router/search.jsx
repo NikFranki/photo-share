@@ -8,6 +8,7 @@ import Recommend from '../material/home/components/recommend';
 import SlideBar from '../material/home/components/slide-bar';
 import SlideImgs from '../material/home/components/slide-imgs';
 import * as TodoActionCreators from '../Redux/Action/Index';
+import axios from 'axios';
 
 class Search extends Component {
     constructor(props) {
@@ -64,6 +65,7 @@ class Search extends Component {
 
     componentDidMount() {
         this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
+        this.getServerData();
     }
 
     componentDidUpdate() {
@@ -77,6 +79,20 @@ class Search extends Component {
         this.navStyle = {};
         this.tabStyle = {};
         this.boundActionCreators.tabSelect(0);
+    }
+
+    // 请求服务器数据
+    getServerData = () => {
+        axios({
+          method:'get',
+          url:'http://localhost:8888/search?author=franki',
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(err) {
+            console.log(err)
+        })
     }
 
     //返回角度

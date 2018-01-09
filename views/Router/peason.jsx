@@ -6,6 +6,11 @@ import "../Style/peason.less";
 
 class Peason extends Component {
 
+    getLastHref = () => {
+        let index = location.href.indexOf("views");
+        return location.href.substr(0, index+6);
+    }
+
     render() {
         const photoWidth = window.innerWidth * 0.35;
 
@@ -14,6 +19,7 @@ class Peason extends Component {
                 <div className="peason-module">
                     <header>
                         <section className="peasonal-details">
+                            <button className="back" onClick={() => {location.href = this.getLastHref()+"material/login/login.html";}}>退出</button>
                             <Avatar
                                 className="avator"
                                 src="../../../img/ramos3.jpg"
