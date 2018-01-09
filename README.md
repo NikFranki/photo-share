@@ -54,4 +54,4 @@ Linux 下的安装方法有待补充。
 
 效果
 
-![image](https://github.com/Alexisme1995/SupermarketManagerSystem/raw/master/image/1.jpg)
+![image](https://github.com/NikFranki/photo-share/raw/master/image/show.png)
