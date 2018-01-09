@@ -119,7 +119,6 @@ class HomeContent extends Component {
 
   render() {
     const { doWithDialog, doWithDrawer, resHomeScrollListMsg } = this.props;
-    console.log(this.props.resHomeScrollListMsg);
 
     let flag = false;
     window.scrollListMsg.map((value, key) => {

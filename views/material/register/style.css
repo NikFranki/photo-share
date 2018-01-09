@@ -1,5 +1,5 @@
 body {
-    min-height:100%;
+    min-height:100vh;
     background-color: #263238;
 }
 
@@ -27,11 +27,9 @@ h1 {
 }
 
 /* Sign Up */
-
 .container {
-    max-width: 400px;
-    max-height: 100px;
-    margin-top: 10px;
+    max-width: 90%;
+    max-height: 100%;
 }
 
 .alert-danger{
@@ -106,7 +104,6 @@ h1 {
   top: -1.2rem;
 }
 
-
 .done {
   background-color: #DFDFDF !important;
   box-shadow: none;
@@ -117,4 +114,29 @@ h1 {
 
 .success-done {
   background-color: #5CAB7D !important;
+}
+
+.avatar-upload {
+    position: relative;
+    display: inline-block;
+    height: 20px;/* no */
+    line-height: 20px;/* no */
+    width: 100px;/* no */
+    margin-top: 13px;/* no */
+    margin-left: 66px;/* no */
+    font-size: 12px;/* no */
+    text-align: center;
+    border: 1px solid #99D3F5;/* no */
+    color: #D0EEFF;
+    border-radius: 4px;/* no */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.avatar-input {
+  opacity: 0;
+  position: absolute;
+  width: 100px;/* no */
+  left: 0;
 }

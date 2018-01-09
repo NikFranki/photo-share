@@ -39,6 +39,20 @@ class Home extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const index = location.href.indexOf('html');
+    const isHome = location.href.slice(index).indexOf('home') > -1 ||
+    (location.href.slice(index).indexOf('home') === -1 &&
+        location.href.slice(index).indexOf('search') === -1 &&
+        location.href.slice(index).indexOf('add') === -1 &&
+        location.href.slice(index).indexOf('favorites') === -1 &&
+        location.href.slice(index).indexOf('peason') === -1 )
+      ? true : false;
+    if (isHome) {
+      hashHistory.push('/home/tab2');
+    }
+  }
+
   render() {
     return  <Provider store={store}>
               <Router history={hashHistory}>
