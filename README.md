@@ -52,6 +52,6 @@ Linux 下的安装方法有待补充。
 * 观察 webpack -w 界面是否正确生成了更新的文件
 * 用浏览器查看运行效果，调试你的代码
 
-效果
+# 效果
 
 ![image](https://github.com/NikFranki/photo-share/raw/master/introduce/show.gif)
