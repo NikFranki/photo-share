@@ -45,7 +45,7 @@ Linux 下的安装方法有待补充。
 
 # 效果
 
-![image](http://github.com/NikFranki/photo-share/raw/master/img/show.png)
+![image](http://github.com/NikFranki/photo-share/raw/master/img/solo.jpg)
 
 # 开发
 
