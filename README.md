@@ -54,4 +54,4 @@ Linux 下的安装方法有待补充。
 
 # 效果
 
-![image](https://github.com/NikFranki/photo-share/raw/master/introduce/show.gif)
+![image](https://github.com/NikFranki/photo-share/raw/master/introduce/shows.gif)
