@@ -45,7 +45,7 @@ Linux 下的安装方法有待补充。
 
 # 效果
 
-![image](http://github.com/NikFranki/photo-share/raw/master/img/ramos3.jpg)
+![image](http://github.com/NikFranki/photo-share/raw/master/img/show.png)
 
 # 开发
 
