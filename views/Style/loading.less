@@ -1,0 +1,50 @@
+.loading-animation {
+    display: block;
+    .loader-mask {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        will-change: opacity;
+        background-color: rgba(55, 55, 55, .3);
+        z-index: 1;
+    }
+    .loader-wrap {
+        position: fixed;
+        color: #777;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        .loader {
+          height: 6rem;
+          width: 20%;
+          text-align: center;
+          display: inline-block;
+          line-height: 6rem;
+          z-index: 1;
+          svg {
+            display: inline-block;
+            width: .9rem;
+            height: .9rem;
+            overflow: visible;
+          }
+        }
+    }
+
+    /*
+      Set the color of the icon
+    */
+    svg path,
+    svg rect {
+      fill: #FF6700;
+    }
+}

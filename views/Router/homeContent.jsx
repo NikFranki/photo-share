@@ -15,6 +15,7 @@ import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import IconFavorite from 'material-ui/svg-icons/action/favorite';
 import SliderX from '../material/home/components/sliderX';
 import Dialog from '../material/home/components/dialog';
+import Loading from '../material/home/components/loading';
 import DrawerSlide from '../material/home/components/drawer-slide';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -220,6 +221,7 @@ class HomeContent extends Component {
                         }
                     </ul>
                 <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
+                <Loading />
                 <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />
                 </div>
             </MuiThemeProvider>;

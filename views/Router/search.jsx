@@ -4,11 +4,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import SearchBar from '../material/home/components/search-bar';
 import Nav from '../material/home/components/nav';
+import Loading from '../material/home/components/loading';
 import Recommend from '../material/home/components/recommend';
 import SlideBar from '../material/home/components/slide-bar';
 import SlideImgs from '../material/home/components/slide-imgs';
 import * as TodoActionCreators from '../Redux/Action/Index';
-import axios from 'axios';
+import Axios from 'axios';
+import Api from '../../js/api';
 
 class Search extends Component {
     constructor(props) {
@@ -66,6 +68,7 @@ class Search extends Component {
     componentDidMount() {
         this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
         this.getServerData();
+        Api.loading();
     }
 
     componentDidUpdate() {
@@ -83,16 +86,26 @@ class Search extends Component {
 
     // 请求服务器数据
     getServerData = () => {
-        axios({
-          method:'get',
-          url:'http://localhost:8888/search?author=franki',
-        })
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(err) {
-            console.log(err)
-        })
+        const _this = this;
+        // 显示加载动画
+        this.refs.loading.setState({
+            loading: true
+        });
+        setTimeout(function() {
+            Axios({
+              method:'get',
+              url:'http://localhost:8888/search?author=franki',
+            })
+            .then(function(response) {
+              console.log(response);
+              _this.refs.loading.setState({
+                  loading: false
+              });
+            })
+            .catch(function(err) {
+                console.log(err)
+            })
+        }, 800);
     }
 
     //返回角度
@@ -255,6 +268,7 @@ class Search extends Component {
                 }
                 {/*<Link to="/search/page">page</Link><br />
                 <Link to="/search/res">res</Link>*/}
+                <Loading ref="loading"/>
             </div>;
     }
 }
