@@ -47,21 +47,6 @@ var api = {
                 }
             })
         }, time);
-        // Axios({
-        //   method: type,
-        //   url: url,
-        //   data: request
-        // })
-        // .then(function(response) {
-        //   console.log("出参：", response);
-        //   responsehandler();
-        // })
-        // .catch(function(err) {
-        //     console.log('出错了：', err);
-        //     if (reqOptions.isExecuteErrorBack) {
-        //         errCallback();
-        //     }
-        // })
     }
 };
 

@@ -94,8 +94,9 @@ class Search extends Component {
     }
 
     getServerData = () => {
+        // search/img?author=taylors
         this.boundActionCreators.AddLoadingStatus(true);
-        Api.call('search?author=taylor', 'get', {timeout: 1000}, this.successCallback, {isExecuteErrorBack: true, isDelayLoading: true, delayTime: 1000}, this.failCallback);
+        Api.call('search/user?name=franki', 'get', {timeout: 1000}, this.successCallback, {isExecuteErrorBack: true, isDelayLoading: true, delayTime: 1000}, this.failCallback);
     }
 
     // 返回角度
