@@ -1,7 +1,9 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import '../../../Style/dialog.less';
 
 const actions = [];
 const styles = {
@@ -16,11 +18,18 @@ const styles = {
   }
 };
 
+const DialogContent = ({content}) => <div className="dialog-content">
+                                {
+                                    content.map((item, key) => <p key={key} style={styles.p}>{item}</p>)
+                                }
+                            </div>
+
 /**
  * Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
  */
-const DialogAlert = ({ show, content, ok, cancel, onHandleOpenDialog, onHandleCloseDialog }) => {
-  content = content ? content : [1,2,3];
+const DialogAlert = ({ show, title, content, ok, cancel, onHandleOpenDialog, onHandleCloseDialog }) => {
+  content = content || [1,2,3];
+  title = title || "提示";
   const actions = ok && cancel ? [
     <FlatButton
       label={ok}
@@ -47,23 +56,20 @@ const DialogAlert = ({ show, content, ok, cancel, onHandleOpenDialog, onHandleCl
   ] : '';
 
   return (
-    <div>
-      <Dialog
-        className="modal"
-        actions={actions}
-        modal={false}
-        open={show}
-        onRequestClose={() => onHandleCloseDialog()}
-        bodyStyle={{padding: 0}}
-      >
-      <div className="content">
-        <p style={styles.p}>{content[0]}</p>
-        <p style={styles.p}>{content[1]}</p>
-        <p style={styles.p}>{content[2]}</p>
-      </div>
-      </Dialog>
-    </div>
+        <MuiThemeProvider>
+            <div>
+                <Dialog
+                    className="dialog"
+                    title={title}
+                    actions={actions}
+                    modal={false}
+                    open={show}
+                    onRequestClose={() => onHandleCloseDialog()}>
+                    <DialogContent content={content} />
+                </Dialog>
+            </div>
+        </MuiThemeProvider>
   );
 }
 
-export default DialogAlert
+export default DialogAlert;

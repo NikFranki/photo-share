@@ -17,6 +17,7 @@ export const SEARCHSHOW = 'SEARCHSHOW'
 export const PICTURECUT = 'PICTURECUT'
 export const HOMESCROLLLISTMSG = 'HOMESCROLLLISTMSG'
 export const ADDSELECTIMGINDEX = 'ADDSELECTIMGINDEX'
+export const ADDLOADING = 'ADDLOADING'
 
 
 export const addTodo = text => {
@@ -115,7 +116,7 @@ export const likeNums = (islike, nums) => {
 }
 
 /*nav tab点击*/
-export const tabSelect = (index) => {
+export const tabSelect = index => {
     return {
         type: TABSELECT,
         index
@@ -123,7 +124,7 @@ export const tabSelect = (index) => {
 }
 
 /*推荐list 数组*/
-export const recommendSelect = (arr) => {
+export const recommendSelect = arr => {
     return {
         type: RECOMMENDLIST,
         arr
@@ -131,7 +132,7 @@ export const recommendSelect = (arr) => {
 }
 
 /*search bar提示文字*/
-export const searchPlacehold = (searchStr) => {
+export const searchPlacehold = searchStr => {
     return {
         type: SEARCHPLACEHOLD,
         searchStr
@@ -139,7 +140,7 @@ export const searchPlacehold = (searchStr) => {
 }
 
 /*搜索列表展示内容切换*/
-export const searchShow = (flag) => {
+export const searchShow = flag => {
     return {
         type: SEARCHSHOW,
         flag
@@ -147,7 +148,7 @@ export const searchShow = (flag) => {
 }
 
 /*发布模块图片切换*/
-export const pictureCut = (index) => {
+export const pictureCut = index => {
     return {
         type: PICTURECUT,
         index
@@ -155,7 +156,7 @@ export const pictureCut = (index) => {
 }
 
 /*添加主页滚动区域信息*/
-export const HomeScrollListMsg = (arr) => {
+export const HomeScrollListMsg = arr => {
     return {
         type: HOMESCROLLLISTMSG,
         arr
@@ -163,9 +164,17 @@ export const HomeScrollListMsg = (arr) => {
 }
 
 /*发布功能选择具体类别下的图片index*/
-export const AddSelectImgIndex = (index) => {
+export const AddSelectImgIndex = index => {
     return {
         type: ADDSELECTIMGINDEX,
         index
+    }
+}
+
+/*loading动画状态*/
+export const AddLoadingStatus = status => {
+    return {
+        type: ADDLOADING,
+        status
     }
 }

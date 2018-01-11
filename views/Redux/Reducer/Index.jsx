@@ -8,7 +8,7 @@ import {
     TABSELECT, RECOMMENDLIST,
     SEARCHPLACEHOLD, SEARCHSHOW,
     PICTURECUT, HOMESCROLLLISTMSG,
-    ADDSELECTIMGINDEX
+    ADDSELECTIMGINDEX, ADDLOADING
 } from '../Action/Index'
 
 const todos = (state = [], action) => {
@@ -176,6 +176,15 @@ const resAddSelectImgIndex = (state = 0, action) => {
     }
 }
 
+const resLoadingStatus = (state = false, action) => {
+    switch(action.type) {
+        case ADDLOADING:
+            return action.status
+        default:
+            return state
+    }
+}
+
 const todoApp = combineReducers({
     todos,
     items,
@@ -190,7 +199,8 @@ const todoApp = combineReducers({
     isShowSearch,
     resPictureCurIndex,
     resHomeScrollListMsg,
-    resAddSelectImgIndex
+    resAddSelectImgIndex,
+    resLoadingStatus
 })
 
 export default todoApp
