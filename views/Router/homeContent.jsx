@@ -222,7 +222,14 @@ class HomeContent extends Component {
                     </ul>
                 <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
                 <Loading />
-                <Dialog show={doWithDialog.show} content={doWithDialog.dialogContents} onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))} onHandleCloseDialog={() => this.props.dispatch(closeDialog())} />
+                <Dialog
+                  show={doWithDialog.show}
+                  content={doWithDialog.dialogContents}
+                  ok="确定"
+                  cancel="取消"
+                  onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}
+                  onHandleCloseDialog={() => this.props.dispatch(closeDialog())}
+                />
                 </div>
             </MuiThemeProvider>;
   }

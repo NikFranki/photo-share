@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import LocalStorage from '../../../js/localStorage';
 import $ from 'jquery';
 import Dialog from '../home/components/dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -54,6 +55,8 @@ class LoginShow extends React.Component {
                   }
                 }).then(response => {
                   console.log(response)
+                  // 把登录信息存到本地
+                  LocalStorage.setLocalData('ActiveUser', response.data.result);
                   if (response.data.code === 'ok') {
                     location.href = _this.getLastHref()+"material/home/home.html";
                     setTimeout(function() {
@@ -66,7 +69,7 @@ class LoginShow extends React.Component {
                     console.log('登录失败');
                     _this.setState({animating: false});
                     $(that).removeClass("success processing");
-                    setTimeout(() => _this.props.dispatch(openDialog(['提示', '用户名或密码错误，请重新输入'])), 500);
+                    setTimeout(() => _this.props.dispatch(openDialog(['用户名或密码错误，请重新输入'])), 500);
                   }
                 }).catch(e => console.log(e));
               }, _this.props.submitPhase2 - 70);

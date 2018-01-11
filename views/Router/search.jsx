@@ -8,6 +8,7 @@ import Loading from '../material/home/components/loading';
 import Recommend from '../material/home/components/recommend';
 import SlideBar from '../material/home/components/slide-bar';
 import SlideImgs from '../material/home/components/slide-imgs';
+import Dialog from '../material/home/components/dialog';
 import * as TodoActionCreators from '../Redux/Action/Index';
 import Axios from 'axios';
 import Api from '../../js/api';
@@ -68,7 +69,6 @@ class Search extends Component {
     componentDidMount() {
         this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
         this.getServerData();
-        Api.loading();
     }
 
     componentDidUpdate() {
@@ -84,31 +84,21 @@ class Search extends Component {
         this.boundActionCreators.tabSelect(0);
     }
 
-    // 请求服务器数据
-    getServerData = () => {
-        const _this = this;
-        // 显示加载动画
-        this.refs.loading.setState({
-            loading: true
-        });
-        setTimeout(function() {
-            Axios({
-              method:'get',
-              url:'http://localhost:8888/search?author=franki',
-            })
-            .then(function(response) {
-              console.log(response);
-              _this.refs.loading.setState({
-                  loading: false
-              });
-            })
-            .catch(function(err) {
-                console.log(err)
-            })
-        }, 800);
+    successCallback = () => {
+        this.boundActionCreators.AddLoadingStatus(false);
     }
 
-    //返回角度
+    failCallback = () => {
+        this.boundActionCreators.AddLoadingStatus(false);
+        this.boundActionCreators.openDialog(['网络请求出错了，请稍后再试']);
+    }
+
+    getServerData = () => {
+        this.boundActionCreators.AddLoadingStatus(true);
+        Api.call('search?author=taylor', 'get', {timeout: 1000}, this.successCallback, {isExecuteErrorBack: true, isDelayLoading: true, delayTime: 1000}, this.failCallback);
+    }
+
+    // 返回角度
     GetSlideAngle = (dx, dy) => {
         return Math.atan2(dy, dx) * 180 / Math.PI;
     }
@@ -145,32 +135,12 @@ class Search extends Component {
             startX = ev.touches[0].pageX;
             startY = ev.touches[0].pageY;
         }, false);
-        // document.querySelector('.recommend-page').addEventListener('touchmove', ev => {
-        //     let slideXWidth = ev.changedTouches[0].pageX - startX; // 手势滑动的宽度
-        //     let tabWidth = window.innerWidth * parseFloat('0.' + (100 / this.tabs.length * (this.curIndex + 1))); // 每个tab的宽度
-        //     let buttomLine = document.querySelector('.bottom-line');
-
-        //     // 如果滑动的宽度超过tab的宽度就停留在tab的宽度
-        //     if (slideXWidth < 0) { // 向左滑
-        //         if (tabWidth / 2 + -slideXWidth >= tabWidth) {
-        //             buttomLine.style.left = tabWidth + 'px';
-        //         } else {
-        //             buttomLine.style.left = this.curIndex === 0 ? -slideXWidth + 'px' : tabWidth / 2 + -slideXWidth + 'px';
-        //         }
-        //     } else { // 向右滑
-
-        //     }
-
-        //     // buttomLine.style.marginLeft = marginLeftWidth + 'px';
-        // }, false);
         document.querySelector('.recommend-page').addEventListener('touchend', ev => {
             let endX, endY;
             endX = ev.changedTouches[0].pageX;
             endY = ev.changedTouches[0].pageY;
             let direction = this.GetSlideDirection(startX, startY, endX, endY);
             let curIndex = this.curIndex;
-            // let buttomLine = document.querySelector('.bottom-line');
-            // buttomLine.style.marginLeft = '';
 
             switch(direction) {
                 case 0:
@@ -249,27 +219,39 @@ class Search extends Component {
             index,
             recommends,
             searchPlaceholder,
-            isShowSearch
+            isShowSearch,
+            resLoadingStatus,
+            doWithDialog
         } = this.props;
 
-        return <div className="recommend-hole">
-                {this.props.children}
-                <SearchBar placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
-                {
-                    isShowSearch ? <div>
-                        <Nav navStyle={this.navStyle} tabs={this.tabs} tabStyle={this.tabStyle} buttomLineStyle={this.bottomLine} selectIndex={index} onHandleClick={this.handleClick} />
-                        <Recommend recommends={recommends} />
-                    </div>
-                    :
-                    <div>
-                        <SlideBar />
-                        <SlideImgs />
-                    </div>
-                }
-                {/*<Link to="/search/page">page</Link><br />
-                <Link to="/search/res">res</Link>*/}
-                <Loading ref="loading"/>
-            </div>;
+
+
+        const props = {loading: resLoadingStatus, loadingType: 6, loadingName: ''};
+
+        return  <div className="recommend-hole">
+                   {this.props.children}
+                    <SearchBar placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
+                    {
+                        isShowSearch ? <div>
+                            <Nav navStyle={this.navStyle} tabs={this.tabs} tabStyle={this.tabStyle} buttomLineStyle={this.bottomLine} selectIndex={index} onHandleClick={this.handleClick} />
+                            <Recommend recommends={recommends} />
+                        </div>
+                        :
+                        <div>
+                            <SlideBar />
+                            <SlideImgs />
+                        </div>
+                    }
+                    <Loading ref="loading" {...props} />
+                    <Dialog
+                      show={doWithDialog.show}
+                      title="搜索"
+                      content={doWithDialog.dialogContents}
+                      ok="确定"
+                      cancel="取消"
+                      onHandleCloseDialog={() => this.boundActionCreators.closeDialog()}
+                    />
+                </div>
     }
 }
 
@@ -278,7 +260,9 @@ const mapStateToProps = (state, ownProps) => {
         index: state.doWithTabSelect,
         recommends: state.recommendArr,
         searchPlaceholder: state.searchBarStr,
-        isShowSearch: state.isShowSearch
+        isShowSearch: state.isShowSearch,
+        resLoadingStatus: state.resLoadingStatus,
+        doWithDialog: state.doWithDialog, //返回弹框state
     }
 }
 
