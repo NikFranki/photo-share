@@ -1,3 +1,8 @@
+/**
+ * desc: 本地缓存
+ * author: franki
+ * time: 20190122
+*/
 const LocalStorage = {
     /*
      * 设置本地数据存储
@@ -39,5 +44,5 @@ const LocalStorage = {
 
 };
 
-export default LocalStorage;
+module.exports = LocalStorage;
 

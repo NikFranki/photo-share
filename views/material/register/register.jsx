@@ -110,8 +110,8 @@ class Register extends Component {
             $('.done').addClass('success-done');
         }
 
-        // http://localhost:8888/signup
-        Axios.post('http://192.168.11.95:8888/signup', {
+        // http://bangth.com:8888/signup
+        Axios.post('http://127.0.0.1:8888/signup', {
                 username: firstName,
                 password: password,
                 repassword: repassword,

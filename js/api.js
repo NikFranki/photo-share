@@ -1,11 +1,18 @@
-import Axios from 'axios';
-import LocalStorage from './localStorage';
+const Axios = require('axios');
+const LocalStorage = require('./localStorage');
 
-var api = {
+/**
+ * desc: 请求服务器
+ * author: franki
+ * time: 20190122
+*/
+const api = {
     Params: {
         // 服务器返回的状态码
         "code": [0, "ok"],
-        "apiUrl": "http://192.168.11.95:8888/"
+        "apiUrl":   LocalStorage.getLocalData('pshareUrl')['prod'] ?
+                    LocalStorage.getLocalData('pshareUrl')['prod'] :
+                    LocalStorage.getLocalData('pshareUrl')['dev']
     },
 
     call: function(apiId, type, request, responsehandler, options, errCallback) {
@@ -38,7 +45,7 @@ var api = {
             })
             .then(function(response) {
               console.log("出参：", response);
-              responsehandler();
+              responsehandler(response.data);
             })
             .catch(function(err) {
                 console.log('出错了：', err);

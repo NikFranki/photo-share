@@ -30,13 +30,20 @@ import OnePhotoDetail from '../../Router/one-photo-detail';
 import Swiper from '../home/components/swiper';
 /*导入redux*/
 import { Provider } from 'react-redux';
-import store from '../../Redux/Store/Store'
+import store from '../../Redux/Store/Store';
+import LocalData from '../../../js/localStorage';
 
 import './style.css';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+  }
+
+  // app首页加载预存apiUrl
+  componentWillMount() {
+    // http://bangth.com:8888/
+    LocalData.setLocalData("pshareUrl", {prod: "", dev: "http://127.0.0.1:8888/"});
   }
 
   componentDidMount() {
