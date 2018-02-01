@@ -3,12 +3,14 @@ import Nav from '../material/home/components/nav';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as TodoActionCreators from '../Redux/Action/Index';
+import Gesture from '../../js/gesture';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Avatar from 'material-ui/Avatar';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import Dialog from '../material/home/components/dialog';
 
 class FollowList extends Component {
     constructor(props) {
@@ -102,80 +104,26 @@ class Favorites extends Component {
     }
 
     componentDidMount() {
-        this.handleSlide();
+        // 页面手势滑动处理
+        Gesture.handleSlide(document.querySelector('.favor-wrapper'),
+            {
+                left: () => {
+                    this.handleClick(this.curIndex+1 < this.tabs.length ? this.curIndex+1 : this.tabs.length-1);
+                },
+                right: () => {
+                    this.handleClick(this.curIndex-1 < 0 ? 0 : this.curIndex-1);
+                }
+            }
+        );
+
+        // 长按操作
+        Gesture.longPress(document.querySelector('.favor-wrapper'), () => {console.log('长按');this.boundActionCreators.openDialog(['关注他', '举报'])});
     }
 
     componentWillUnmount() {
         this.tabStyle = {};
         this.navStyle = {};
         this.boundActionCreators.tabSelect(0);
-    }
-
-    //返回角度
-    GetSlideAngle = (dx, dy) => {
-        return Math.atan2(dy, dx) * 180 / Math.PI;
-    }
-
-    //根据起点和终点返回方向 1：向上，2：向下，3：向左，4：向右,0：未滑动
-    GetSlideDirection = (startX, startY, endX, endY) => {
-        let dy = startY - endY;
-        let dx = endX - startX;
-        let result = 0;
-
-        //如果滑动距离太短
-        if(Math.abs(dx) < 2 && Math.abs(dy) < 2) {
-            return result;
-        }
-
-        let angle = this.GetSlideAngle(dx, dy);
-        if(angle >= -45 && angle < 45) {
-            result = 4;
-        }else if (angle >= 45 && angle < 135) {
-            result = 1;
-        }else if (angle >= -135 && angle < -45) {
-            result = 2;
-        }else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
-            result = 3;
-        }
-
-        return result;
-    }
-
-    //滑动处理
-    handleSlide = () => {
-        let startX, startY;
-        document.querySelector('.favor-wrapper').addEventListener('touchstart', ev => {
-            startX = ev.touches[0].pageX;
-            startY = ev.touches[0].pageY;
-        }, false);
-        document.querySelector('.favor-wrapper').addEventListener('touchend', ev => {
-            let endX, endY;
-            endX = ev.changedTouches[0].pageX;
-            endY = ev.changedTouches[0].pageY;
-            let direction = this.GetSlideDirection(startX, startY, endX, endY);
-            let curIndex = this.curIndex;
-
-            switch(direction) {
-                case 0:
-                    console.log("没滑动");
-                    break;
-                case 1:
-                    console.log("向上");
-                    break;
-                case 2:
-                    console.log("向下");
-                    break;
-                case 3:
-                    console.log("向左");
-                    this.handleClick(curIndex+1 < this.tabs.length ? curIndex+1 : this.tabs.length-1);
-                    break;
-                case 4:
-                    console.log("向右");
-                    this.handleClick(curIndex-1 < 0 ? 0 : curIndex-1);
-                    break;
-                default:
-            }
-        }, false);
     }
 
     handleClick = (i) => {
@@ -196,13 +144,22 @@ class Favorites extends Component {
 
     render() {
         const {
+            doWithDialog,
             index
         } = this.props;
 
         return (
             <div className="favor">
                 <Nav navStyle={this.navStyle} tabStyle={this.tabStyle} buttomLineStyle={this.bottomLine} tabs={this.tabs} selectIndex={index} onHandleClick={this.handleClick} />
-                <FollowList index={index.index}/>
+                <FollowList index={index.index} />
+                <Dialog
+                  show={doWithDialog.show}
+                  content={doWithDialog.dialogContents}
+                  ok="确定"
+                  cancel="取消"
+                  onHandleOpenDialog={() => this.boundActionCreators.openDialog(['举报...', '复制网址', '打开发帖通知'])}
+                  onHandleCloseDialog={() => this.boundActionCreators.closeDialog()}
+                />
             </div>
         )
     }
@@ -210,6 +167,7 @@ class Favorites extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        doWithDialog: state.doWithDialog, //返回弹框state
         index: state.doWithTabSelect,
     }
 }

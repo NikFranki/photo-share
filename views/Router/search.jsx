@@ -10,8 +10,9 @@ import SlideBar from '../material/home/components/slide-bar';
 import SlideImgs from '../material/home/components/slide-imgs';
 import Dialog from '../material/home/components/dialog';
 import * as TodoActionCreators from '../Redux/Action/Index';
-import Axios from 'axios';
+import LocalData from '../../js/localStorage';
 import Api from '../../js/api';
+import Gesture from '../../js/gesture';
 
 class Search extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Search extends Component {
         this.searchCount = 0; // 次数控制，防止组件state更新无限触发componentDidUpdate
         this.recommendList = [{name0: false}, {name1: false}, {name2: false}, {name3: false}, {name4: false}];
         this.boundActionCreators = bindActionCreators(TodoActionCreators, this.props.dispatch); // 绑定actioncreator, 并dispatch action
+        this.user = LocalData.getLocalData('ActiveUser') ? LocalData.getLocalData('ActiveUser').name : "eva";
     }
 
     componentWillMount() {
@@ -73,7 +75,21 @@ class Search extends Component {
 
     componentDidUpdate() {
         if (this.props.isShowSearch && this.searchCount === 1) {
-            this.handleSlide();
+            // 页面手势滑动处理
+            Gesture.handleSlide(document.querySelector('.recommend-page'),
+                {
+                    left: () => {
+                        const curIndex = this.curIndex;
+                        this.handleClick(curIndex+1 < 4 ? curIndex+1 : 3);
+                        this.handleRecommend(curIndex+1 < 4 ? curIndex+1 : 3);
+                    },
+                    right: () => {
+                        const curIndex = this.curIndex;
+                        this.handleClick(curIndex-1 < 0 ? 0 : curIndex-1);
+                        this.handleRecommend(curIndex-1 < 0 ? 0 : curIndex-1);
+                    }
+                }
+            );
             this.searchCount++;
         }
     }
@@ -82,6 +98,29 @@ class Search extends Component {
         this.navStyle = {};
         this.tabStyle = {};
         this.boundActionCreators.tabSelect(0);
+    }
+
+    doAction = (action) => {
+        const actions = {
+            'hack': () => {
+                console.log('hack');
+                return 'hack';
+            },
+            'slash': () => {
+                console.log('slash');
+                return 'slash';
+            },
+            'run': () => {
+                console.log('run');
+                return 'run';
+            }
+        };
+
+        if (typeof actions[action] !== 'function') {
+            throw new Error('Invalid action.');
+        }
+
+        return actions[action]();
     }
 
     successCallback = () => {
@@ -96,79 +135,11 @@ class Search extends Component {
     getServerData = () => {
         // search/img?author=taylor
         this.boundActionCreators.AddLoadingStatus(true);
-        Api.call('search/user?name=franki', 'get', {timeout: 1000}, this.successCallback, {isExecuteErrorBack: true, isDelayLoading: true, delayTime: 1000}, this.failCallback);
-    }
-
-    // 返回角度
-    GetSlideAngle = (dx, dy) => {
-        return Math.atan2(dy, dx) * 180 / Math.PI;
-    }
-
-    //根据起点和终点返回方向 1：向上，2：向下，3：向左，4：向右,0：未滑动
-    GetSlideDirection = (startX, startY, endX, endY) => {
-        let dy = startY - endY;
-        let dx = endX - startX;
-        let result = 0;
-
-        //如果滑动距离太短
-        if(Math.abs(dx) < 2 && Math.abs(dy) < 2) {
-            return result;
-        }
-
-        let angle = this.GetSlideAngle(dx, dy);
-        if(angle >= -45 && angle < 45) {
-            result = 4;
-        }else if (angle >= 45 && angle < 135) {
-            result = 1;
-        }else if (angle >= -135 && angle < -45) {
-            result = 2;
-        }else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
-            result = 3;
-        }
-
-        return result;
-    }
-
-    //滑动处理
-    handleSlide = () => {
-        let startX, startY;
-        document.querySelector('.recommend-page').addEventListener('touchstart', ev => {
-            startX = ev.touches[0].pageX;
-            startY = ev.touches[0].pageY;
-        }, false);
-        document.querySelector('.recommend-page').addEventListener('touchend', ev => {
-            let endX, endY;
-            endX = ev.changedTouches[0].pageX;
-            endY = ev.changedTouches[0].pageY;
-            let direction = this.GetSlideDirection(startX, startY, endX, endY);
-            let curIndex = this.curIndex;
-
-            switch(direction) {
-                case 0:
-                    console.log("没滑动");
-                    break;
-                case 1:
-                    console.log("向上");
-                    break;
-                case 2:
-                    console.log("向下");
-                    break;
-                case 3:
-                    console.log("向左");
-                    this.handleClick(curIndex+1 < 4 ? curIndex+1 : 3);
-                    this.handleRecommend(curIndex+1 < 4 ? curIndex+1 : 3);
-                    break;
-                case 4:
-                    console.log("向右");
-                    this.handleClick(curIndex-1 < 0 ? 0 : curIndex-1);
-                    this.handleRecommend(curIndex-1 < 0 ? 0 : curIndex-1);
-                    break;
-                default:
-            }
-        }, false);
+        Api.call(`search/user?name=${this.user}`, 'get', {}, this.successCallback, {isExecuteErrorBack: true, isDelayLoading: true, delayTime: 1000}, this.failCallback);
     }
 
     handleClick = (i) => {
+        console.log(i);
         this.curIndex = i;
         this.handleRecommend(i);
         // 利用dispatch发送action

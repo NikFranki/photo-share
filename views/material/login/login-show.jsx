@@ -46,9 +46,13 @@ class LoginShow extends React.Component {
             $(that).addClass("processing");
             setTimeout(function() {
               setTimeout(function() {
+                console.log('入参:', {
+                    name: name,
+                    password: password
+                  });
                 Axios({
                   method: 'post',
-                  url: 'http://192.168.11.95:8888/signin',
+                  url: 'http://127.0.0.1:8888/signin',
                   data: {
                     name: name,
                     password: password
@@ -82,7 +86,6 @@ class LoginShow extends React.Component {
       const {
         doWithDialog
       } = this.props;
-      console.log(this.props)
 
       return <MuiThemeProvider>
               <div className="cont">
