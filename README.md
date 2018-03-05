@@ -11,7 +11,7 @@
 
 方法1: 推荐通过 `brew install node` 命令来安装
 
-方法2: 下载 [NodeJS 的 Mac 安装包](https://nodejs.org/dist/v4.1.1/node-v4.1.1.pkg)
+方法2: 下载 [NodeJS 的 Mac 安装包](https://nodejs.org/dist/v8.9.3/node-v8.9.3.pkg)
 
 * Windows
 
