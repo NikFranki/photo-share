@@ -29,7 +29,7 @@ const DialogContent = ({content}) => <div className="dialog-content">
  */
 const DialogAlert = ({ show, title, content, ok, cancel, onHandleOpenDialog, onHandleCloseDialog }) => {
   content = content || [1,2,3];
-  title = title || "提示";
+  title = title || "";
   const actions = ok && cancel ? [
     <FlatButton
       label={ok}
@@ -59,7 +59,8 @@ const DialogAlert = ({ show, title, content, ok, cancel, onHandleOpenDialog, onH
         <MuiThemeProvider>
             <div>
                 <Dialog
-                    className="dialog"
+                    paperClassName="dd"
+                    className={`${title ? "dialog" : "dialog-notitle"}`}
                     title={title}
                     actions={actions}
                     modal={false}

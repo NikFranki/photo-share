@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
+import { handleAction, handleActions, combineActions } from 'redux-actions'
 import {
-    ADD_TODO, REQUEST_POSTS,
+    REQUEST_POSTS,
     RECEIVE_POSTS, FETCHITEMS,
     OPEN_DIALOG, CLOSE_DIALOG,
     ADD_COMMENT, OPEN_DRAWER,
@@ -10,21 +11,6 @@ import {
     PICTURECUT, HOMESCROLLLISTMSG,
     ADDSELECTIMGINDEX, ADDLOADING
 } from '../Action/Index'
-
-const todos = (state = [], action) => {
-    switch(action.type) {
-        case ADD_TODO:
-            return [
-                ...state,
-                {
-                    text: action.text,
-                    completed: false
-                }
-            ]
-        default:
-            return state
-    }
-}
 
 const initialState = {receivePosts: []}
 const items = (state = initialState, action) => {
@@ -36,6 +22,14 @@ const items = (state = initialState, action) => {
     }
 }
 
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [处理评论数据]
+ * @param    {Object}   state  [对象数据]
+ * @param    {[type]}   action [action数据]
+ * @return   {[type]}          [action数据]
+ */
 const posts = (state = {
     isFetching: false,
     items: []
@@ -47,146 +41,206 @@ const posts = (state = {
             return {
                 ...state,
                 isFetching: false,
-                items: action.posts
+                items: action.payload.posts
             }
         default:
             return state
     }
 }
 
-const postsBySubreddit = (state = {}, action) => {
-    switch(action.type) {
-        case REQUEST_POSTS:
-        case RECEIVE_POSTS:
-            return {...state, [action.subreddit]: posts(state[action.subreddit], action)}
-        default:
-            return state
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [请求/接收post数据]
+ * @param    {[type]}   {                 [combineActions(REQUEST_POSTS, RECEIVE_POSTS)](state, action [action 触发type]
+ * @return   {[type]}      [state数据]
+ */
+const postsBySubreddit = handleActions({
+    [combineActions(REQUEST_POSTS, RECEIVE_POSTS)](state, action) {
+        return {...state, [action.payload.subreddit]: posts(state[action.payload.subreddit], action)}
     }
-}
+}, {})
 
-const doWithDialog = (state = {show: false, dialogContents: []}, action) => {
-    switch(action.type) {
-        case OPEN_DIALOG:
-        case CLOSE_DIALOG:
-            return {...state, show: action.show, dialogContents: action.dialogContents}
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [打开/关闭弹框]
+ * @param    {[type]}   {                 [combineActions(OPEN_DIALOG, CLOSE_DIALOG)](state, action) [action 触发type]
+ * @return   {[type]}      [弹框state数据]
+ */
+const doWithDialog = handleActions({
+    // 以键值形式创建reducer
+    // OPEN_DIALOG: (state, action) =>
+    // ({
+    //     ...state,
+    //     show: action.payload.show,
+    //     dialogContents: action.payload.dialogContents
+    // }),
+    // CLOSE_DIALOG: (state, action) =>
+    // ({
+    //     ...state,
+    //     show: action.payload.show,
+    // }),
 
-const addComment = (state = {wholeComment: []}, action) => {
-    switch(action.type) {
-        case ADD_COMMENT:
-            return {...state, wholeComment: action.wholeComment}
-        default:
-            return state
-    }
-}
+    // 以数组的形式创建reducer
+    // [OPEN_DIALOG](state, action) {
+    //     return {
+    //         ...state,
+    //         show: action.payload.show,
+    //         dialogContents: action.payload.dialogContents
+    //     }
+    // },
+    // [CLOSE_DIALOG](state, action) {
+    //     return {
+    //         ...state,
+    //         show: action.payload.show
+    //     }
+    // }
 
-const doWithDrawer = (state = {show: false}, action) => {
-    switch(action.type) {
-        case OPEN_DRAWER:
-        case CLOSE_DRAWER:
-            return {
-                ...state,
-                show: action.show,
-            }
-        default:
-            return state
+    // 将多个reducer结合起来
+    [combineActions(OPEN_DIALOG, CLOSE_DIALOG)](state, action) {
+        return {
+            ...state,
+            show: action.payload.show,
+            dialogContents: action.payload.dialogContents
+        }
     }
-}
+}, {show: false, dialogContents: []})
 
-const countLikeNums = (state = {likeNums: 0}, action) => {
-    switch(action.type) {
-        case LIKE_NUMS:
-            if (action.islike) {
-                return {
-                    ...state, likeNums: action.nums+1
-                }
-            } else {
-                return {
-                    ...state, likeNums: action.nums-1
-                }
-            }
-        default:
-            return state
-    }
-}
+// 处理一个单独的action用handleAction
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [添加评论]
+ * @param    {[type]}   ADD_COMMENT [action类型]
+ * @param    {[type]}   [用于完成动作]
+ * @return   {[type]}   [object]
+ */
+const addComment = handleAction(ADD_COMMENT, (state, action) => ({
+    ...state, wholeComment: action.payload.wholeComment
+}), {wholeComment: []})
 
-const doWithTabSelect = (state = {index: 0}, action) => {
-    switch(action.type) {
-        case TABSELECT:
-            return {...state, index: action.index}
-        default:
-            return state
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [上拉/下拉操作]
+ * @param    {[type]}   {                 [combineActions(OPEN_DRAWER, CLOSE_DRAWER)](state, action) [action 触发type]
+ * @return   {[type]}      [上拉/下拉state数据]
+ */
+const doWithDrawer = handleActions({
+    [combineActions(OPEN_DRAWER, CLOSE_DRAWER)](state, action) {
+        return {
+            ...state,
+            show: action.payload.show
+        }
     }
-}
+}, {show: false})
 
-const recommendArr = (state = [{name0: false}, {name1: false}], action) => {
-    switch(action.type) {
-        case RECOMMENDLIST:
-            return [...action.arr]
-        default:
-            return state
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [赞数统计]
+ * @param    {[type]}   LIKE_NUMS [类型]
+ * @param    {[type]}   (state,   action)
+ * @return   {[type]}             [对象]
+ */
+const countLikeNums = handleAction(LIKE_NUMS, (state, action) => {
+    if (action.payload.islike) {
+        return {
+            ...state, likeNums: action.payload.nums+1
+        }
+    } else {
+        return {
+            ...state, likeNums: action.payload.nums-1
+        }
     }
-}
+}, {likeNums: 0})
 
-const searchBarStr = (state = "搜索", action) => {
-    switch(action.type) {
-        case SEARCHPLACEHOLD:
-            return action.searchStr
-        default:
-            return state
-    }
-}
+const doWithTabSelect = handleAction(TABSELECT, (state, action) => ({
+    ...state, index: action.payload.index
+}), {index: 0})
 
-const isShowSearch = (state = false, action) => {
-    switch(action.type) {
-        case SEARCHSHOW:
-            return action.flag
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [推荐列表]
+ * @param    {[type]}   RECOMMENDLIST [description]
+ * @param    {[type]}   [description]
+ * @return   {[type]}   [数组]
+ */
+const recommendArr = handleAction(RECOMMENDLIST, (state, action) => (
+   [...action.payload]
+), [{name0: false}, {name1: false}])
 
-const resPictureCurIndex = (state = 0, action) => {
-    switch(action.type) {
-        case PICTURECUT:
-            return action.index
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [搜索栏文字切换]
+ * @param    {[type]}   SEARCHPLACEHOLD [description]
+ * @param    {[type]}                   [description]
+ * @return   {[type]}                   [description]
+ */
+const searchBarStr = handleAction(SEARCHPLACEHOLD, (state, action) => (
+    action.payload.searchStr
+), "搜索")
 
-const resHomeScrollListMsg = (state = [], action) => {
-    switch(action.type) {
-        case HOMESCROLLLISTMSG:
-            return [...action.arr]
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [显示搜索页面]
+ * @param    {[type]}   SEARCHSHOW [description]
+ * @param    {[type]}              [description]
+ * @return   {[type]}              [description]
+ */
+const isShowSearch = handleAction(SEARCHSHOW, (state, action) => (
+    action.payload.flag
+), false)
 
-const resAddSelectImgIndex = (state = 0, action) => {
-    switch(action.type) {
-        case ADDSELECTIMGINDEX:
-            return action.index
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [获取图片当前index]
+ * @param    {[type]}   PICTURECUT [description]
+ * @param    {[type]}              [description]
+ * @return   {[type]}              [description]
+ */
+const resPictureCurIndex = handleAction(PICTURECUT, (state, action) =>(
+    action.payload.index
+), 0)
 
-const resLoadingStatus = (state = false, action) => {
-    switch(action.type) {
-        case ADDLOADING:
-            return action.status
-        default:
-            return state
-    }
-}
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [首页图片列表信息]
+ * @param    {[type]}   HOMESCROLLLISTMSG [description]
+ * @param    {[type]}                     [description]
+ * @return   {[type]}                     [description]
+ */
+const resHomeScrollListMsg = handleAction(HOMESCROLLLISTMSG, (state, action) => ([...action.payload]), [])
+
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [选择图片index]
+ * @param    {[type]}   ADDSELECTIMGINDEX [description]
+ * @param    {[type]}   (state,           action        [description]
+ * @return   {[type]}                     [description]
+ */
+const resAddSelectImgIndex = handleAction(ADDSELECTIMGINDEX, (state, action) => (
+    action.payload.index
+), 0)
+
+/**
+ * @Author   Franki
+ * @DateTime 2018-03-15
+ * @desc     [loading加载状态]
+ * @param    {[type]}   ADDLOADING [description]
+ * @param    {[type]}              [description]
+ * @return   {[type]}              [description]
+ */
+const resLoadingStatus = handleAction(ADDLOADING, (state, action) => (action.payload.status), false)
 
 const todoApp = combineReducers({
-    todos,
     items,
     postsBySubreddit,
     doWithDialog,

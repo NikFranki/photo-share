@@ -174,7 +174,6 @@ class Add extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        todos: state.todos,
         items: state.items.receivePosts,
         curImgSrcIndex: state.resPictureCurIndex, // 选择图片类别index
         selectImgIndex: state.resAddSelectImgIndex // 选择图片类别数组下的index

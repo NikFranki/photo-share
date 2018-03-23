@@ -70,7 +70,7 @@ class Search extends Component {
 
     componentDidMount() {
         this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
-        this.getServerData();
+        // this.getServerData();
     }
 
     componentDidUpdate() {
@@ -128,6 +128,7 @@ class Search extends Component {
     }
 
     failCallback = () => {
+        debugger
         this.boundActionCreators.AddLoadingStatus(false);
         this.boundActionCreators.openDialog(['网络请求出错了，请稍后再试']);
     }
@@ -195,7 +196,7 @@ class Search extends Component {
             resLoadingStatus,
             doWithDialog
         } = this.props;
-
+        console.log(isShowSearch);
 
 
         const props = {loading: resLoadingStatus, loadingType: 6, loadingName: ''};

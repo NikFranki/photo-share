@@ -14,7 +14,7 @@ class Peason extends Component {
 
     componentWillMount() {
         this.user = LocalData.getLocalData('ActiveUser') ? LocalData.getLocalData('ActiveUser').name : "eva";
-        this.reqForPeason();
+        // this.reqForPeason();
     }
 
     isEmptyObj = (obj) => {
