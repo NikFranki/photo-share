@@ -10,9 +10,10 @@ const api = {
     Params: {
         // 服务器返回的状态码
         "code": [0, "ok"],
-        "apiUrl":   LocalStorage.getLocalData('pshareUrl')['prod'] ?
-                    LocalStorage.getLocalData('pshareUrl')['prod'] :
-                    LocalStorage.getLocalData('pshareUrl')['dev']
+        // "apiUrl":   LocalStorage.getLocalData('pshareUrl')['prod'] ?
+        //             LocalStorage.getLocalData('pshareUrl')['prod'] :
+        //             LocalStorage.getLocalData('pshareUrl')['dev']
+        "apiUrl":      {"prod":"", "dev":"http://127.0.0.1:8888/"}
     },
 
     call: function(apiId, type, request, responsehandler, options, errCallback) {

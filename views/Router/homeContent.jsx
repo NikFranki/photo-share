@@ -112,7 +112,7 @@ class HomeContent extends Component {
     this.handleCheck = this.handleCheck.bind(this);
   }
 
-  handleCheck(event, isInputChecked) {
+  handleCheck = (event, isInputChecked) => {
       let islike, nums = this.props.countLikeNums.likeNums !== 0 ? this.props.countLikeNums.likeNums : 1000000;
       islike = isInputChecked ? true : false;
       this.props.dispatch(likeNums(islike, nums));
@@ -167,7 +167,7 @@ class HomeContent extends Component {
                                               />
                                             </Link>
                                             <span className="username"><Link style={styles.link} to='/peaDetail'>{item.postman}</Link></span>
-                                            <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
+                                            <span onClick={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知', '分享到Messenger']))}><MoreVertIcon style={{color: "rgba(0, 0, 0, 0.5)", height: 20, width: 20}} /></span>
                                         </div>
                                         <div className="share-img">
                                             <CardMedia>
@@ -227,7 +227,6 @@ class HomeContent extends Component {
                   content={doWithDialog.dialogContents}
                   ok="确定"
                   cancel="取消"
-                  onHandleOpenDialog={() => this.props.dispatch(openDialog(['举报...', '复制网址', '打开发帖通知']))}
                   onHandleCloseDialog={() => this.props.dispatch(closeDialog())}
                 />
                 </div>

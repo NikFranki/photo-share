@@ -24,10 +24,6 @@ class Share extends Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
 
         return (
