@@ -128,7 +128,6 @@ class Search extends Component {
     }
 
     failCallback = () => {
-        debugger
         this.boundActionCreators.AddLoadingStatus(false);
         this.boundActionCreators.openDialog(['网络请求出错了，请稍后再试']);
     }
@@ -196,13 +195,11 @@ class Search extends Component {
             resLoadingStatus,
             doWithDialog
         } = this.props;
-        console.log(isShowSearch);
-
 
         const props = {loading: resLoadingStatus, loadingType: 6, loadingName: ''};
 
         return  <div className="recommend-hole">
-                   {this.props.children}
+                    {this.props.children}
                     <SearchBar placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
                     {
                         isShowSearch ? <div>

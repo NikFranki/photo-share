@@ -17,6 +17,7 @@ import SliderX from '../material/home/components/sliderX';
 import Dialog from '../material/home/components/dialog';
 import Loading from '../material/home/components/loading';
 import DrawerSlide from '../material/home/components/drawer-slide';
+import Popup from '../material/home/components/Popup';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -112,6 +113,12 @@ class HomeContent extends Component {
     this.handleCheck = this.handleCheck.bind(this);
   }
 
+  componentDidMount() {
+    // document.querySelector('.recommend').addEventListener('touchstart', (e) => {
+    //   console.log(e);
+    // }, false);
+  }
+
   handleCheck = (event, isInputChecked) => {
       let islike, nums = this.props.countLikeNums.likeNums !== 0 ? this.props.countLikeNums.likeNums : 1000000;
       islike = isInputChecked ? true : false;
@@ -182,7 +189,7 @@ class HomeContent extends Component {
                                             uncheckedIcon={<ActionFavoriteBorder />}
                                           />
                                           <a href="#/comment"><IconComment style={iconStyles} /></a>
-                                          <IconNearMe onClick={() => this.props.dispatch(openDrawer())} style={iconStyles} />
+                                          <IconNearMe onClick={() => this.refs.popup.handlePopupStart()} style={iconStyles} />
                                           <span className="collect">
                                             <Checkbox
                                               style={{position: "absolute", right: 0}}
@@ -220,7 +227,8 @@ class HomeContent extends Component {
                           })
                         }
                     </ul>
-                <DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />
+                {/*<DrawerSlide open={doWithDrawer.show} handleClose={() => this.props.dispatch(closeDrawer())} />*/}
+                <Popup ref="popup" />
                 <Loading />
                 <Dialog
                   show={doWithDialog.show}

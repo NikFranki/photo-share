@@ -5,6 +5,7 @@ import IconTurnedInNot from 'material-ui/svg-icons/action/turned-in-not';
 import Api from '../../js/api';
 import LocalData from '../../js/localStorage';
 import "../Style/peason.less";
+import Popup from '../material/home/components/Popup';
 
 class Peason extends Component {
 
@@ -56,7 +57,10 @@ class Peason extends Component {
 
         return (
             <MuiThemeProvider>
-                {
+                <div>
+                    <button onClick={() => this.refs.popup.handlePopupStart()}>start</button>
+                    <Popup ref="popup" />
+                    {
                     isShow ? <div className="peason-module">
                                 <header>
                                     <section className="peasonal-details">
@@ -97,6 +101,8 @@ class Peason extends Component {
                                 </div>
                     : <div></div>
                 }
+                </div>
+
             </MuiThemeProvider>
         )
     }

@@ -17,6 +17,9 @@ export default class SearchBar extends Component {
         if (this.props.onHandleImgClick) {
             this.props.onHandleImgClick(false);
         }
+        if (!this.props.ischangeicon) { // 不切换图标
+            return;
+        }
         this.refs.searchInput.value = "";
         this.refs.delImgSrc.style.display = "none";
         this.refs.searchImgSrc.setAttribute('src', this.props.searchImgs[1]);
@@ -38,6 +41,9 @@ export default class SearchBar extends Component {
         if (this.props.onHandleInputClick) {
             this.props.onHandleInputClick(true);
         }
+        if (!this.props.ischangeicon) { // 不切换图标
+            return;
+        }
         this.refs.searchImgSrc.setAttribute('src', this.props.searchImgs[0]);
         this.refs.searchBar.style.boxShadow = "0 0 0";
     }
@@ -53,10 +59,17 @@ export default class SearchBar extends Component {
     }
 
     render() {
-        const {placeholder} = this.props;
+        const {
+            placeholder,
+            searchbarStyle
+        } = this.props;
+        const Style = {
+            searchbarStyle: searchbarStyle || {
+            }
+        };
 
         return (
-            <div ref="searchBar" className="search-bar">
+            <div ref="searchBar" className="search-bar" style={Style.searchbarStyle}>
                 <img className="search-img" onClick={this.handleSearchImgClick} ref="searchImgSrc" src="../../../img/search.svg" alt="search" />
                 <div className="search-input">
                     <input onInput={this.handleOnInput} onClick={this.handleInputClick} ref="searchInput" type="text" placeholder={placeholder} />

@@ -47,30 +47,32 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const index = location.href.indexOf('html');
-    const isHome = location.href.slice(index).indexOf('home') > -1 ||
-    (location.href.slice(index).indexOf('home') === -1 &&
-        location.href.slice(index).indexOf('search') === -1 &&
-        location.href.slice(index).indexOf('add') === -1 &&
-        location.href.slice(index).indexOf('favorites') === -1 &&
-        location.href.slice(index).indexOf('peason') === -1 )
-      ? true : false;
-    if (isHome) {
-      hashHistory.push('/home/tab2');
-    }
+    // const index = location.href.indexOf('html');
+    // const isHome = location.href.slice(index).indexOf('home') > -1 ||
+    // (location.href.slice(index).indexOf('home') === -1 &&
+    //     location.href.slice(index).indexOf('search') === -1 &&
+    //     location.href.slice(index).indexOf('add') === -1 &&
+    //     location.href.slice(index).indexOf('favorites') === -1 &&
+    //     location.href.slice(index).indexOf('peason') === -1 )
+    //   ? true : false;
+    // if (isHome) {
+    //   hashHistory.push('/home/tab2');
+    // }
   }
 
   render() {
     return  <Provider store={store}>
               <Router history={hashHistory}>
                 <Route path='/' component={BottomNavigationExampleSimple}>
-                  <IndexRoute component={HomePage} />
+                  {/*<IndexRoute component={HomePage} />
                   <Route path='home' component={HomePage}>
                     <IndexRoute component={HomeContent} />
                     <Route path='tab1' component={PhotoContent} />
                     <Route path='tab2' component={HomeContent} />
                     <Route path='tab3' component={SendContent} />
-                  </Route>
+                  </Route>*/}
+                  <IndexRoute component={Swipe} />
+                  <Route path='home' component={Swipe} />
                   <Route path='search' component={Search}>
                     <Route path='page' component={Page} />
                     <Route path='res' component={Swipe} />

@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import Nav from '../material/home/components/nav';
 import Swiper from '../material/home/components/swiper';
 import Add from './add';
-import Peason from './peason';
-import CustomSearch from '../material/home/components/custom-search';
+import PhotoContent from './photoContent';
+import HomeContent from './homeContent';
+import SendContent from './sendContent';
+import TabFirst from './tabFirst';
+import TabSecond from './tabSecond';
+import TabThird from './tabThird';
 
 const urlSrc = [
     '../../../img/America.jpg',
@@ -54,16 +58,31 @@ const styles = {
     img: {
         width: '100%',
         height: '40vw'
-    }
+    },
 };
 
+const tabFrist = <TabFirst />;
+const tabSecond = <TabSecond />;
+const tabThird = <TabThird />;
+
+
 export default class MycComponent extends Component {
+
+    static defaultProps = {
+        tabs: [tabFrist, tabSecond, tabThird], //['tab one', 'tab two', 'tab three']
+        swipes: [<PhotoContent />, <HomeContent />, <SendContent />], // 滑片
+    };
+
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+
+    }
+
     handleClick = (i, slideToFunc) => {
-        this.refs.swipers.handleSlideTo(i);
+        this.refs.swipers && this.refs.swipers.handleSlideTo(i); // 只有当this.refs.swipers存在才调用handleSlideTo方法
         let buttomLine = document.querySelector('.bottom-line');
         let left;
         switch(i) {
@@ -80,24 +99,20 @@ export default class MycComponent extends Component {
     render() {
         const {
             children,
+            tabs,
+            swipes
         } = this.props;
 
         return (
             <div>
-                <Nav tabs={['tab one', 'tab two', 'tab three']} navStyle={styles.nav} tabStyle={styles.tab} lineStyle={styles.line} buttomLineStyle={styles.buttomLine}  onHandleClick={this.handleClick} />
-                <Swiper ref='swipers' onSlideChangeEnd={this.handleClick}>
+                {children}
+                <Nav ref='tab' className="haha" tabs={tabs} navStyle={styles.nav} tabStyle={styles.tab} lineStyle={styles.line} buttomLineStyle={styles.buttomLine} selectIndex={{index: 1}} onHandleClick={this.handleClick} />
+                <Swiper ref='swipers' initialSlide={1} onSlideChangeEnd={this.handleClick}>
                     <div className="swiper-wrapper">
-                        <div className="swiper-slide">
-                            {/*<img style={styles.img} src={urlSrc[0]} alt="slide1" />*/}
-                            <Peason />
-                            <CustomSearch />
-                        </div>
-                        <div className="swiper-slide">
-                            <img style={styles.img} src={urlSrc[1]} alt="slide2" />
-                        </div>
-                        <div className="swiper-slide">
-                            <img style={styles.img} src={urlSrc[2]} alt="slide3" />
-                        </div>
+                        {swipes.map((item, index) =>    <div key={index} className="swiper-slide">
+                                                            {item}
+                                                        </div>
+                        )}
                     </div>
                 </Swiper>
             </div>
