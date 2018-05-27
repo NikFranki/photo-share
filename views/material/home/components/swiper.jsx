@@ -17,15 +17,29 @@ const styles = {
 };
 
 export default class SwiperComponent extends Component {
+
+    static defaultProps = {
+        initialSlide: 0, // 默认轮播图从index为0的位置显示
+    };
+
     constructor(props) {
         super(props);
         this.swiper = ""; // swiper 对象
     }
 
     componentDidMount() {
+        document.querySelector('.recommend').addEventListener('touchstart', () => {
+          this.swiper.disableTouchControl();
+        }, false);
+
+        document.querySelector('.recommend').addEventListener('touchend', () => {
+          this.swiper.enableTouchControl();
+        }, false);
+
         this.swiper = new Swiper('.swiper-container', {
+            initialSlide: this.props.initialSlide,
             // pagination: '.swiper-pagination', // 分页器
-            // speed: 1000, // 滑片速度
+            // speed: 500, // 滑片速度
             prevButton: `.swiper-button-prev`,
             nextButton: `.swiper-button-next`,
             // autoplay: 3000, // 自动滑动
@@ -35,16 +49,22 @@ export default class SwiperComponent extends Component {
 
             // callback
             onSlideChangeEnd: (swiper) => {
-                if (this.props.onSlideChangeEnd) {
+                if (this.props.onSlideChangeEnd && typeof(this.swiper.realIndex) !== 'undefined') {
                     this.props.onSlideChangeEnd(this.swiper.realIndex);
                     return;
                 }
+            },
+            onSetTransition: (swiper) => {
+                swiper.disableTouchControl();
+            },
+            onTransitionEnd: (swiper) => {
+                swiper.enableTouchControl();
             }
         });
     }
 
     handleSlideTo = (i) => {
-        this.swiper.slideTo(i, 1000, false);
+        this.swiper.slideTo(i, 500, false);
     }
 
     render() {

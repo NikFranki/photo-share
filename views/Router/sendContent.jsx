@@ -9,7 +9,7 @@ const SendContent = () =>   <MuiThemeProvider>
                                     <CircularProgress thickness={5} style={{  width: "100%",
                                                                 position: "relative",
                                                                 textAlign: "initial",
-                                                                height: document.body.clientHeight-(48+56+40),
+                                                                height: document.documentElement.clientHeight-(48+56+40),
                                                                 display: "flex",
                                                                 alignItems: "center",
                                                                 justifyContent: "center"}} />

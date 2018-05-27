@@ -51,6 +51,7 @@
     "postcss-px2rem": "^0.3.0",
     "react-day-picker": "^6.2.1",
     "reactify": "^0.15.2",
+    "rmc-picker": "^5.0.4",
     "style-loader": "0.13.1",
     "url-loader": "^0.5.6",
     "webpack": "^1.13.2"

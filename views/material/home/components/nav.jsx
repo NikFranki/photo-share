@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Nav extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     static defaultProps = {
         tabs: ['one', 'two', 'three'], // 默认tab数目
         isNeedFocus: true, // 默认点击后是否需要聚焦
         selectIndex: {index: 0}, // 当前选择的index
+    }
+
+    constructor(props) {
+        super(props);
     }
 
     handleClick = (i) => {
@@ -62,7 +63,7 @@ class Nav extends Component {
                 width: '100%',
             },
             bottomLine: buttomLineStyle || {
-                left: '0%',
+                left: `${(100/tabs.length)*parseInt(selectIndex.index)}%`,
                 width: `${100/tabs.length}%`,
                 bottom: '0',
                 display: 'block',
