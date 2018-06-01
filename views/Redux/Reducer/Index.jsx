@@ -6,7 +6,8 @@ import {
     OPEN_DIALOG, CLOSE_DIALOG,
     ADD_COMMENT, OPEN_DRAWER,
     CLOSE_DRAWER, LIKE_NUMS,
-    TABSELECT, RECOMMENDLIST,
+    TABSELECT, ISENABLETOSLIDE,
+    RECOMMENDLIST, RECOMMENDARRAY,
     SEARCHPLACEHOLD, SEARCHSHOW,
     PICTURECUT, HOMESCROLLLISTMSG,
     ADDSELECTIMGINDEX, ADDLOADING
@@ -160,6 +161,20 @@ const doWithTabSelect = handleAction(TABSELECT, (state, action) => ({
     ...state, index: action.payload.index
 }), {index: 0})
 
+const isEnableToSlide = handleAction(ISENABLETOSLIDE, (state, action) => { return action.payload}, true)
+
+/**
+ * @Author   Franki
+ * @DateTime 2018-06-01
+ * @desc     [推荐列表]
+ * @param    {[type]}   RECOMMENDARRAY [description]
+ * @param    {[type]}   [description]
+ * @return   {[type]}   [数组]
+ */
+const recommendArray = handleAction(RECOMMENDARRAY, (state, action) => (
+   [...action.payload]
+), [{name0: false}, {name1: false}, {name2: false}, {name3: false}, {name4: false}])
+
 /**
  * @Author   Franki
  * @DateTime 2018-03-15
@@ -248,6 +263,8 @@ const todoApp = combineReducers({
     doWithDrawer,
     countLikeNums,
     doWithTabSelect,
+    isEnableToSlide,
+    recommendArray,
     recommendArr,
     searchBarStr,
     isShowSearch,

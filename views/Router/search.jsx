@@ -20,9 +20,7 @@ class Search extends Component {
         this.tabs = ["热门搜索", "用户", "标签", "地点"];
         this.tabStyle = {};
         this.navStyle = {};
-        this.curIndex = 0; // 默认选中的index
-        this.searchCount = 0; // 次数控制，防止组件state更新无限触发componentDidUpdate
-        this.recommendList = [{name0: false}, {name1: false}, {name2: false}, {name3: false}, {name4: false}];
+        this.recommendList = this.props.recommendArray;
         this.boundActionCreators = bindActionCreators(TodoActionCreators, this.props.dispatch); // 绑定actioncreator, 并dispatch action
         this.user = LocalData.getLocalData('ActiveUser') ? LocalData.getLocalData('ActiveUser').name : "eva";
     }
@@ -56,7 +54,7 @@ class Search extends Component {
             transition: 'all .5s',
         };
         this.bottomLine = {
-            left: '0%',
+            left: `${(100/this.tabs.length)*this.props.index.index}%`,
             width: `${100/this.tabs.length}%`,
             bottom: '0',
             display: 'block',
@@ -66,31 +64,32 @@ class Search extends Component {
             position: 'relative',
             transition: 'left .5s cubic-bezier(0.23, 1, 0.32, 1) 0ms',
         };
+        this.boundActionCreators.isEnableToSlide(this.props.isShowSearch ? true : false);
     }
 
     componentDidMount() {
-        this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 2));
+        this.handleRecommend(this.props.index.index);
         // this.getServerData();
     }
 
     componentDidUpdate() {
-        if (this.props.isShowSearch && this.searchCount === 1) {
+        if (this.props.isShowSearch && this.props.isEnableToSlide) {
             // 页面手势滑动处理
             Gesture.handleSlide(document.querySelector('.recommend-page'),
                 {
                     left: () => {
-                        const curIndex = this.curIndex;
+                        const curIndex = this.props.index.index;
                         this.handleClick(curIndex+1 < 4 ? curIndex+1 : 3);
                         this.handleRecommend(curIndex+1 < 4 ? curIndex+1 : 3);
                     },
                     right: () => {
-                        const curIndex = this.curIndex;
+                        const curIndex = this.props.index.index;
                         this.handleClick(curIndex-1 < 0 ? 0 : curIndex-1);
                         this.handleRecommend(curIndex-1 < 0 ? 0 : curIndex-1);
                     }
                 }
             );
-            this.searchCount++;
+            this.boundActionCreators.isEnableToSlide(false);
         }
     }
 
@@ -139,8 +138,6 @@ class Search extends Component {
     }
 
     handleClick = (i) => {
-        console.log(i);
-        this.curIndex = i;
         this.handleRecommend(i);
         // 利用dispatch发送action
         this.boundActionCreators.tabSelect(i);
@@ -175,15 +172,23 @@ class Search extends Component {
     }
 
     handleInputClick = (flag) => {
-        this.searchCount = this.searchCount === 0 ? 1 : 2;
+        this.boundActionCreators.isEnableToSlide(flag);
         this.boundActionCreators.searchShow(flag);
     }
 
     handleImgClick = (flag) => {
-        this.curIndex = 0;
-        this.searchCount = 0;
+        this.boundActionCreators.isEnableToSlide(flag);
         this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 5));
         this.boundActionCreators.searchShow(flag);
+    }
+
+    handleFollowClick = i => {
+        this.props.recommendArray.map((value, index) => {
+            if (index === i) {
+                this.props.recommendArray[index]['name'+index] = !this.props.recommendArray[index]['name'+index];
+            }
+        });
+        this.boundActionCreators.recommendArray(this.props.recommendArray);
     }
 
     render() {
@@ -193,18 +198,19 @@ class Search extends Component {
             searchPlaceholder,
             isShowSearch,
             resLoadingStatus,
-            doWithDialog
+            doWithDialog,
+            isEnableToSlide
         } = this.props;
 
         const props = {loading: resLoadingStatus, loadingType: 6, loadingName: ''};
 
         return  <div className="recommend-hole">
                     {this.props.children}
-                    <SearchBar placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
+                    <SearchBar isShowBackIcon={isShowSearch ? true : false} placeholder={searchPlaceholder} onHandleImgClick={this.handleImgClick} onHandleInputClick={this.handleInputClick} />
                     {
                         isShowSearch ? <div>
                             <Nav navStyle={this.navStyle} tabs={this.tabs} tabStyle={this.tabStyle} buttomLineStyle={this.bottomLine} selectIndex={index} onHandleClick={this.handleClick} />
-                            <Recommend recommends={recommends} />
+                            <Recommend recommends={recommends} onFollowClick={this.handleFollowClick} />
                         </div>
                         :
                         <div>
@@ -228,7 +234,9 @@ class Search extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         index: state.doWithTabSelect,
+        isEnableToSlide: state.isEnableToSlide,
         recommends: state.recommendArr,
+        recommendArray: state.recommendArray,
         searchPlaceholder: state.searchBarStr,
         isShowSearch: state.isShowSearch,
         resLoadingStatus: state.resLoadingStatus,
