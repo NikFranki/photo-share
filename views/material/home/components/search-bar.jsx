@@ -17,9 +17,6 @@ export default class SearchBar extends Component {
         if (this.props.onHandleImgClick) {
             this.props.onHandleImgClick(false);
         }
-        if (!this.props.ischangeicon) { // 不切换图标
-            return;
-        }
         this.refs.searchInput.value = "";
         this.refs.delImgSrc.style.display = "none";
         this.refs.searchImgSrc.setAttribute('src', this.props.searchImgs[1]);
@@ -38,11 +35,8 @@ export default class SearchBar extends Component {
     * 处理搜索输入点击
     */
     handleInputClick = () => {
-        if (this.props.onHandleInputClick) {
+        if (this.props.onHandleInputClick && this.refs.searchImgSrc.getAttribute('src') === this.props.searchImgs[1]) {
             this.props.onHandleInputClick(true);
-        }
-        if (!this.props.ischangeicon) { // 不切换图标
-            return;
         }
         this.refs.searchImgSrc.setAttribute('src', this.props.searchImgs[0]);
         this.refs.searchBar.style.boxShadow = "0 0 0";
@@ -61,7 +55,9 @@ export default class SearchBar extends Component {
     render() {
         const {
             placeholder,
-            searchbarStyle
+            searchbarStyle,
+            isShowBackIcon,
+            searchImgs
         } = this.props;
         const Style = {
             searchbarStyle: searchbarStyle || {
@@ -70,7 +66,7 @@ export default class SearchBar extends Component {
 
         return (
             <div ref="searchBar" className="search-bar" style={Style.searchbarStyle}>
-                <img className="search-img" onClick={this.handleSearchImgClick} ref="searchImgSrc" src="../../../img/search.svg" alt="search" />
+                <img className="search-img" onClick={this.handleSearchImgClick} ref="searchImgSrc" src={isShowBackIcon ? searchImgs[0] : searchImgs[1]} alt="search" />
                 <div className="search-input">
                     <input onInput={this.handleOnInput} onClick={this.handleInputClick} ref="searchInput" type="text" placeholder={placeholder} />
                 </div>

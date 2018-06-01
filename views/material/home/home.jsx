@@ -30,7 +30,8 @@ import OnePhotoDetail from '../../Router/one-photo-detail';
 import Swiper from '../home/components/swiper';
 /*导入redux*/
 import { Provider } from 'react-redux';
-import store from '../../Redux/Store/Store';
+import { PersistGate } from 'redux-persist/integration/react'
+import PersistStore from '../../Redux/Store/Store';
 import LocalData from '../../../js/localStorage';
 
 import './style.css';
@@ -46,52 +47,33 @@ class Home extends Component {
     LocalData.setLocalData("pshareUrl", {prod: "", dev: "http://127.0.0.1:8888/"});
   }
 
-  componentDidMount() {
-    // const index = location.href.indexOf('html');
-    // const isHome = location.href.slice(index).indexOf('home') > -1 ||
-    // (location.href.slice(index).indexOf('home') === -1 &&
-    //     location.href.slice(index).indexOf('search') === -1 &&
-    //     location.href.slice(index).indexOf('add') === -1 &&
-    //     location.href.slice(index).indexOf('favorites') === -1 &&
-    //     location.href.slice(index).indexOf('peason') === -1 )
-    //   ? true : false;
-    // if (isHome) {
-    //   hashHistory.push('/home/tab2');
-    // }
-  }
-
   render() {
-    return  <Provider store={store}>
-              <Router history={hashHistory}>
-                <Route path='/' component={BottomNavigationExampleSimple}>
-                  {/*<IndexRoute component={HomePage} />
-                  <Route path='home' component={HomePage}>
-                    <IndexRoute component={HomeContent} />
-                    <Route path='tab1' component={PhotoContent} />
-                    <Route path='tab2' component={HomeContent} />
-                    <Route path='tab3' component={SendContent} />
-                  </Route>*/}
-                  <IndexRoute component={Swipe} />
-                  <Route path='home' component={Swipe} />
-                  <Route path='search' component={Search}>
-                    <Route path='page' component={Page} />
-                    <Route path='res' component={Swipe} />
+        return  <Provider store={PersistStore.store}>
+              <PersistGate loading={null} persistor={PersistStore.persistor}>
+                <Router history={hashHistory}>
+                  <Route path='/' component={BottomNavigationExampleSimple}>
+                    <IndexRoute component={Swipe} />
+                    <Route path='home' component={Swipe} />
+                    <Route path='search' component={Search}>
+                      <Route path='page' component={Page} />
+                      <Route path='res' component={Swipe} />
+                    </Route>
+                    <Route path='add' component={Add} />
+                    <Route path='share' component={Share} />
+                    <Route path='favorites' component={Favorites} />
+                    <Route path='peason' component={Peason} />
+                    <Route path='newNews' component={HomeSend} />
+                    <Route path='peaDetail' component={PeasonDetail}>
+                      <IndexRoute component={All} />
+                      <Route path='all' component={All} />
+                      <Route path='single' component={Single} />
+                    </Route>
+                    <Route path='one_photo_detail' component={OnePhotoDetail} />
+                    <Route path='related' component={Related} />
+                    <Route path='comment' component={Comment} />
                   </Route>
-                  <Route path='add' component={Add} />
-                  <Route path='share' component={Share} />
-                  <Route path='favorites' component={Favorites} />
-                  <Route path='peason' component={Peason} />
-                  <Route path='newNews' component={HomeSend} />
-                  <Route path='peaDetail' component={PeasonDetail}>
-                    <IndexRoute component={All} />
-                    <Route path='all' component={All} />
-                    <Route path='single' component={Single} />
-                  </Route>
-                  <Route path='one_photo_detail' component={OnePhotoDetail} />
-                  <Route path='related' component={Related} />
-                  <Route path='comment' component={Comment} />
-                </Route>
-              </Router>
+                </Router>
+              </PersistGate>
             </Provider>
   }
 }

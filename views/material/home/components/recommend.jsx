@@ -88,11 +88,9 @@ export default class Recommend extends Component {
     handleFollow = (i) => {
         this.setState({curIndex: i});
         let recommends = this.props.recommends;
-        recommends.map((value, index) => {
-            if (index === i) {
-                recommends[index]['name'+index] = !recommends[index]['name'+index];
-            }
-        });
+        if (this.props.onFollowClick) {
+            this.props.onFollowClick(i);
+        }
     }
 
     render() {

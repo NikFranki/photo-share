@@ -11,7 +11,9 @@ export const OPEN_DRAWER = 'OPEN_DRAWER'
 export const CLOSE_DRAWER = 'CLOSE_DRAWER'
 export const LIKE_NUMS = 'LIKE_NUMS'
 export const TABSELECT = 'TABSELECT'
+export const ISENABLETOSLIDE = 'ISENABLETOSLIDE'
 export const RECOMMENDLIST = 'RECOMMENDLIST'
+export const RECOMMENDARRAY = 'RECOMMENDARRAY'
 export const SEARCHPLACEHOLD = 'SEARCHPLACEHOLD'
 export const SEARCHSHOW = 'SEARCHSHOW'
 export const PICTURECUT = 'PICTURECUT'
@@ -44,8 +46,14 @@ export const fetchPosts = subreddit => {
 /*nav tab点击*/
 export const tabSelect = createAction(TABSELECT, index => ({index}))
 
+/*search 是否允许滑动，防止无限触发state*/
+export const isEnableToSlide = createAction(ISENABLETOSLIDE, flag => (flag))
+
 /*推荐list 数组*/
-export const recommendSelect = createAction(RECOMMENDLIST)
+export const recommendSelect = createAction(RECOMMENDLIST, list => (list))
+
+/*推荐数组（原始）*/
+export const recommendArray = createAction(RECOMMENDARRAY, arr => arr)
 
 /*search bar提示文字*/
 export const searchPlacehold = createAction(SEARCHPLACEHOLD, searchStr => ({searchStr}))
