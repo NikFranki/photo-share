@@ -20,6 +20,7 @@ export const PICTURECUT = 'PICTURECUT'
 export const HOMESCROLLLISTMSG = 'HOMESCROLLLISTMSG'
 export const ADDSELECTIMGINDEX = 'ADDSELECTIMGINDEX'
 export const ADDLOADING = 'ADDLOADING'
+export const PEASONPOSTIMGS = 'PEASONPOSTIMGS'
 
 export const fetchItems = items => {
     return {
@@ -72,6 +73,9 @@ export const AddSelectImgIndex = createAction(ADDSELECTIMGINDEX, index => ({inde
 
 /*loading动画状态*/
 export const AddLoadingStatus = createAction(ADDLOADING, status => ({status}))
+
+/*peason 个人post图片*/
+export const peasonPostImgs = createAction(PEASONPOSTIMGS, imgs => imgs)
 
 /**
  * @description [利用createActions创建action]

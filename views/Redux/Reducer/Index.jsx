@@ -10,7 +10,8 @@ import {
     RECOMMENDLIST, RECOMMENDARRAY,
     SEARCHPLACEHOLD, SEARCHSHOW,
     PICTURECUT, HOMESCROLLLISTMSG,
-    ADDSELECTIMGINDEX, ADDLOADING
+    ADDSELECTIMGINDEX, ADDLOADING,
+    PEASONPOSTIMGS
 } from '../Action/Index'
 
 const initialState = {receivePosts: []}
@@ -255,6 +256,16 @@ const resAddSelectImgIndex = handleAction(ADDSELECTIMGINDEX, (state, action) => 
  */
 const resLoadingStatus = handleAction(ADDLOADING, (state, action) => (action.payload.status), false)
 
+/**
+ * @Author   Franki
+ * @DateTime 2018-06-03
+ * @desc     [peason post 图片]
+ * @param    {[type]}   PEASONPOSTIMGS [description]
+ * @param    {[type]}              [description]
+ * @return   {[type]}              [description]
+ */
+const peasonPostImgs = handleAction(PEASONPOSTIMGS, (state, action) => (action.payload), [])
+
 const todoApp = combineReducers({
     items,
     postsBySubreddit,
@@ -271,7 +282,8 @@ const todoApp = combineReducers({
     resPictureCurIndex,
     resHomeScrollListMsg,
     resAddSelectImgIndex,
-    resLoadingStatus
+    resLoadingStatus,
+    peasonPostImgs
 })
 
 export default todoApp
