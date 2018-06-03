@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as TodoActionCreators from '../Redux/Action/Index';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Avatar } from 'material-ui';
 import SliderX from '../material/home/components/sliderX';
-import ReactPullLoad,{ STATS } from '../material/home/components/pull-loader'
+import ReactPullLoad, { STATS } from '../material/home/components/pull-loader';
 
 import '../Style/peason-detail.less';
 
-const loadMoreLimitNum = 10;
+const loadMoreLimitNum = 5;
 
-export default class PeasonDetail extends Component {
+const imgSrcArr =  [
+    '../../../img/ramos.jpg',
+    '../../../img/ramos1.jpg',
+    '../../../img/ramos2.jpg'
+];
+
+class PeasonDetail extends Component {
     constructor(props) {
         super(props);
         this.state ={
           hasMore: true,
+          data: imgSrcArr,
           action: STATS.init,
           index: loadMoreLimitNum //loading more test time limit
         };
+        this.boundActionCreators = bindActionCreators(TodoActionCreators, this.props.dispatch);
+    }
+
+    componentDidMount() {
+        this.boundActionCreators.peasonPostImgs(imgSrcArr);
     }
 
     handleAction = (action) => {
@@ -61,6 +76,7 @@ export default class PeasonDetail extends Component {
         if(STATS.loading === this.state.action){
             return false;
         }
+
         //无更多内容则不执行后面逻辑
         if(!this.state.hasMore){
             return;
@@ -75,9 +91,11 @@ export default class PeasonDetail extends Component {
                 });
             } else{
                 this.setState({
+                    data: [...this.state.data, imgSrcArr[0]],
                     action: STATS.reset,
                     index: this.state.index - 1
                 });
+                this.boundActionCreators.peasonPostImgs(this.state.data);
             }
         }, 1000)
 
@@ -88,15 +106,10 @@ export default class PeasonDetail extends Component {
 
     render() {
         const {
-          hasMore
+          hasMore,
+          data
         } = this.state
-        const imgSrcArr =  [
-                      '../../../img/dream.jpg',
-                      '../../../img/solo.jpg',
-                      '../../../img/madrid.jpg',
-                      '../../../img/ramos.jpg',
-                      '../../../img/dream.jpg'
-        ];
+
         return  <ReactPullLoad
                     downEnough={150}
                     action={this.state.action}
@@ -167,3 +180,8 @@ export default class PeasonDetail extends Component {
     }
 }
 
+export default connect((state, ownProps) => {
+    return {
+        photos: state.peasonPostImgs
+    }
+})(PeasonDetail);

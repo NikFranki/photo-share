@@ -38,7 +38,7 @@
 /* HeadNode default UI */
 @bg-dark: #EFEFF4;
 
-@height: 3rem;
+@height: 3em;
 @fontSize: 12px;
 @fontColor: darken(@bg-dark, 40%); // state hint
 @btnColor: darken(@bg-dark, 60%); // load more
@@ -54,10 +54,10 @@
 .ui-loading() {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.5rem;
-    width: .23em;
-    height: .23em;
-    border: 2px solid darken(@bg-dark, 30%);
+    font-size: 16px;
+    width: .8em;
+    height: .8em;
+    border: 1px solid darken(@bg-dark, 30%);
     border-top-color: #fff;
     border-radius: 100%;
     animation: circle .8s infinite linear;
@@ -91,10 +91,10 @@
 
         i {
             display: inline-block;
-            font-size: 2em;
-            margin-right: .6em;
+            font-size: 12px;
+            margin-right: .8em;
             vertical-align: middle;
-            height: 1em;
+            height: 0.8em;
             border-left: 1px solid;
             position: relative;
             transition: transform .3s ease;
@@ -102,8 +102,8 @@
             &:before, &:after {
                 content: '';
                 position: absolute;
-                font-size: .5em;
-                width: 1em;
+                font-size: 16px;
+                width: .5em;
                 bottom: 0;
                 border-top: 1px solid;
             }
@@ -143,10 +143,10 @@
             display: inline-block;
             box-sizing: content-box;
             vertical-align: middle;
-            margin-right: 10px;
-            font-size: 20px;
-            height: .7em;
-            width: .7em;
+            margin-right: .8em;
+            font-size: 16px;
+            height: .8em;
+            width: .8em;
             border: 1px solid;
             border-radius: 100%;
             position: relative;
@@ -155,8 +155,8 @@
                 content: '';
                 position: absolute;
                 top: 1px;
-                left: 5px;
-                height: 10px;
+                left: 4px;
+                height: 8px;
                 width: 4px;
                 border: solid;
                 border-width: 0 1px 1px 0;
@@ -169,7 +169,6 @@
 .pull-load-footer-default {
     text-align: center;
     font-size: @fontSize;
-    line-height: @height;
     color: @fontColor;
     &:after {
         .state-loading & {
@@ -181,7 +180,7 @@
     }
     .state-loading & {
         i {
-            margin-right: 10px;
+            margin-right: .5em;
             .ui-loading();
         }
     }

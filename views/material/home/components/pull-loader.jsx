@@ -166,6 +166,7 @@ export default class ReactPullLoad extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
         if (nextProps.action === STATS.refreshed) {
             setTimeout(() => {
                 this.props.handleAction(STATS.reset);
@@ -225,6 +226,7 @@ export default class ReactPullLoad extends Component {
         this.setState({
             pullHeight: diff,
         });
+
         this.props.handleAction(loaderState);
     }
 
@@ -250,6 +252,7 @@ export default class ReactPullLoad extends Component {
         this.setState({
             pullHeight: 0,
         });
+
         this.props.handleAction(STATS.loading);
         // }
     }
