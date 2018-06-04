@@ -70,6 +70,9 @@ class Search extends Component {
     componentDidMount() {
         this.handleRecommend(this.props.index.index);
         // this.getServerData();
+        document.body.addEventListener('click', (e) => {
+            console.log(e);
+        }, false);
     }
 
     componentDidUpdate() {
@@ -97,6 +100,8 @@ class Search extends Component {
         this.navStyle = {};
         this.tabStyle = {};
         this.boundActionCreators.tabSelect(0);
+        this.boundActionCreators.searchShow(false);
+        this.handleRecommend(0);
     }
 
     doAction = (action) => {
@@ -178,11 +183,11 @@ class Search extends Component {
 
     handleImgClick = (flag) => {
         this.boundActionCreators.isEnableToSlide(flag);
-        this.boundActionCreators.recommendSelect(this.recommendList.slice(0, 5));
         this.boundActionCreators.searchShow(flag);
     }
 
     handleFollowClick = i => {
+        this.handleRecommend(this.props.index.index);
         this.props.recommendArray.map((value, index) => {
             if (index === i) {
                 this.props.recommendArray[index]['name'+index] = !this.props.recommendArray[index]['name'+index];
