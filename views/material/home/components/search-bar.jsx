@@ -68,7 +68,7 @@ export default class SearchBar extends Component {
             <div ref="searchBar" className="search-bar" style={Style.searchbarStyle}>
                 <img className="search-img" onClick={this.handleSearchImgClick} ref="searchImgSrc" src={isShowBackIcon ? searchImgs[0] : searchImgs[1]} alt="search" />
                 <div className="search-input">
-                    <input onInput={this.handleOnInput} onClick={this.handleInputClick} ref="searchInput" type="text" placeholder={placeholder} />
+                    <input id="search-input" onInput={this.handleOnInput} onClick={this.handleInputClick} ref="searchInput" type="text" placeholder={placeholder} />
                 </div>
                 <img className="del-img" onClick={this.handleDelClick} ref="delImgSrc" src="../../../img/del.svg" alt="del" />
             </div>

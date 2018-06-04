@@ -13,6 +13,19 @@ class Nav extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        this.handleClick(this.props.selectIndex.index);
+    }
+
+    componentWillUnmount() {
+        this.inputBlur();
+    }
+
+    inputBlur() {
+        const searchInput = document.getElementById('search-input');
+        searchInput.blur();
+    }
+
     handleClick = (i) => {
         if (this.props.onHandleClick) {
             this.props.onHandleClick(i);
