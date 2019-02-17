@@ -70,9 +70,6 @@ class Search extends Component {
     componentDidMount() {
         this.handleRecommend(this.props.index.index);
         // this.getServerData();
-        document.body.addEventListener('click', (e) => {
-            console.log(e);
-        }, false);
     }
 
     componentDidUpdate() {

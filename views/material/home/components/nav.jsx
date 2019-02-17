@@ -22,8 +22,10 @@ class Nav extends Component {
     }
 
     inputBlur() {
-        const searchInput = document.getElementById('search-input');
-        searchInput.blur();
+        if (document.getElementById('search-input')) {
+            const searchInput = document.getElementById('search-input');
+            searchInput.blur();
+        }
     }
 
     handleClick = (i) => {

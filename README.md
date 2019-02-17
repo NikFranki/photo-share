@@ -54,4 +54,4 @@ Linux 下的安装方法有待补充。
 
 # 效果
 
-![image](http://p2bmmf3zh.bkt.clouddn.com/show.gif)
+![image](http://qiniu.sevenyuan.cn/show.gif)
