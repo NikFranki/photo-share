@@ -33,6 +33,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import PersistStore from '../../Redux/Store/Store';
 import LocalData from '../../../js/localStorage';
+import Gesture from '../../../js/gesture';
 
 import './style.css';
 
@@ -45,6 +46,7 @@ class Home extends Component {
   componentWillMount() {
     // http://bangth.com:8888/
     LocalData.setLocalData("pshareUrl", {prod: "", dev: "http://127.0.0.1:8888/"});
+    Gesture.listenAppCancelButton();
   }
 
   render() {

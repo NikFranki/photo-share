@@ -108,6 +108,22 @@ const Gesture = {
                 clearTimeout(timeout);
             }, false);
         }
+    },
+
+    // 控制原生返回button，单词点击返回不退出app
+    listenAppCancelButton: function() {
+        document.addEventListener('plusready', function() {
+            var webview = plus.webview.currentWebview();
+            plus.key.addEventListener('backbutton', function() {
+                webview.canBack(function(e) {
+                    if (e.canBack) {
+                        webview.back();
+                    } else {
+                        webview.close();
+                    }
+                });
+            }, false)
+        }, false);
     }
 }
 

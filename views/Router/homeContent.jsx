@@ -114,6 +114,8 @@ class HomeContent extends Component {
   }
 
   componentDidMount() {
+    const self = this;
+    const ss = ['是否要退出应用'];
     // document.querySelector('.recommend').addEventListener('touchstart', (e) => {
     //   console.log(e);
     // }, false);
